@@ -10,7 +10,9 @@ namespace WpfApplication1
 {
     class MysqlC
     {
-       //private ILog logger = LogManager.GetLogger(nameof(MysqlConnector));
+        //private ILog logger = LogManager.GetLogger(nameof(MysqlConnector));
+
+        //COMIT A CHANGE!!!!
 
         private string username;
         private string password;
