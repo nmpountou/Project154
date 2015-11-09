@@ -12,7 +12,8 @@ namespace WpfApplication1
     {
         //private ILog logger = LogManager.GetLogger(nameof(MysqlConnector));
 
-        //COMIT A CHANGE!!!!
+        //KOSTA KANO MIA ALLAGI STON KODIKA
+        //LOGIKA THA PREPEI NATIN DEIS
 
         private string username;
         private string password;
