@@ -16,8 +16,7 @@ namespace WpfApplication1
         //LOGIKA THA PREPEI NA TIN DEIS
         //
 
-        /// Niko EKana ALagi
-        ///  /// Niko EKana ALagi 2
+        //Prwth Alagi
 
         private string username;
         private string password;
