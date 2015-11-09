@@ -12,7 +12,7 @@ namespace WpfApplication1
     {
         //private ILog logger = LogManager.GetLogger(nameof(MysqlConnector));
 
-        //COMIT A CHANGE!!!!
+        //COMIT A CHANGE!!!!ssdsfsdfsdf
 
         private string username;
         private string password;
