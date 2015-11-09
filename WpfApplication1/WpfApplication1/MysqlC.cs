@@ -14,6 +14,8 @@ namespace WpfApplication1
 
         //COMIT A CHANGE!!!!
 
+            /// Niko EKana ALagi
+
         private string username;
         private string password;
         private string hostname;
