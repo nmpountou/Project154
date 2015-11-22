@@ -111,6 +111,13 @@ namespace WpfApplication1
 
         }
 
+        //Ayti i allagi einai gia to merge
+        public string Messagge
+        {
+       
+            get { return hostname; }
+
+        }
         public string Username
         {
             set { username = value; }
