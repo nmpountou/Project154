@@ -29,7 +29,7 @@ namespace WpfApplication1
 
         public void CostasFunction()
         {
-
+            MessageBox.Show("BLABABLABABLAL!!!");
         }
 
 
