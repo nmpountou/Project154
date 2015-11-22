@@ -26,6 +26,15 @@ namespace WpfApplication1
 
         private MySqlConnection connection;
 
+
+        public void CostasFunction()
+        {
+
+        }
+
+
+
+
         public  MysqlC(string username, string password, string hostname, string port, string database)
         {
             this.username = username;
