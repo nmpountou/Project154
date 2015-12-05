@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 /// <summary>
 /// Create a class to manage the Mysql connection with the database.
 /// </summary>
+//Costas
 
-//Nikos
 using MySql.Data.MySqlClient;
 using System.Configuration;
 
