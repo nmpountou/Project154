@@ -58,7 +58,6 @@ namespace Quastionnaire
                 connection = new MySqlConnection(cs);
                 connection.Open();
                 //log.Debug("MySQL version : {0}" + connection.ServerVersion.ToString());
-                System.Windows.Forms.MessageBox.Show("Connection Succeeded!");
                 change_app_config_file(cs);
             }
             catch (MySqlException ex)

@@ -41,6 +41,7 @@ namespace Quastionnaire
             comboBox1.Items.Add("English");
             comboBox1.Items.Add("Ελληνικά");
             comboBox1.SelectedIndex = 0;
+            this.FormClosed += new FormClosedEventHandler(form1_FormClosed);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +53,7 @@ namespace Quastionnaire
         {
             pictureBox2.Visible = false;
             pictureBox3.Visible = false;
-
+            pictureBox4.Visible = false;
             //Rectangle for textbox1 & textbox2 (customizing).
             System.Drawing.Graphics graphics = this.CreateGraphics();
             System.Drawing.Rectangle rectangle1 = new System.Drawing.Rectangle(282, 245, 280, 30);
@@ -65,6 +66,13 @@ namespace Quastionnaire
 
         private void button2_Click(object sender, EventArgs e)
         {
+            pictureBox4.Visible = true;
+            //Thread th = new Thread(new ThreadStart(WorkThread));
+            //th.Start();
+
+            // DELETE THIS CHANGES
+            textBox1.Text = " ";
+            textBox2.Text = " ";
 
             //log.Debug("Click to do connection");
             if (textBox1.Text.Equals(""))
@@ -80,20 +88,60 @@ namespace Quastionnaire
             {
                 pictureBox2.Visible = false;
                 pictureBox3.Visible = false;
-                mysqlc = new MysqlC(textBox1.Text, textBox2.Text, "localhost", "questionnairex");
+                //mysqlc = new MysqlC(textBox1.Text, textBox2.Text, "localhost", "questionnairex");
+
+                //BY DEFALYT CONNECTION!!!
+                mysqlc = new MysqlC("root", "123456", "localhost", "questionnairex");
                 mysqlc.initializeConnection();
                 if (mysqlc.Return_Connection()!=null)
                 {
+                    //Stop the graphics.               
+                    pictureBox4.Visible = false;
+
+                    System.Windows.Forms.MessageBox.Show("Connection Succeeded!");
                     //Add a new event to close the window form
-                    this.FormClosed += new FormClosedEventHandler(form1_FormClosed);
                     this.form1_FormClosed(sender,e);
                 }
             }
         }
 
-        void form1_FormClosed(object sender, EventArgs e)
+        //Start the thread for the graphics.
+        //private void WorkThread()
+        //{
+
+        //    // we have no params, so just call the method
+        //    UpdateTextBox();
+        //}
+        //private void UpdateTextBox()
+        //{
+        //    // do we need to switch threads?
+        //    try {
+        //        if (InvokeRequired)
+        //        {
+        //            // slightly different now, as we dont need params
+        //            // we can just use MethodInvoker
+        //            MethodInvoker method = new MethodInvoker(UpdateTextBox);
+        //            Invoke(method);
+        //            return;
+        //        }
+
+        //        // as we didn't take a param, we just update
+        //        //textBox1.Text += "Hello world!\r\n";
+        //        pictureBox4.Visible = true;
+        //    }
+        //    catch (ThreadAbortException e)
+        //    {
+        //        pictureBox4.Visible = false;
+        //        Thread.ResetAbort();
+        //    }
+        //}
+
+
+
+    void form1_FormClosed(object sender, EventArgs e)
         {
             // here you can do anything
+            pictureBox4.Visible = false;
             this.Dispose();
             if (mysqlc != null)
             {
@@ -118,6 +166,8 @@ namespace Quastionnaire
                 Application.Exit();
             }
         }
+
+
         public MySqlConnection return_connection()
         {
             if (mysqlc!=null)
@@ -129,6 +179,8 @@ namespace Quastionnaire
                 return null;
             }
         }
+
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -161,6 +213,16 @@ namespace Quastionnaire
                 ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
                 resources.ApplyResources(c, c.Name, new CultureInfo(lang));
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //Hide the main form.
+            //When login is done we re-open the form with this.Visible.True
+            // the user can now login to the program. 
+            this.Hide();
+            Form4 fr4 = new Form4();
+            fr4.ShowDialog();
         }
     }
 }
