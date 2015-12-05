@@ -145,10 +145,18 @@ namespace Quastionnaire
         {
             return connection;
         }
-        //public string Password
-        //{
-        //    set { password = value; }
-        //    get { return password; }
-        //}
+        public string Password
+        {
+            set { password = value; }
+            get { return password; }
+        }
+        public void help()
+        {
+
+        }
+        public void help2()
+        {
+
+        }
     }
 }
