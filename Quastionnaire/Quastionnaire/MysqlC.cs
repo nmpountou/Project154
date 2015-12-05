@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /// Create a class to manage the Mysql connection with the database.
 /// </summary>
 
-//Costas Commenct
+//Costas Commenct Costas 2
 
 
 using MySql.Data.MySqlClient;
