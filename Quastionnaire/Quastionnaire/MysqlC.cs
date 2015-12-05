@@ -17,19 +17,33 @@ namespace Quastionnaire
     class MysqlC
     {
         public void costas1() {
-
-            //sdfdsfdsf
-            //sdfsdfds
-            //sdfsdf
-
+            //NM
+            //NM
+            //NM
          }
-        public void costas2() { }
-        public void costas3() { }
-        public void costas4() { }
+        public void costas2() {
+            //NM
+            //NM
+            //NM
+        }
+        public void costas3() {
+            //NM
+            //NM
+            //NM
+        }
+        public void costas4() {
+            //NM
+            //NM
+            //NM
+        }
         public void costas5() {
             //private static readonly log4net.ILog log = LogHelper.Getlogger();
         }
 
+        public void costas6()
+        {
+
+        }
         private string username;
         private string password;
         private string hostname;
