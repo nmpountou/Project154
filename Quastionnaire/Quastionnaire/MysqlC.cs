@@ -16,7 +16,13 @@ namespace Quastionnaire
 {
     class MysqlC
     {
-        public void costas1() { }
+        public void costas1() {
+
+            //sdfdsfdsf
+            //sdfsdfds
+            //sdfsdf
+
+         }
         public void costas2() { }
         public void costas3() { }
         public void costas4() { }
