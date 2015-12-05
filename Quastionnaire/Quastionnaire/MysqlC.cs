@@ -158,5 +158,14 @@ namespace Quastionnaire
         {
 
         }
+        public void help3()
+        {
+
+        }
+        public void help4()
+        {
+
+        }
+
     }
 }
