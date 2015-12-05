@@ -18,17 +18,21 @@ namespace Quastionnaire
     {
         public void costas1() {
 
-            //sdfdsfdsf
-            //sdfsdfds
-            //sdfsdf
+            //costas//costas
 
-         }
-        public void costas2() { }
-        public void costas3() { }
-        public void costas4() { }
-        public void costas5() {
-            //private static readonly log4net.ILog log = LogHelper.Getlogger();
         }
+        public void costas2() {
+
+            //costas//costas
+
+        }
+        public void costas3() {
+
+            //costas//costas
+
+        }
+        public void costas4() { }
+        public void costas5() {}
 
         private string username;
         private string password;
