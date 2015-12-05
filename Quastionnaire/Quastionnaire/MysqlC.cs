@@ -17,7 +17,9 @@ namespace Quastionnaire
     class MysqlC
     {
         public void costas1() { }
-        public void costas2() { }
+        public void costas2() {
+            //Allagai gia na doume@@@@@@@#%@#$%@#%#$%334
+        }
         public void costas3() { }
         public void costas4() { }
         public void costas5() {
