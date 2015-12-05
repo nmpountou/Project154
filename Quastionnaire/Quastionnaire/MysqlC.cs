@@ -20,7 +20,9 @@ namespace Quastionnaire
         public void costas2() { }
         public void costas3() { }
         public void costas4() { }
-        public void costas5() { }
+        public void costas5() {
+            //private static readonly log4net.ILog log = LogHelper.Getlogger();
+        }
 
         private string username;
         private string password;
