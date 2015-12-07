@@ -10,7 +10,6 @@ namespace Quastionnaire.Model
         private string _password;
         private UserInformation _userInformation;
 
-
         public string Username { get; set; }
         public string Password { get; set; }
         public UserInformation UserInformation { get; set; }

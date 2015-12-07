@@ -28,12 +28,12 @@ namespace Sunrise.MultipleChoice
             Account account = new Account();
             account.Username = "Omega";
 
-            List<Question> items = new List<Question>();
-            items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3 , Correct_Department_ID = 1 , Date = new DateTime() , Question_des = "Erwthsh1", Level = 2 } );
-            items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            listView1.ItemsSource = items;
+            //List<Question> items = new List<Question>();
+            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3 , Correct_Department_ID = 1 , Date = new DateTime() , Question_des = "Erwthsh1", Level = 2 } );
+            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
+            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
+            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
+            //listView1.ItemsSource = items;
 
 
         }
