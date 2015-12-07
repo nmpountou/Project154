@@ -21,14 +21,14 @@ using System.Threading;
 
 namespace Quastionnaire
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //In case of use Netframwork above 4.6 you can write the file name. 
         //private static readonly log4net.ILog log = LogHelper.Getlogger();
         private MysqlC mysqlc;
 
-        public Form1()
+        public Login()
         {
             //Language default start
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
@@ -210,7 +210,7 @@ namespace Quastionnaire
         {
             foreach (Control c in this.Controls)
             {
-                ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
+                ComponentResourceManager resources = new ComponentResourceManager(typeof(Login));
                 resources.ApplyResources(c, c.Name, new CultureInfo(lang));
             }
         }

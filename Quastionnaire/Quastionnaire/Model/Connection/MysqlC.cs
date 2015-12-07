@@ -7,37 +7,15 @@ using System.Threading.Tasks;
 /// Create a class to manage the Mysql connection with the database.
 /// </summary>
 
-//Nikos dsfgdfgdfgds
 using MySql.Data.MySqlClient;
 using System.Configuration;
 
-
-//Sxolio1
 
 namespace Quastionnaire
 {
     class MysqlC
     {
-        public void costas1() {
-
-            //sdfdsfdsf
-            //sdfsdfds
-            //sdfsdf
-            //dsfdasfdasfas
-            //xcvxzvxczvxzcz
-
-         }
-        public void costas2() { }
-        public void costas3() { }
-        public void costas4() { }
-        public void costas5() {
-            //private static readonly log4net.ILog log = LogHelper.Getlogger();
-        }
-
-        public void costas6()
-        {
-
-        }
+      
         private string username;
         private string password;
         private string hostname;
@@ -166,22 +144,7 @@ namespace Quastionnaire
             set { password = value; }
             get { return password; }
         }
-        public void help()
-        {
-
-        }
-        public void help2()
-        {
-
-        }
-        public void help3()
-        {
-
-        }
-        public void help4()
-        {
-
-        }
+     
 
     }
 }
