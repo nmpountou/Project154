@@ -35,6 +35,18 @@ namespace Quastionnaire.Model.Dao.Impl
             throw new NotImplementedException();
         }
 
+        public List<Questionaire> getQuestionaires()
+        {
+
+
+            return null;
+        }
+
+        public List<Questionaire> getQuestionares(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void saveQuestionaire(Questionaire question)
         {
             throw new NotImplementedException();
