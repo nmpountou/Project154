@@ -12,6 +12,8 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 
 
+//Sxolio1
+
 namespace Quastionnaire
 {
     class MysqlC
