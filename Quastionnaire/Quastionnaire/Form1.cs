@@ -56,9 +56,10 @@ namespace Quastionnaire
             pictureBox4.Visible = false;
             //Rectangle for textbox1 & textbox2 (customizing).
             System.Drawing.Graphics graphics = this.CreateGraphics();
-            System.Drawing.Rectangle rectangle1 = new System.Drawing.Rectangle(282, 245, 280, 30);
+            //System.Drawing.Rectangle rectangle1 = new System.Drawing.Rectangle(282, 245, 280, 30);
+            System.Drawing.Rectangle rectangle1 = new System.Drawing.Rectangle(textBox1.Location.X-1, textBox1.Location.Y-1, textBox1.Width+1, textBox1.Height+11);
             graphics.DrawRectangle(System.Drawing.Pens.DeepSkyBlue, rectangle1);
-            System.Drawing.Rectangle rectangle2 = new System.Drawing.Rectangle(282, 284, 280, 30);
+            System.Drawing.Rectangle rectangle2 = new System.Drawing.Rectangle(textBox2.Location.X - 1, textBox2.Location.Y - 1, textBox2.Width + 1, textBox2.Height + 11);
             graphics.DrawRectangle(System.Drawing.Pens.DeepSkyBlue, rectangle2);
             base.OnPaint(e);
 
@@ -98,7 +99,7 @@ namespace Quastionnaire
                     //Stop the graphics.               
                     pictureBox4.Visible = false;
 
-                    System.Windows.Forms.MessageBox.Show("Connection Succeeded!");
+                    System.Windows.Forms.MessageBox.Show(Messages.Connection_str);
                     //Add a new event to close the window form
                     this.form1_FormClosed(sender,e);
                 }
@@ -196,13 +197,15 @@ namespace Quastionnaire
         {
             if (comboBox1.SelectedItem.ToString() == "English")
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
                 ChangeLanguage("en");
             }
             else
             {
                 //Change the language
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("el");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("el");
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("el");
                 ChangeLanguage("el");
             }
         }
@@ -221,8 +224,18 @@ namespace Quastionnaire
             //When login is done we re-open the form with this.Visible.True
             // the user can now login to the program. 
             this.Hide();
-            Form4 fr4 = new Form4();
-            fr4.ShowDialog();
+            //Form4 fr4 = new Form4();
+            //fr4.ShowDialog();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

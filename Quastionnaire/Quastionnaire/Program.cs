@@ -36,10 +36,6 @@ namespace Quastionnaire
             Form2 fr2 = new Form2();
             Application.Run(fr2);
 
-            Form3 fr3 = new Form3();
-            Application.Run(fr3);
-
-
         }
     }
 }
