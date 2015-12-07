@@ -15,6 +15,7 @@ namespace Quastionnaire
 {
     class MysqlC
     {
+      
         private string username;
         private string password;
         private string hostname;
@@ -143,5 +144,7 @@ namespace Quastionnaire
             set { password = value; }
             get { return password; }
         }
+     
+
     }
 }

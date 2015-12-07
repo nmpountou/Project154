@@ -60,7 +60,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -109,11 +109,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -122,28 +122,36 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="LogHelper.cs" />
-    <Compile Include="Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.el.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.el.resx</DependentUpon>
-    </Compile>
-    <Compile Include="MysqlC.cs" />
+    <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\CurrentUserInfo.cs" />
+    <Compile Include="Model\Dao\Impl\QuestionaireDaoImpl.cs" />
+    <Compile Include="Model\Dao\Impl\QuestionDaoImpl.cs" />
+    <Compile Include="Model\Dao\Impl\AnswerDaoImpl.cs" />
+    <Compile Include="Model\Dao\IQuestionaireDao.cs" />
+    <Compile Include="Model\Dao\IQuestionDao.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\Questionaire.cs" />
+    <Compile Include="Model\Connection\MysqlC.cs" />
+    <Compile Include="Model\Connection\MysqlConnector.cs" />
+    <Compile Include="Model\Dao\IAnswerDao.cs" />
+    <Compile Include="Model\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetriveStringConnection.cs" />
-    <EmbeddedResource Include="Form1.el.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestQuestionaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestQuestionaire.Designer.cs">
+      <DependentUpon>TestQuestionaire.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Login.el.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.en.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Login.en.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.el.resx">
       <DependentUpon>Form2.cs</DependentUpon>
@@ -153,14 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.el.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.el.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,6 +172,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestQuestionaire.resx">
+      <DependentUpon>TestQuestionaire.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

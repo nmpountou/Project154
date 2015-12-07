@@ -30,11 +30,19 @@ namespace Quastionnaire
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Form1 fr1 = new Form1();
+
+            TestQuestionaire fr1 = new TestQuestionaire();
             Application.Run(fr1);
 
-            Form2 fr2 = new Form2();
-            Application.Run(fr2);
+            /* Login fr1 = new Login();
+             Application.Run(fr1);
+
+             Form2 fr2 = new Form2();
+             Application.Run(fr2);
+
+             Form3 fr3 = new Form3();
+             Application.Run(fr3);*/
+
 
         }
     }
