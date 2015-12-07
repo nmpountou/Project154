@@ -71,7 +71,11 @@
     <Compile Include="ButtonStackPanel.xaml.cs">
       <DependentUpon>ButtonStackPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\Account\Account.cs" />
+    <Compile Include="Model\Account\Address.cs" />
+    <Compile Include="Model\Account\City.cs" />
+    <Compile Include="Model\Account\Country.cs" />
+    <Compile Include="Model\Account\UserInformation.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Register.xaml.cs">

@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sunrise.MultipleChoice.Model
+namespace Sunrise.MultipleChoice.Model.Account
 {
-    class Department
+    class Address
     {
-
-
-
-
     }
 }

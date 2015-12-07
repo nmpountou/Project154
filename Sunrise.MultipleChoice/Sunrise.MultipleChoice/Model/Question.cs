@@ -10,18 +10,18 @@ namespace Quastionnaire.Model
     class Question
     {
 
-        private int id;
-        private string question;
-        private int level;
-        private DateTime date;
-        private Account account;
-        private Answer answer;
-        private Department department;
-        private Subject subject;
+        private int _id;
+        private string _question_descr;
+        private int _level;
+        private DateTime _date;
+        private Account _account;
+        private Answer _answer;
+        private Department _department;
+        private Subject _subject;
 
 
         public int Id { get; set; }
-        public string Question_des { get; set; }
+        public string Question_descr { get; set; }
         public int Level { get; set; }
         public DateTime Date { get; set; }
         public Account Account { get; set; }
