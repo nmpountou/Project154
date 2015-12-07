@@ -11,7 +11,7 @@ namespace Quastionnaire.Model
         public static string HOSTNAME = "127.0.0.1";
         public static string PORT = "3306";
         public static string DATABASE = "questionaire";
-        public static string TEMP_REGISTER_USERNAME = "test";
+        public static string TEMP_REGISTER_USERNAME = "question";
         public static string TEMP_REGISTER_PASSWORD = "91420";
 
         public static string USERNAME;
