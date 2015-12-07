@@ -36,7 +36,6 @@ namespace Sunrise.MultipleChoice
         private void login_Click(object sender, RoutedEventArgs e)
         {
 
-            String name = nameTB.Text;
 
 
         }
