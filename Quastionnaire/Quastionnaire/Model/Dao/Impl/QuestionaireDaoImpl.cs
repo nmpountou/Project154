@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Sunrise.MultipleChoice.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,22 @@ namespace Quastionnaire.Model.Dao.Impl
     {
         public void deleteQuestionaire(int question_id)
         {
-            throw new NotImplementedException();
+            String query = "select * from questionaire";
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+                CurrentUserInfo.PASSWORD,
+                CurrentUserInfo.HOSTNAME,
+                CurrentUserInfo.PORT,
+                CurrentUserInfo.DATABASE);
+
+            mysql.openMysqlConnection();
+
+            MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            //Execute
+
+            mysql.closeMysqlConnection();
         }
 
         public void deleteQuestionaire(Questionaire question)

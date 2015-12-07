@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="LogHelper.cs" />
     <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\CurrentUserInfo.cs" />
     <Compile Include="Model\Dao\Impl\QuestionaireDaoImpl.cs" />
     <Compile Include="Model\Dao\Impl\QuestionDaoImpl.cs" />
     <Compile Include="Model\Dao\Impl\AnswerDaoImpl.cs" />
