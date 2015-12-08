@@ -10,9 +10,10 @@ namespace Sunrise.MultipleChoice.Model
     {
         private int _id;
         private string _subject_descr;
+        private List<Department> _depList;
 
         public int Id { get; set; }
         public string Subject_descr { get; set; }
-
+        public List<Department> DepList{ get; set; }
     }
 }

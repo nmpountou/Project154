@@ -8,11 +8,10 @@ namespace Quastionnaire.Model.Dao
 {
     interface IAnswerDao
     {
-        void saveAnswer(Answer question);
-        void deleteAnswer(Answer question);
-        void deleteAnswer(int question_id);
-        void updateAnswer(Answer question);
-        void updateAnswer(int question_id);
-
+        List<Answer> findAnswer(Account account, Question question);
+        void saveAnswer(Answer answer);
+        void deleteAnswer(Answer answer);
+        void updateAnswer(Answer answer);
+        
     }
 }

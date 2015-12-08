@@ -28,6 +28,8 @@ namespace Sunrise.MultipleChoice.Data
             this.hostname = hostname;
             this.port = port;
             this.database = database;
+
+
         }
         public MysqlConnector(string username, string password, string hostname, string database)
         {

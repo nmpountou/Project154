@@ -8,14 +8,10 @@ namespace Quastionnaire.Model.Dao
 {
     interface IQuestionaireDao
     {
-        List<Questionaire> getQuestionaires();
-        List<Questionaire> getQuestionares(int id);
-        void saveQuestionaire(Questionaire question);
-        void deleteQuestionaire(Questionaire question);
-        void deleteQuestionaire(int question_id);
-        void updateQuestionaire(Questionaire question);
-        void updateQuestionaire(int question_id);
-
+        List<Questionaire> findQuestionare(Account account);
+        void saveQuestionaire(Questionaire questionaire);
+        void deleteQuestionaire(Questionaire questionaire);
+        void updateQuestionaire(Questionaire questionaire);
 
     }
 }

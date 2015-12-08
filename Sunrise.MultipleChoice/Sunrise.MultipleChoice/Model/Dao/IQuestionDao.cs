@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sunrise.MultipleChoice.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,11 @@ namespace Quastionnaire.Model.Dao
 {
     interface IQuestionDao
     {
-
+        List<Question> findQuestion(Account account,Subject subject,Department department);
+        List<Question> findQuestion(Subject subject, Department department);
         void saveQuestion(Question question);
         void deleteQuestion(Question question);
-        void deleteQuestion(int question_id);
         void updateQuestion(Question question);
-        void updateQuestion(int question_id);
-
 
     }
 }

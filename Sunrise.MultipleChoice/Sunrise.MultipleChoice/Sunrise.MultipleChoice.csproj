@@ -92,6 +92,10 @@
     <Compile Include="Model\Account\City.cs" />
     <Compile Include="Model\Account\Country.cs" />
     <Compile Include="Model\Account\UserInformation.cs" />
+    <Compile Include="Model\Dao\IDepartmentDao.cs" />
+    <Compile Include="Model\Dao\Impl\DepartmentDaoImpl.cs" />
+    <Compile Include="Model\Dao\Impl\SubjectDaoImpl.cs" />
+    <Compile Include="Model\Dao\ISubjectDao.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\RetriveStringConnection.cs" />
     <Compile Include="Model\Subject.cs" />

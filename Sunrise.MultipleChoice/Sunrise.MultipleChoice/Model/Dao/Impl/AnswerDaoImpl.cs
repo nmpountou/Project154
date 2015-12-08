@@ -8,27 +8,22 @@ namespace Quastionnaire.Model.Dao.Impl
 {
     class AnswerDaoImpl : IAnswerDao
     {
-        public void deleteAnswer(int question_id)
+        public void deleteAnswer(Answer answer)
         {
             throw new NotImplementedException();
         }
 
-        public void deleteAnswer(Answer question)
+        public List<Answer> findAnswer(Account account, Question question)
         {
             throw new NotImplementedException();
         }
 
-        public void saveAnswer(Answer question)
+        public void saveAnswer(Answer answer)
         {
             throw new NotImplementedException();
         }
 
-        public void updateAnswer(int question_id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateAnswer(Answer question)
+        public void updateAnswer(Answer answer)
         {
             throw new NotImplementedException();
         }

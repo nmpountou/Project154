@@ -10,6 +10,11 @@ namespace Quastionnaire.Model.Dao.Impl
 {
     class QuestionaireDaoImpl : IQuestionaireDao
     {
+        public void deleteQuestionaire(Questionaire questionaire)
+        {
+            throw new NotImplementedException();
+        }
+
         public void deleteQuestionaire(int question_id)
         {
             String query = "select * from questionaire";
@@ -20,6 +25,7 @@ namespace Quastionnaire.Model.Dao.Impl
                 CurrentUserInfo.PORT,
                 CurrentUserInfo.DATABASE);
 
+            mysql.initializeConnection();
             mysql.openMysqlConnection();
 
             MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection);
@@ -30,34 +36,17 @@ namespace Quastionnaire.Model.Dao.Impl
             mysql.closeMysqlConnection();
         }
 
-        public void deleteQuestionaire(Questionaire question)
+        public List<Questionaire> findQuestionare(Account account)
         {
             throw new NotImplementedException();
         }
 
-        public List<Questionaire> getQuestionaires()
-        {
-
-
-            return null;
-        }
-
-        public List<Questionaire> getQuestionares(int id)
+        public void saveQuestionaire(Questionaire questionaire)
         {
             throw new NotImplementedException();
         }
 
-        public void saveQuestionaire(Questionaire question)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateQuestionaire(int question_id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateQuestionaire(Questionaire question)
+        public void updateQuestionaire(Questionaire questionaire)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,10 @@
 ﻿using Quastionnaire.Model;
+using Quastionnaire.Model.Dao;
+using Quastionnaire.Model.Dao.Impl;
+using Sunrise.MultipleChoice.Data;
 using Sunrise.MultipleChoice.Model;
+using Sunrise.MultipleChoice.Model.Dao;
+using Sunrise.MultipleChoice.Model.Dao.Impl;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,45 +26,59 @@ namespace Sunrise.MultipleChoice
 {
     public partial class QuestionForm : Page
     {
+        private List<Subject> subjectList;
+
         public QuestionForm()
         {
             InitializeComponent();
 
-            initializeMsgLabelsHidden();
+            Logger.Setup();
+
+            setMsgLabelToHidden();
+            initializeComboBoxInfo();
+
+            //Subject subject = new Subject();
+            //subject.Id = 1;
+            //subject.Subject_descr = "Mathimatika";
 
 
-            Subject subject = new Subject();
-            subject.Id = 1;
-            subject.Subject_descr = "Mathimatika";
+            //Department dep = new Department();
+            //dep.Id = 1;
+            //dep.Level = 1;
+            //dep.Department_descr = "Prwth";
 
+            //Account account = new Account();
+            //account.Username = "Omega";
 
-            Department dep = new Department();
-            dep.Id = 1;
-            dep.Level = 1;
-            dep.Department_descr = "Prwth";
+            //List<Answer> answer = new List<Answer>();
+            //answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 1", Account = account });
+            //answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 2", Account = account });
+            //answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 3", Account = account });
+            //answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 4", Account = account });
 
-            Account account = new Account();
-            account.Username = "Omega";
+            //List<Question> question = new List<Question>();
+            //question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrthsh1", Subject = subject, Department = dep , AnswerList = answer });
+            //question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh2", Subject = subject, Department = dep , AnswerList = answer });
+            //question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh3", Subject = subject, Department = dep });
+            //question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh4", Subject = subject, Department = dep });
 
-            List<Answer> answer = new List<Answer>();
-            answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 1", Account = account });
-            answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 2", Account = account });
-            answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 3", Account = account });
-            answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 4", Account = account });
-
-            List<Question> question = new List<Question>();
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrthsh1", Subject = subject, Department = dep , AnswerList = answer });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh2", Subject = subject, Department = dep , AnswerList = answer });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh3", Subject = subject, Department = dep });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh4", Subject = subject, Department = dep });
-
-            lvQuestion.ItemsSource = question;
+            //lvQuestion.ItemsSource = question;
 
 
 
         }
 
-        //Question ToolBAr
+        //Initialize
+        private void initializeComboBoxInfo()
+        {
+            ISubjectDao subjectDao = new SubjectDaoImpl();
+            subjectList = subjectDao.findSubject();
+
+            foreach (Subject subject in subjectList)
+                cbSubject_search.Items.Add(subject.Subject_descr);
+        }
+       
+        //Table OnClick
         private void lvQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Question question = (Question)lvQuestion.SelectedItem;
@@ -68,7 +87,7 @@ namespace Sunrise.MultipleChoice
                 return;
 
             // tbLevel_Question.Text;
-            //  tbOwner_Question.Text;
+            // tbOwner_Question.Text;
             // tbDate_Question.Text;
             // tbQuestion_Description.Text;
             // cbSubject_Question.Text;
@@ -88,7 +107,6 @@ namespace Sunrise.MultipleChoice
         }
         private void lvAnswer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             Answer answer = (Answer)lvAnswer.SelectedItem;
 
             if (answer == null)
@@ -100,14 +118,22 @@ namespace Sunrise.MultipleChoice
 
             lvAnswer.SelectedItem = null;
 
-
         }
-     
+
+        //Question ToolBAr
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
 
-        }
+            string subject = cbSubject_search.Text;
+            string department = cbDepartment_search.Text;
 
+            if (checkBeforeSearchForNullInput(subject, department))
+                return;
+
+            List<Question> questionData = loadQuestionData();
+            lvQuestion.ItemsSource = questionData;
+
+        }
         private void btSave_Question_Click(object sender, RoutedEventArgs e)
         {
 
@@ -118,10 +144,10 @@ namespace Sunrise.MultipleChoice
             string subject = cbSubject_Question.Text;
             string department = cbDepartment_Question.Text;
 
-            if (checkForNullInput(level, owner, date, question_descr, subject, department))
+            if (checkQuestionForNullInput(level, owner, date, question_descr, subject, department))
                 return;
 
-            if (checkForValidInput(level, owner, date, question_descr, subject, department))
+            if (checkQuestionForNullInput(level, owner, date, question_descr, subject, department))
                 return;
 
 
@@ -140,8 +166,54 @@ namespace Sunrise.MultipleChoice
 
         }
 
-        private void initializeMsgLabelsHidden()
+        //Answer ToolBAr
+        private void btSave_Answer_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+        private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btDelete_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btClear_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //Search
+        private void cbSubject_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            cbDepartment_search.Items.Clear();
+
+            int index = cbSubject_search.SelectedIndex;
+            List<Department> listDep = subjectList[index].DepList;
+            foreach (Department dep in listDep)
+                cbDepartment_search.Items.Add(dep.Department_descr);
+
+        }
+
+        //Common
+        private List<Question> loadQuestionData()
+        {
+            List<Question> questionList;
+            IQuestionDao questionDao = new QuestionDaoImpl();
+
+            //questionList = questionDao.findQuestion(CurrentUserInfo.CURENT_ACCOUNT,);
+
+
+            return null;
+        }
+
+
+        private void setMsgLabelToHidden()
+        {
+            lblSubject_search_msg.Visibility = Visibility.Hidden;
+            lblDepartment_search_msg.Visibility = Visibility.Hidden;
 
             lblLevel_Question_msg.Visibility = Visibility.Hidden;
             lblOwner_Question_msg.Visibility = Visibility.Hidden;
@@ -155,7 +227,29 @@ namespace Sunrise.MultipleChoice
             lblAnswer_Description_msg.Visibility = Visibility.Hidden;
 
         }
-        private bool checkForNullInput(string level, string owner, string date, string question_descr, string subject, string department)
+        private bool checkBeforeSearchForNullInput(string subject, string department)
+        {
+            bool emptyField = false;
+
+            if (String.IsNullOrEmpty(subject))
+            {
+                lblSubject_search_msg.Visibility = Visibility.Visible;
+                lblSubject_search_msg.Foreground = Brushes.Red;
+                lblSubject_search_msg.Content = "Empty";
+                emptyField = true;
+            }
+            if (String.IsNullOrEmpty(department))
+            {
+                lblDepartment_search_msg.Visibility = Visibility.Visible;
+                lblDepartment_search_msg.Foreground = Brushes.Red;
+                lblDepartment_search_msg.Content = "Empty";
+                emptyField = true;
+            }
+
+            return emptyField;
+
+        }
+        private bool checkQuestionForNullInput(string level, string owner, string date, string question_descr, string subject, string department)
         {
 
             bool emptyField = false;
@@ -207,7 +301,7 @@ namespace Sunrise.MultipleChoice
 
             return emptyField;
         }
-        private bool checkForValidInput(string level, string owner, string date, string question_descr, string subject, string department)
+        private bool checkQuestionForValidInput(string level, string owner, string date, string question_descr, string subject, string department)
         {
 
             bool emptyField = false;
@@ -245,34 +339,10 @@ namespace Sunrise.MultipleChoice
         }
 
 
-        //Answer ToolBAr
-
-        private void btSave_Answer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btDelete_Answer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btClear_Answer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
-
-      
+       
     }
 }
