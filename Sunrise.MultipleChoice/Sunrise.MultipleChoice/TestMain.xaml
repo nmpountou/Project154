@@ -30,7 +30,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Department:" Foreground="White"/>
             <ComboBox x:Name="cbDepartment_search" Grid.Column="1" Grid.Row="1"/>
 
-            <Button Name="btnSearch" Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px" Click="Button_Click"/>
+            <Button Name="btnSearch" Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px" Click="btnSearch_Click"/>
 
         </Grid>
 
@@ -71,21 +71,33 @@
         <StackPanel  Orientation="Horizontal">
 
             <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
-                <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                <Button  Name="btSave_Question"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Question_Click">
                     <Image Source="images\edit2.png" />
                 </Button>
-                <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                <Button  Name="btEdit_Question" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Question_Click">
+                    <Image Source="images\delete.png" />
+                </Button>
+                <Button Name="btDelete_Question" Command="Delete" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Question_Click">
+                    <Image Source="images\delete.png" />
+                </Button>
+                <Button  Name="btClear_Question" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Question_Click">
                     <Image Source="images\delete.png" />
                 </Button>
             </ToolBar>
 
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="50,0,50,0" Background="White" />
 
-            <ToolBar Background="#FFB2AEBD" Height="30px" Width="605">
-                <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+            <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
+                <Button  Name="btSave_Answer"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Answer_Click">
                     <Image Source="images\edit2.png" />
                 </Button>
-                <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                <Button  Name="btEdit_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Answer_Click">
+                    <Image Source="images\delete.png" />
+                </Button>
+                <Button Name="btDelete_Answer" Command="Delete" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Answer_Click">
+                    <Image Source="images\delete.png" />
+                </Button>
+                <Button  Name="btClear_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Answer_Click">
                     <Image Source="images\delete.png" />
                 </Button>
             </ToolBar>

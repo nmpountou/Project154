@@ -56,10 +56,11 @@ namespace Sunrise.MultipleChoice
 
 
 
-
-
-
         }
+
+
+
+
         /// <summary>
         /// Function to call Login Form. 
         /// MUST CHANGE THE STARTUP.
@@ -69,6 +70,46 @@ namespace Sunrise.MultipleChoice
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+        }
+
+        private void btSave_Question_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btEdit_Question_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btDelete_Question_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btClear_Question_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btSave_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btDelete_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btClear_Answer_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
