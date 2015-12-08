@@ -1,4 +1,5 @@
 ﻿using Quastionnaire.Model;
+using Sunrise.MultipleChoice.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,36 @@ namespace Sunrise.MultipleChoice
         {
             InitializeComponent();
 
+            Subject subject = new Subject();
+            subject.Id = 1;
+            subject.Subject_descr = "Mathimatika";
+
+
+            Department dep = new Department();
+            dep.Id = 1;
+            dep.Level = 1;
+            dep.Department_descr = "Prwth";
+
             Account account = new Account();
             account.Username = "Omega";
 
-            //List<Question> items = new List<Question>();
-            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3 , Correct_Department_ID = 1 , Date = new DateTime() , Question_des = "Erwthsh1", Level = 2 } );
-            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            //items.Add(new Question() { Id = 1, Account = account, Correct_Answer_ID = 3, Correct_Department_ID = 1, Date = new DateTime(), Question_des = "Erwthsh1", Level = 2 });
-            //listView1.ItemsSource = items;
+            List<Question> items = new List<Question>();
+            items.Add(new Question() { Id = 1, Level = 2 , Account = account, Date = new DateTime(), Question_descr = "Erwthsh1",Subject= subject, Department = dep  });
+            items.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh2", Subject = subject, Department = dep });
+            items.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh3", Subject = subject, Department = dep });
+            items.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh4", Subject = subject, Department = dep });
+            lvQuestion.ItemsSource = items;
+
+
+            List<Answer> answers = new List<Answer>();
+            answers.Add(new Answer() { Id = 1,Date = new DateTime(),Answer_descr ="Answer 1"  });
+            answers.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 2" });
+            answers.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 3" });
+            answers.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 4" });
+            lvAnswer.ItemsSource = items;
+
+
+
 
 
 

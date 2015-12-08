@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sunrise.MultipleChoice"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1000"
+      d:DesignHeight="1000" d:DesignWidth="1500"
       Title="TestMain"
       ShowsNavigationUI="False">
 
@@ -25,75 +25,152 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Subject:" Foreground="White"/>
-            <ComboBox x:Name="cbSubject" Grid.Column="1" Grid.Row="0"/>
+            <ComboBox x:Name="cbSubject_search" Grid.Column="1" Grid.Row="0"/>
 
             <Label Grid.Row="1" Grid.Column="0" Content="Department:" Foreground="White"/>
-            <ComboBox x:Name="cbDepartment" Grid.Column="1" Grid.Row="1"/>
+            <ComboBox x:Name="cbDepartment_search" Grid.Column="1" Grid.Row="1"/>
 
-            <Button Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px" Click="Button_Click"/>
+            <Button Name="btnSearch" Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px" Click="Button_Click"/>
 
         </Grid>
 
-    <Separator Padding="5" Margin="5" Background="White"/>
+        <Separator Padding="5" Margin="5" Background="White"/>
 
         <StackPanel  Orientation="Horizontal" Margin="5">
-            <ListView x:Name="listView1" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px">
+            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Question" Width="120" DisplayMemberBinding="{Binding Question_des}" />
-                        <GridViewColumn Header="Level" Width="50" DisplayMemberBinding="{Binding Level}" />
-                        <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Date}" />
-                        <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Account.Username}" />
+                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Level"  DisplayMemberBinding="{Binding Level}" />
+                        <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
+                        <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Question"  DisplayMemberBinding="{Binding Question_des}" />
+                        
+                        <GridViewColumn Header="Subject"  DisplayMemberBinding="{Binding Subject.Subject_descr}" />
+                        <GridViewColumn Header="Department"  DisplayMemberBinding="{Binding Department.Department_descr}" />
+                        <GridViewColumn Header="Department_Level"  DisplayMemberBinding="{Binding Department.Level}" />
+                       
+
                     </GridView>
                 </ListView.View>
             </ListView>
 
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
-            <ListView x:Name="listView2" HorizontalAlignment="Stretch" Width="600px" Margin="50,0,0,0" >
+            <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch" Width="600px" Margin="50,0,0,0" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Answer" Width="120" DisplayMemberBinding="{Binding Answer}" />
-                        <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Date}" />
-                        <GridViewColumn Header="Correct" Width="150" DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Answer"  DisplayMemberBinding="{Binding Answer_descr}" />
+                        <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Correct"  DisplayMemberBinding="{Binding Date}" />
                     </GridView>
                 </ListView.View>
             </ListView>
         </StackPanel>
+        <StackPanel  Orientation="Horizontal">
+
+            <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
+                <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                    <Image Source="images\edit2.png" />
+                </Button>
+                <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                    <Image Source="images\delete.png" />
+                </Button>
+            </ToolBar>
+
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="50,0,50,0" Background="White" />
+
+            <ToolBar Background="#FFB2AEBD" Height="30px" Width="605">
+                <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                    <Image Source="images\edit2.png" />
+                </Button>
+                <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                    <Image Source="images\delete.png" />
+                </Button>
+            </ToolBar>
+
+        </StackPanel>
+
+        <StackPanel  Orientation="Horizontal" Margin="5">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                 </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Level - [1-100]:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbLevel_Question"  Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" />
+                <Label Name="lblLevel_Question_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblOwner_Question_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                
+                <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblDate_Question_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                
+                <Label Grid.Row="2" Grid.Column="0" Content="Subject:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblSubject_Question_msg" Grid.Row="2" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="3" Content="Department:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblDepartment_Question_msg" Grid.Row="2" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Question:" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.RowSpan="4"/>
+                <TextBox Name="tbQuestion_Description" Grid.Row="3" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="4" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
+                <Label Name="lblQuestion_Description_msg" Grid.Row="3" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="93,0,50,0" Background="White" />
+
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                 
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbOwner_Answer" Grid.Row="0" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblOwner_Answer_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                
+                <Label Grid.Row="0" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbDate_Answer" Grid.Row="0" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <Label Name="lblDate_Answer_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Answer:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbAnswer_Description" Grid.Row="1" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
+                <Label Name="lblAnswer_Description_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                
+            </Grid>
 
 
-        <ToolBar Background="#FFB2AEBD" Height="30px">
-            <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
-                <Image Source="images\edit2.png" />
-            </Button>
-            <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
-                <Image Source="images\delete.png" />
-            </Button>
-        </ToolBar>
+        </StackPanel>
 
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="28" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Content="Level - [1-100]:" Foreground="White"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Question:" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Padding="5" />
-            <TextBox Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="4" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
-            
-           
-
-        </Grid>
 
 
     </StackPanel>

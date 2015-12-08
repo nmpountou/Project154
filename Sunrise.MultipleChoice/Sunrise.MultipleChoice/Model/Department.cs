@@ -8,9 +8,14 @@ namespace Sunrise.MultipleChoice.Model
 {
     class Department
     {
+        private int _id;
+        private int _level;
+        private string _department_descr;
 
 
-
+        public int Id { get; set; }
+        public int Level { get; set; }
+        public string Department_descr { get; set; }
 
     }
 }
