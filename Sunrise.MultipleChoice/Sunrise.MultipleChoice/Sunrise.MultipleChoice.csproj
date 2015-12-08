@@ -98,8 +98,8 @@
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestMain.xaml.cs">
-      <DependentUpon>TestMain.xaml</DependentUpon>
+    <Compile Include="QuestionForm.xaml.cs">
+      <DependentUpon>QuestionForm.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +174,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestMain.xaml">
+    <Page Include="QuestionForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

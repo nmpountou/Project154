@@ -1,7 +1,7 @@
 ﻿<Application x:Class="Sunrise.MultipleChoice.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="TestMain.xaml">
+             StartupUri="QuestionForm.xaml">
     <Application.Resources>
 
     </Application.Resources>

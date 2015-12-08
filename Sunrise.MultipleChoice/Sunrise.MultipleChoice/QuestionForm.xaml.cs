@@ -17,12 +17,9 @@ using System.Windows.Shapes;
 
 namespace Sunrise.MultipleChoice
 {
-    /// <summary>
-    /// Interaction logic for TestMain.xaml
-    /// </summary>
-    public partial class TestMain : Page
+    public partial class QuestionForm : Page
     {
-        public TestMain()
+        public QuestionForm()
         {
             InitializeComponent();
 
@@ -58,19 +55,11 @@ namespace Sunrise.MultipleChoice
 
         }
 
-
-
-
-        /// <summary>
-        /// Function to call Login Form. 
-        /// MUST CHANGE THE STARTUP.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+
         }
+
 
         private void btSave_Question_Click(object sender, RoutedEventArgs e)
         {
@@ -111,5 +100,13 @@ namespace Sunrise.MultipleChoice
         {
 
         }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+        }
+
+      
     }
 }
