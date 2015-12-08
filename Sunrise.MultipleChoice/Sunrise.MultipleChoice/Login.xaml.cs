@@ -13,9 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-//Thread
+//Thread for Language Culture
 using System.Globalization;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace Sunrise.MultipleChoice
 {
@@ -24,28 +25,24 @@ namespace Sunrise.MultipleChoice
     /// </summary>
     public partial class Login : Page
     {
-        //private MysqlC mysqlc;
+        private MysqlC mysqlc;
         public Login()
         {
             //Language default start
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             InitializeComponent();
-            //this.Ev += new FormClosedEventHandler(form1_FormClosed);
         }
 
         private void Login_exit_button_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+                      
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Login_Process.Visibility = Visibility.Visible;
             if(Login_username_textBox.Text.Equals(""))
             {
                 Login_image_error_user_name.Visibility = Visibility.Visible;
-                    // img.Visibility = Visibility.Visible;
             }
             else if (Login_passwordBox.Password.Equals(""))
             {
@@ -53,26 +50,31 @@ namespace Sunrise.MultipleChoice
             }
             else
             {
+                //Graph of processing.
+                Login_Process.Visibility = Visibility.Visible;
                 Login_image_error_user_name.Visibility = Visibility.Hidden;
                 Login_image_error_password.Visibility = Visibility.Hidden;
 
                 //BY DEFALYT CONNECTION!!!
+                mysqlc = new MysqlC( Login_username_textBox.Text, Login_passwordBox.Password);
 
+                //Connection as root from local machine
                 //mysqlc = new MysqlC("root", "123456", "localhost", "questionnairex");
-                // mysqlc.initializeConnection();
-                //if (mysqlc.Return_Connection() != null)
-                Boolean connection = true;
-                if (connection)
+                mysqlc.initializeConnection();
+
+                if (mysqlc.Return_Connection() != null)
                 {
                     //Stop the graphics.               
                     Login_Process.Visibility = Visibility.Hidden;
-                    //System.Windows.Forms.MessageBox.Show(Messages.Connection_str);
 
-                    //Raise a new event to destroy the form.
-                    
+                    //Retrive the connection string
+                    //WORKS
+                    //String connection = (new Model.RetriveStringConnection()).get_sc();
+                    //MessageBox.Show(connection);
+                    //Close the form.               
+                    this.Login_exit_button_Click(sender, e);
                 }
             }
-
         }
     }
 }

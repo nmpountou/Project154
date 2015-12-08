@@ -58,6 +58,7 @@
       <HintPath>..\..\..\..\..\Desktop\Dll Libriries\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -92,6 +93,7 @@
     <Compile Include="Model\Account\Country.cs" />
     <Compile Include="Model\Account\UserInformation.cs" />
     <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\RetriveStringConnection.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>

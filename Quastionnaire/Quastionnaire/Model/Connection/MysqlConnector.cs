@@ -47,7 +47,6 @@ namespace Sunrise.MultipleChoice.Data
         public void openMysqlConnection()
         {
             logger.Debug("openDatabase()");
-
             try
             {
                 connection.Open();
@@ -57,8 +56,6 @@ namespace Sunrise.MultipleChoice.Data
                 logger.Error("OPEN_CONNECTION_FAILED: ", e);
                 throw e;
             }
-
-
         }
         public void closeMysqlConnection()
         {
@@ -133,8 +130,5 @@ namespace Sunrise.MultipleChoice.Data
             set { connection = value; }
             get { return connection; }
         }
-
-
-
     }
 }

@@ -24,9 +24,6 @@ namespace Quastionnaire
 
         private MySqlConnection connection;
 
-        //Log4bet Debugger
-        //private static readonly log4net.ILog log = LogHelper.Getlogger();
-
         public MysqlC(string username, string password, string hostname, string port, string database)
         {
             this.username = username;
@@ -46,6 +43,7 @@ namespace Quastionnaire
 
         public void initializeConnection()
         {
+
             //log.Debug("initializeConnection()");
             //String give root access locally.
             //string cs = @"server=localhost;userid=root;password=123456;database=questionnairex";
