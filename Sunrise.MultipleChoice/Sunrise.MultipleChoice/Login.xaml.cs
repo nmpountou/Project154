@@ -13,18 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//Thread
+using System.Globalization;
+using System.Threading;
 
-
-    namespace Sunrise.MultipleChoice
+namespace Sunrise.MultipleChoice
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
     public partial class Login : Page
     {
-        private MysqlC mysqlc;
+        //private MysqlC mysqlc;
         public Login()
         {
+            //Language default start
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             InitializeComponent();
             //this.Ev += new FormClosedEventHandler(form1_FormClosed);
         }
@@ -53,10 +57,12 @@ using System.Windows.Shapes;
                 Login_image_error_password.Visibility = Visibility.Hidden;
 
                 //BY DEFALYT CONNECTION!!!
-               
-                mysqlc = new .MysqlC("root", "123456", "localhost", "questionnairex");
-                mysqlc.initializeConnection();
-                if (mysqlc.Return_Connection() != null)
+
+                //mysqlc = new MysqlC("root", "123456", "localhost", "questionnairex");
+                // mysqlc.initializeConnection();
+                //if (mysqlc.Return_Connection() != null)
+                Boolean connection = true;
+                if (connection)
                 {
                     //Stop the graphics.               
                     Login_Process.Visibility = Visibility.Hidden;
