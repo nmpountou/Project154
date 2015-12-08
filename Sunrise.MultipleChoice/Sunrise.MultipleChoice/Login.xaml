@@ -13,7 +13,7 @@
             <ColumnDefinition Width="492*"/>
             <ColumnDefinition Width="143*"/>
         </Grid.ColumnDefinitions>
-        <Canvas HorizontalAlignment="Left" Height="204" VerticalAlignment="Top" Width="791" Background="LightSkyBlue" Grid.ColumnSpan="2" Margin="-2,-3,-2,0">
+        <Canvas HorizontalAlignment="Left" Height="204" VerticalAlignment="Top" Width="791" Background="LightSkyBlue" Grid.ColumnSpan="2" Margin="0,-6,-4,0">
             <Image x:Name="Login_image" Height="176" Canvas.Left="18" Canvas.Top="11" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
             <Button x:Name="Login_exit_button" Content="" Canvas.Left="752" Canvas.Top="8" Width="27" Height="26" BorderBrush="White" Click="Login_exit_button_Click" IsCancel="True">
                 <Button.Background>

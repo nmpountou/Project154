@@ -38,5 +38,15 @@ namespace Sunrise.MultipleChoice
 
 
         }
+        /// <summary>
+        /// Function to call Login Form. 
+        /// MUST CHANGE THE STARTUP.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+        }
     }
 }

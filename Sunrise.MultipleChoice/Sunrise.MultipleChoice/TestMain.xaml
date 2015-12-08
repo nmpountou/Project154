@@ -9,8 +9,8 @@
       Title="TestMain"
       ShowsNavigationUI="False">
 
-    <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="#FF343864">
-
+    <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="DeepSkyBlue">
+        <!--Background="#FF343864"-->
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -30,7 +30,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Department:" Foreground="White"/>
             <ComboBox x:Name="cbDepartment" Grid.Column="1" Grid.Row="1"/>
 
-            <Button Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px"/>
+            <Button Grid.Row="1" Grid.Column="2" Content="Search" Margin="10,0,0,0" Width="70px" Click="Button_Click"/>
 
         </Grid>
 

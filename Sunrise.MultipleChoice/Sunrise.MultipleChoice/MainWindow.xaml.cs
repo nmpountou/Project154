@@ -35,8 +35,7 @@ namespace Sunrise.MultipleChoice
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            this.InitializeComponent();
-            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative ));
+
         }
     }
 }
