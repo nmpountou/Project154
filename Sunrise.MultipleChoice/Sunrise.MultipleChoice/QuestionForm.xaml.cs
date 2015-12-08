@@ -41,47 +41,27 @@ namespace Sunrise.MultipleChoice
             Account account = new Account();
             account.Username = "Omega";
 
-            List<Question> question = new List<Question>();
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrthsh1", Subject = subject, Department = dep });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh2", Subject = subject, Department = dep });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh3", Subject = subject, Department = dep });
-            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh4", Subject = subject, Department = dep });
-            lvQuestion.ItemsSource = question;
-
-
             List<Answer> answer = new List<Answer>();
             answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 1", Account = account });
             answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 2", Account = account });
             answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 3", Account = account });
             answer.Add(new Answer() { Id = 1, Date = new DateTime(), Answer_descr = "Answer 4", Account = account });
-            lvAnswer.ItemsSource = answer;
+
+            List<Question> question = new List<Question>();
+            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrthsh1", Subject = subject, Department = dep , AnswerList = answer });
+            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh2", Subject = subject, Department = dep , AnswerList = answer });
+            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh3", Subject = subject, Department = dep });
+            question.Add(new Question() { Id = 1, Level = 2, Account = account, Date = new DateTime(), Question_descr = "Erwthsh4", Subject = subject, Department = dep });
+
+            lvQuestion.ItemsSource = question;
 
 
 
         }
-
-        private void initializeMsgLabelsHidden()
-        {
-
-            lblLevel_Question_msg.Visibility = Visibility.Hidden;
-            lblOwner_Question_msg.Visibility = Visibility.Hidden;
-            lblDate_Question_msg.Visibility = Visibility.Hidden;
-            lblSubject_Question_msg.Visibility = Visibility.Hidden;
-            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
-            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
-
-            lblOwner_Answer_msg.Visibility = Visibility.Hidden;
-            lblDate_Answer_msg.Visibility = Visibility.Hidden;
-            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
-
-        }
-
 
         //Question ToolBAr
         private void lvQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
             Question question = (Question)lvQuestion.SelectedItem;
 
             if (question == null)
@@ -101,12 +81,11 @@ namespace Sunrise.MultipleChoice
             cbSubject_Question.Text = question.Subject.Subject_descr.ToString();
             cbDepartment_Question.Text = question.Department.Department_descr.ToString();
 
+            //Load Answer Table
+            lvAnswer.ItemsSource = question.AnswerList;
             lvQuestion.SelectedItem = null;
 
-
-
         }
-
         private void lvAnswer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -123,13 +102,11 @@ namespace Sunrise.MultipleChoice
 
 
         }
-
      
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
 
         private void btSave_Question_Click(object sender, RoutedEventArgs e)
         {
@@ -150,22 +127,34 @@ namespace Sunrise.MultipleChoice
 
 
         }
-
         private void btEdit_Question_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void btDelete_Question_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void btClear_Question_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+        private void initializeMsgLabelsHidden()
+        {
+
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblOwner_Question_msg.Visibility = Visibility.Hidden;
+            lblDate_Question_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+
+            lblOwner_Answer_msg.Visibility = Visibility.Hidden;
+            lblDate_Answer_msg.Visibility = Visibility.Hidden;
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+
+        }
         private bool checkForNullInput(string level, string owner, string date, string question_descr, string subject, string department)
         {
 
@@ -199,6 +188,22 @@ namespace Sunrise.MultipleChoice
                 lblQuestion_Description_msg.Content = "Empty";
                 emptyField = true;
             }
+            if (String.IsNullOrEmpty(subject))
+            {
+                lblSubject_Question_msg.Visibility = Visibility.Visible;
+                lblSubject_Question_msg.Foreground = Brushes.Red;
+                lblSubject_Question_msg.Content = "Empty";
+                emptyField = true;
+            }
+            if (String.IsNullOrEmpty(department))
+            {
+                lblDepartment_Question_msg.Visibility = Visibility.Visible;
+                lblDepartment_Question_msg.Foreground = Brushes.Red;
+                lblDepartment_Question_msg.Content = "Empty";
+                emptyField = true;
+            }
+
+
 
             return emptyField;
         }
@@ -240,9 +245,6 @@ namespace Sunrise.MultipleChoice
         }
 
 
-
-
-
         //Answer ToolBAr
 
         private void btSave_Answer_Click(object sender, RoutedEventArgs e)
@@ -270,8 +272,6 @@ namespace Sunrise.MultipleChoice
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
-
-
 
       
     }

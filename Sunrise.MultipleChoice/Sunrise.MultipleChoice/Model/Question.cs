@@ -15,9 +15,10 @@ namespace Quastionnaire.Model
         private int _level;
         private DateTime _date;
         private Account _account;
-        private Answer _answer;
+        private Answer _correctAnswer;
         private Department _department;
         private Subject _subject;
+        private List<Answer> _answerList;
 
 
         public int Id { get; set; }
@@ -25,9 +26,10 @@ namespace Quastionnaire.Model
         public int Level { get; set; }
         public DateTime Date { get; set; }
         public Account Account { get; set; }
-        public Answer Answer { get; set; }
+        public Answer CorrectAnswer { get; set; }
         public Department Department { get; set; }
         public Subject Subject { get; set; }
+        public List<Answer> AnswerList { get; set; }
 
 
     }
