@@ -687,16 +687,6 @@
                 </Button.Style>
             </Button>
             <Button x:Name="LoginBt" Content="Button" Width="97" Height="44" Click="login_Click"/>
-
-
         </StackPanel>
-
-
-
-
-
-
     </DockPanel>
-
-
 </Page>
