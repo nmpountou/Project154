@@ -37,14 +37,14 @@
         <Separator Padding="5" Margin="5" Background="White"/>
 
         <StackPanel  Orientation="Horizontal" Margin="5">
-            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px">
+            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px"  SelectionChanged="lvQuestion_SelectionChanged" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
                         <GridViewColumn Header="Level"  DisplayMemberBinding="{Binding Level}" />
                         <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
                         <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
-                        <GridViewColumn Header="Question"  DisplayMemberBinding="{Binding Question_des}" />
+                        <GridViewColumn Header="Question"  DisplayMemberBinding="{Binding Question_descr}" />
 
                         <GridViewColumn Header="Subject"  DisplayMemberBinding="{Binding Subject.Subject_descr}" />
                         <GridViewColumn Header="Department"  DisplayMemberBinding="{Binding Department.Department_descr}" />
@@ -57,10 +57,11 @@
 
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
-            <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch" Width="600px" Margin="50,0,0,0" >
+            <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch" Width="600px" Margin="50,0,0,0" SelectionChanged="lvAnswer_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Account.Username}" />
                         <GridViewColumn Header="Answer"  DisplayMemberBinding="{Binding Answer_descr}" />
                         <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
                         <GridViewColumn Header="Correct"  DisplayMemberBinding="{Binding Date}" />
@@ -127,19 +128,19 @@
                 <Label Name="lblLevel_Question_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5"/>
                 <Label Name="lblOwner_Question_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"   Margin="5" Padding="5"/>
                 <Label Name="lblDate_Question_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Subject:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Margin="5" Padding="5"/>
                 <Label Name="lblSubject_Question_msg" Grid.Row="2" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="2" Grid.Column="3" Content="Department:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Margin="5" Padding="5"/>
                 <Label Name="lblDepartment_Question_msg" Grid.Row="2" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="3" Grid.Column="0" Content="Question:" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.RowSpan="4"/>
@@ -167,11 +168,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbOwner_Answer" Grid.Row="0" Grid.Column="1"  Foreground="White" Margin="5" Padding="5"/>
+                <TextBox Name="tbOwner_Answer" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5"/>
                 <Label Name="lblOwner_Answer_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="0" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbDate_Answer" Grid.Row="0" Grid.Column="4"  Foreground="White" Margin="5" Padding="5"/>
+                <TextBox Name="tbDate_Answer" Grid.Row="0" Grid.Column="4"   Margin="5" Padding="5"/>
                 <Label Name="lblDate_Answer_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Answer:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>

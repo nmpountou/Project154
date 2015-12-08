@@ -95,6 +95,7 @@
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\RetriveStringConnection.cs" />
     <Compile Include="Model\Subject.cs" />
+    <Compile Include="Model\ValidInput.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
