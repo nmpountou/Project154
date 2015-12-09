@@ -22,7 +22,7 @@
             </Button>
         </Canvas>
         <Canvas x:Name="Login_canvas_white" HorizontalAlignment="Left" Height="211" Margin="-2,199,-3,0" VerticalAlignment="Top" Width="792" Background="White" Grid.ColumnSpan="2">
-            <Button x:Name="button" Content="Login&#xD;&#xA;" Height="26" Canvas.Left="501" Canvas.Top="69" Width="58" Background="DeepSkyBlue" FontFamily="Arial Narrow" FontSize="16" BorderBrush="White" FontStyle="Oblique" Foreground="White" RenderTransformOrigin="0.904,0.096" Click="button_Click"/>
+            <Button x:Name="Login_button" Content="Login" Height="26" Canvas.Left="501" Canvas.Top="69" Width="58" Background="DeepSkyBlue" FontFamily="Arial Narrow" FontSize="16" BorderBrush="White" FontStyle="Oblique" Foreground="White" RenderTransformOrigin="0.904,0.096" Click="Login_button_Click"/>
             <Label x:Name="Login_label_user_name" Content="User name" Canvas.Left="315" Canvas.Top="3" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="65" />
             <Label x:Name="Login_label_password" Content="Password" Canvas.Left="320" Canvas.Top="37" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" />
             <TextBox x:Name="Login_username_textBox" Height="18" Canvas.Left="414" TextWrapping="Wrap" Text="" Canvas.Top="8" Width="148" BorderBrush="DeepSkyBlue"/>

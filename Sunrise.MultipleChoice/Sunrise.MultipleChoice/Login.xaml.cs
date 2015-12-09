@@ -38,7 +38,7 @@ namespace Sunrise.MultipleChoice
                       
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Login_button_Click(object sender, RoutedEventArgs e)
         {
             if(Login_username_textBox.Text.Equals(""))
             {
@@ -52,6 +52,7 @@ namespace Sunrise.MultipleChoice
             {
                 //Graph of processing.
                 Login_Process.Visibility = Visibility.Visible;
+                //Graph of errors
                 Login_image_error_user_name.Visibility = Visibility.Hidden;
                 Login_image_error_password.Visibility = Visibility.Hidden;
 

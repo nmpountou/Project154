@@ -9,12 +9,26 @@
 
     <Grid Margin="0,0,-190,-153">
         <Canvas Background="LightSkyBlue">
-            <Image x:Name="Login_image" Height="176" Canvas.Left="18" Canvas.Top="11" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
-            <Button x:Name="Login_exit_button" Content="" Canvas.Left="580" Canvas.Top="10" Width="27" Height="26" BorderBrush="White" Click="Login_exit_button_Click" IsCancel="True">
-                <Button.Background>
-                    <ImageBrush ImageSource="images/Login_Images/Login_exit.png" TileMode="Tile"/>
-                </Button.Background>
-            </Button>
+            <Image x:Name="Registration_image" Height="176" Canvas.Left="350" Canvas.Top="12" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
+            <Label x:Name="Registration_label_user_name" Content="User name" Canvas.Left="20" Canvas.Top="283" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="70" />
+            <Label x:Name="Registration_label_password" Content="Password" Canvas.Left="21" Canvas.Top="331" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <TextBox x:Name="Registration_username_textBox" Height="18" Canvas.Left="130" TextWrapping="Wrap" Text="" Canvas.Top="292" Width="148" BorderBrush="DeepSkyBlue"/>
+            <PasswordBox x:Name="Registration_passwordBox" Canvas.Left="132" Canvas.Top="337" Width="145" BorderBrush="DeepSkyBlue"/>
+            <Label x:Name="Registration_label_name" Content="Name" Canvas.Left="28" Canvas.Top="25" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="70" />
+            <Label x:Name="Registration_label_lastname" Content="Last name" Canvas.Left="27" Canvas.Top="67" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <TextBox x:Name="Registration_name_textBox" Height="18" Canvas.Left="125" TextWrapping="Wrap" Text="" Canvas.Top="32" Width="148" BorderBrush="DeepSkyBlue"/>
+            <TextBox x:Name="Registration_lastname_textBox" Height="18" Canvas.Left="123" TextWrapping="Wrap" Text="" Canvas.Top="72" Width="148" BorderBrush="DeepSkyBlue"/>
+            <Label x:Name="Registration_label_email" Content="Email" Canvas.Left="26" Canvas.Top="108" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <TextBox x:Name="Registration_email_textBox" Height="18" Canvas.Left="123" TextWrapping="Wrap" Text="" Canvas.Top="116" Width="148" BorderBrush="DeepSkyBlue"/>
+            <Label x:Name="Registration_label_country" Content="Country" Canvas.Left="23" Canvas.Top="151" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <ComboBox x:Name="Registration_comboBox_country" Canvas.Left="126" Canvas.Top="155" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="143" Background="White" />
+            <Button x:Name="Registration_submit_button" Content="Registration" Canvas.Left="159" Canvas.Top="420" Width="75" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Background="White" RenderTransformOrigin="-0.173,0.64" />
+            <Label x:Name="Registration_label_city" Content="City" Canvas.Left="19" Canvas.Top="195" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <ComboBox x:Name="comboBox" Canvas.Left="133" Canvas.Top="198" Width="120"/>
+            <Label x:Name="Registration_label_street" Content="Street" Canvas.Left="18" Canvas.Top="241" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
+            <TextBox x:Name="Registration_textBox_street" Height="23" Canvas.Left="132" TextWrapping="Wrap" Canvas.Top="239" Width="141" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue"  />
+            <Label x:Name="Registration_label_password_Copy" Content="Re-enter Password" Canvas.Left="4" Canvas.Top="375" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="112" />
+            <PasswordBox x:Name="Registration_passwordBox_Copy" Canvas.Left="133" Canvas.Top="378" Width="145" BorderBrush="DeepSkyBlue"/>
         </Canvas>
 
     </Grid>
