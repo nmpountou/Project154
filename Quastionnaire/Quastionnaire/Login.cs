@@ -12,12 +12,12 @@ using System.Windows.Forms;
 //using log4net;
 //using log4net.Config;
 
-using MySql.Data.MySqlClient;
 /// <summary>
 /// Set the language pack
 /// </summary>
 using System.Globalization;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace Quastionnaire
 {

@@ -100,6 +100,11 @@
     <Compile Include="Model\RetriveStringConnection.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\ValidInput.cs" />
+    <Compile Include="Properties\Resources-el.Designer.cs">
+      <DependentUpon>Resources-el.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -140,6 +145,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources-el.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources-el.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

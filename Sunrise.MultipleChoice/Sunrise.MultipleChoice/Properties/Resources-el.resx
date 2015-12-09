@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Connection_succeed" xml:space="preserve">
-    <value>Connection Success!</value>
+    <value>Επιτυχής σύνδεση.</value>
     <comment>Connection with database ok.</comment>
   </data>
   <data name="MessageBoxNo" xml:space="preserve">
-    <value>No</value>
+    <value>Όχι</value>
     <comment>Option no for message box</comment>
   </data>
   <data name="MessageBoxOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>Οκ</value>
     <comment>Option ok for message box</comment>
   </data>
   <data name="MessageBoxYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ναι</value>
     <comment>Option yes for message box</comment>
   </data>
 </root>
