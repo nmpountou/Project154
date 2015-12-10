@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sunrise.MultipleChoice.Model.Dao
+namespace Sunrise.MultipleChoice.Model.Dao.Interface
 {
     interface ISubjectDao
     {

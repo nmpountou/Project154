@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quastionnaire.Model.Dao
+namespace Quastionnaire.Model.Dao.Interface
 {
     interface IQuestionDao
     {
