@@ -64,8 +64,6 @@ namespace Sunrise.MultipleChoice
 
             //lvQuestion.ItemsSource = question;
 
-
-
         }
 
         //Initialize
@@ -75,7 +73,12 @@ namespace Sunrise.MultipleChoice
             subjectList = subjectDao.findSubject();
 
             foreach (Subject subject in subjectList)
+            {
                 cbSubject_search.Items.Add(subject.Subject_descr);
+                cbSubject_Question.Items.Add(subject.Subject_descr);
+            }
+
+
         }
        
         //Table OnClick
@@ -124,13 +127,19 @@ namespace Sunrise.MultipleChoice
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
 
+            lvQuestion.ItemsSource = null;
+            lvAnswer.ItemsSource = null;
+
             string subject = cbSubject_search.Text;
             string department = cbDepartment_search.Text;
+
+            int subject_index = cbSubject_search.SelectedIndex;
+            int department_index = cbDepartment_search.SelectedIndex;
 
             if (checkBeforeSearchForNullInput(subject, department))
                 return;
 
-            List<Question> questionData = loadQuestionData();
+            List<Question> questionData = loadQuestionData(CurrentUserInfo.CURENT_ACCOUNT,subjectList[subject_index],subjectList[subject_index].DepList[department_index]);
             lvQuestion.ItemsSource = questionData;
 
         }
@@ -165,6 +174,16 @@ namespace Sunrise.MultipleChoice
         {
 
         }
+        private void cbSubject_Question_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cbDepartment_Question.Items.Clear();
+
+            int index = cbSubject_Question.SelectedIndex;
+            List<Department> listDep = subjectList[index].DepList;
+            foreach (Department dep in listDep)
+                cbDepartment_Question.Items.Add(dep.Department_descr);
+
+        }
 
         //Answer ToolBAr
         private void btSave_Answer_Click(object sender, RoutedEventArgs e)
@@ -185,6 +204,7 @@ namespace Sunrise.MultipleChoice
         }
 
         //Search
+
         private void cbSubject_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -198,15 +218,14 @@ namespace Sunrise.MultipleChoice
         }
 
         //Common
-        private List<Question> loadQuestionData()
+        private List<Question> loadQuestionData(Account account, Subject subject, Department department)
         {
             List<Question> questionList;
             IQuestionDao questionDao = new QuestionDaoImpl();
 
-            //questionList = questionDao.findQuestion(CurrentUserInfo.CURENT_ACCOUNT,);
+            questionList = questionDao.findQuestion(subject,department);
 
-
-            return null;
+            return questionList;
         }
 
 
@@ -343,6 +362,7 @@ namespace Sunrise.MultipleChoice
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
+
        
     }
 }

@@ -50,8 +50,6 @@
 
                         <GridViewColumn Header="Subject"  DisplayMemberBinding="{Binding Subject.Subject_descr}" />
                         <GridViewColumn Header="Department"  DisplayMemberBinding="{Binding Department.Department_descr}" />
-                        <GridViewColumn Header="Department_Level"  DisplayMemberBinding="{Binding Department.Level}" />
-
 
                     </GridView>
                 </ListView.View>
@@ -138,11 +136,11 @@
                 <Label Name="lblDate_Question_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Subject:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Margin="5" Padding="5"/>
+                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Margin="5" Padding="5" SelectionChanged="cbSubject_Question_SelectionChanged"/>
                 <Label Name="lblSubject_Question_msg" Grid.Row="2" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="2" Grid.Column="3" Content="Department:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Margin="5" Padding="5"/>
+                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Margin="5" Padding="5" />
                 <Label Name="lblDepartment_Question_msg" Grid.Row="2" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="3" Grid.Column="0" Content="Question:" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.RowSpan="4"/>
