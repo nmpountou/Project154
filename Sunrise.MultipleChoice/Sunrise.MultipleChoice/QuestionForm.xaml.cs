@@ -1,10 +1,12 @@
 ﻿using Quastionnaire.Model;
 using Quastionnaire.Model.Dao;
 using Quastionnaire.Model.Dao.Impl;
+using Quastionnaire.Model.Dao.Interface;
 using Sunrise.MultipleChoice.Data;
 using Sunrise.MultipleChoice.Model;
 using Sunrise.MultipleChoice.Model.Dao;
 using Sunrise.MultipleChoice.Model.Dao.Impl;
+using Sunrise.MultipleChoice.Model.Dao.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;

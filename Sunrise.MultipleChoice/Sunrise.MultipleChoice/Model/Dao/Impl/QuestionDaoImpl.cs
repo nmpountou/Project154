@@ -7,6 +7,7 @@ using Sunrise.MultipleChoice.Model;
 using MySql.Data.MySqlClient;
 using Sunrise.MultipleChoice.Data;
 using System.Diagnostics;
+using Quastionnaire.Model.Dao.Interface;
 
 namespace Quastionnaire.Model.Dao.Impl
 {

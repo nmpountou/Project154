@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Quastionnaire.Model;
 using Sunrise.MultipleChoice.Data;
+using Sunrise.MultipleChoice.Model.Dao.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
