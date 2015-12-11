@@ -30,6 +30,7 @@ namespace Sunrise.MultipleChoice
         {
             //Language default start
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            Sunrise.MultipleChoice.Data.Logger.Setup();
             InitializeComponent();
         }
 
@@ -76,6 +77,17 @@ namespace Sunrise.MultipleChoice
                     this.Login_exit_button_Click(sender, e);
                 }
             }
+        }
+
+        private void Login_button_new_Account_Click(object sender, RoutedEventArgs e)
+        {
+            //Forgot_Password frp = new Forgot_Password();
+            //frp.Show();
+            Register reg = new Register();
+            reg.Show();
+
+            //System.Uri resourceLocater = new System.Uri("Register.xaml",System.UriKind.Relative);
+            //System.Windows.Application.LoadComponent(this, resourceLocater);
         }
     }
 }

@@ -25,6 +25,14 @@ namespace Sunrise.MultipleChoice
         private string database = Quastionnaire.Model.CurrentUserInfo.DATABASE;
 
         private MySqlConnection connection;
+        public MysqlC()
+        {
+            this.username = Quastionnaire.Model.CurrentUserInfo.USERNAME;
+            this.password = Quastionnaire.Model.CurrentUserInfo.PASSWORD;
+            this.hostname = Quastionnaire.Model.CurrentUserInfo.HOSTNAME;
+            this.port = Quastionnaire.Model.CurrentUserInfo.PORT;
+            this.database = Quastionnaire.Model.CurrentUserInfo.DATABASE;
+        }
         public MysqlC(string username,string password)
         {
             this.username = username;
@@ -50,7 +58,8 @@ namespace Sunrise.MultipleChoice
         public void initializeConnection()
         {
             //CHECK WHAT NEED FOR INITIALIZATION
-            Sunrise.MultipleChoice.Data.Logger.Setup();
+            //Sunrise.MultipleChoice.Data.Logger.Setup();
+            
             //logger.Setup();
 
             logger.Debug("initializeConnection()");
@@ -127,8 +136,6 @@ namespace Sunrise.MultipleChoice
             {
                 logger.Error("INITIALIZATION_CONFIGURETION_FILE_FAILED: ", e);
             }
-
-
         }
         public string Username
         {
@@ -153,6 +160,11 @@ namespace Sunrise.MultipleChoice
         public MySqlConnection Return_Connection()
         {
             return connection;
+        }
+        public String temp_connection_string()
+        {
+            string cs = @"server=" + hostname.Trim() + ";userid=" + username.Trim() + ";password=" + password + ";database=" + database.Trim();
+            return cs;
         }
         //public string Password
         //{
