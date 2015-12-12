@@ -15,5 +15,6 @@ namespace Quastionnaire.Model.Dao.Interface
         void deleteQuestion(Question question);
         void updateQuestion(Question question);
 
+
     }
 }
