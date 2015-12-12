@@ -39,7 +39,7 @@
         <Separator Padding="5" Margin="5" Background="White"/>
 
         <StackPanel  Orientation="Horizontal" Margin="5">
-            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px"  SelectionChanged="lvQuestion_SelectionChanged" >
+            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px"  SelectionChanged="lvQuestion_SelectionChanged" SelectionMode="Single" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
@@ -61,10 +61,9 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
-                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Account.Username}" />
-                        <GridViewColumn Header="Answer"  DisplayMemberBinding="{Binding Answer_descr}" />
                         <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
-                        <GridViewColumn Header="Correct"  DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Answer"  DisplayMemberBinding="{Binding Answer_descr}" />
+                        <GridViewColumn Header="Correct"  DisplayMemberBinding="{Binding Correct}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -73,16 +72,16 @@
 
             <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
                 <Button  Name="btSave_Question"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Question_Click">
-                    <Image Source="images\edit2.png" />
+                    <Image Source="images\save1.png" />
                 </Button>
                 <Button  Name="btEdit_Question" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Question_Click">
-                    <Image Source="images\delete.png" />
+                    <Image Source="images\edit2.png" />
                 </Button>
-                <Button Name="btDelete_Question" Command="Delete" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Question_Click">
+                <Button Name="btDelete_Question"  ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Question_Click">
                     <Image Source="images\delete.png" />
                 </Button>
                 <Button  Name="btClear_Question" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Question_Click">
-                    <Image Source="images\delete.png" />
+                    <Image Source="images\clear.png" />
                 </Button>
             </ToolBar>
 
@@ -90,16 +89,16 @@
 
             <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
                 <Button  Name="btSave_Answer"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Answer_Click">
-                    <Image Source="images\edit2.png" />
+                    <Image Source="images\save1.png" />
                 </Button>
                 <Button  Name="btEdit_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Answer_Click">
-                    <Image Source="images\delete.png" />
+                    <Image Source="images\edit2.png" />
                 </Button>
                 <Button Name="btDelete_Answer" Command="Delete" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Answer_Click">
                     <Image Source="images\delete.png" />
                 </Button>
                 <Button  Name="btClear_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Answer_Click">
-                    <Image Source="images\delete.png" />
+                    <Image Source="images\clear.png" />
                 </Button>
             </ToolBar>
 
@@ -123,16 +122,16 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Level - [1-100]:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="Level - [1-10]:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBox Name="tbLevel_Question"  Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" />
                 <Label Name="lblLevel_Question_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5"/>
+                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
                 <Label Name="lblOwner_Question_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"   Margin="5" Padding="5"/>
+                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"   Margin="5" Padding="5" IsEnabled="False"/>
                 <Label Name="lblDate_Question_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Subject:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -159,32 +158,40 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="0" Content="Correct" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox Name="cbCorrect_Answer" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" SelectionChanged="cbSubject_Question_SelectionChanged"/>
+                <Label Name="lblCorrect_Answer_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbOwner_Answer" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
+                <Label Name="lblOwner_Answer_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbOwner_Answer" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5"/>
-                <Label Name="lblOwner_Answer_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbDate_Answer" Grid.Row="1" Grid.Column="4"   Margin="5" Padding="5" IsEnabled="False"/>
+                <Label Name="lblDate_Answer_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Label Grid.Row="0" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbDate_Answer" Grid.Row="0" Grid.Column="4"   Margin="5" Padding="5"/>
-                <Label Name="lblDate_Answer_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Answer:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox Name="tbAnswer_Description" Grid.Row="1" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
-                <Label Name="lblAnswer_Description_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Answer:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbAnswer_Description" Grid.Row="2" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
+                <Label Name="lblAnswer_Description_msg" Grid.Row="2" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
             </Grid>
 
 
         </StackPanel>
+        
+        
+        
 
-
+        
+        
 
     </StackPanel>
 

@@ -8,23 +8,24 @@ using MySql.Data.MySqlClient;
 using Sunrise.MultipleChoice.Data;
 using System.Diagnostics;
 using Quastionnaire.Model.Dao.Interface;
+using log4net;
 
 namespace Quastionnaire.Model.Dao.Impl
 {
+
     class QuestionDaoImpl : IQuestionDao
     {
-        public void deleteQuestion(Question question)
-        {
-            throw new NotImplementedException();
-        }
+        private ILog logger = LogManager.GetLogger(nameof(QuestionDaoImpl));
+
 
         public List<Question> findQuestion(Subject subject, Department department)
         {
+            logger.Debug("findQuestion()");
 
             List<Question> questionList = new List<Question>();
             List<Answer> answerList = new List<Answer>();
 
-            string query = "select Q.id as question_id,Q.question,Q.create_date,Q.correct_answer_id,A.id as user_id,Q.level_range,A.username from question Q " +
+            string query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
                            "inner join account A on A.id = Q.account_id " +
                            "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + "; ";
 
@@ -39,7 +40,6 @@ namespace Quastionnaire.Model.Dao.Impl
 
             //Question Fields
             int question_id;
-            int correct_answer_id;
             string question_descr;
             int level_question;
             DateTime date_question;
@@ -52,6 +52,7 @@ namespace Quastionnaire.Model.Dao.Impl
             int answer_id;
             string answer_descr;
             DateTime date_answer;
+            bool correct_answer;
 
             //Questions
             using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
@@ -65,12 +66,11 @@ namespace Quastionnaire.Model.Dao.Impl
                             question_id = reader.GetInt32(0);
                             question_descr = reader.GetString(1);
                             date_question = reader.GetDateTime(2);
-                            correct_answer_id = reader.GetInt32(3);
-                            account_id = reader.GetInt32(4);
-                            level_question = reader.GetInt32(5);
-                            username = reader.GetString(6);
+                            account_id = reader.GetInt32(3);
+                            level_question = reader.GetInt32(4);
+                            username = reader.GetString(5);
 
-                            questionList.Add(new Question() { Id = question_id, Question_descr = question_descr, Account = new Account() { Username = username }, CorrectAnswer = new Answer() { Id = correct_answer_id }, Subject = subject, Department = department,Level = level_question,Date = date_question });
+                            questionList.Add(new Question() { Id = question_id, Question_descr = question_descr, Account = new Account() { Username = username }, Subject = subject, Department = department, Level = level_question, Date = date_question });
                         }
                     }
                 } // reader closed and disposed up here
@@ -83,7 +83,7 @@ namespace Quastionnaire.Model.Dao.Impl
 
             foreach (Question question in questionList)
             {
-                query = "select id as answer_id,answer,create_date from answer A inner join question_answer QA on A.id = QA.answer_id and QA.question_id=" + question.Id + ";";
+                query = "select id as answer_id,answer,create_date,correct from answer A inner join question_answer QA on A.id = QA.answer_id and QA.question_id=" + question.Id + ";";
                 using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -95,8 +95,9 @@ namespace Quastionnaire.Model.Dao.Impl
                                 answer_id = reader.GetInt32(0);
                                 answer_descr = reader.GetString(1);
                                 date_answer = reader.GetDateTime(2);
+                                correct_answer = (reader.GetInt32(3)==0? false :true);
 
-                                answerList.Add(new Answer() { Id = answer_id, Answer_descr = answer_descr, Date = date_answer, Correct = question.CorrectAnswer.Id == answer_id ? true : false, Account = question.Account });
+                                answerList.Add(new Answer() { Id = answer_id, Answer_descr = answer_descr, Date = date_answer, Correct = correct_answer, Account = question.Account });
                             }
                             question.AnswerList = answerList;
                             answerList = new List<Answer>();
@@ -122,7 +123,6 @@ namespace Quastionnaire.Model.Dao.Impl
             return questionList;
 
         }
-
         public List<Question> findQuestion(Account account, Subject subject, Department department)
         {
             throw new NotImplementedException();
@@ -130,12 +130,119 @@ namespace Quastionnaire.Model.Dao.Impl
 
         public void saveQuestion(Question question)
         {
-            throw new NotImplementedException();
-        }
 
+            string query = "select SD.id from subject_department SD where SD.subject_id=" + question.Subject.Id + " and SD.department_id=" + question.Department.Id + " ";
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+                CurrentUserInfo.PASSWORD,
+                CurrentUserInfo.HOSTNAME,
+                CurrentUserInfo.PORT,
+                CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            long subjectdepartment_id = -1;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader != null)
+                        while (reader.Read())
+                        {
+                            subjectdepartment_id = reader.GetInt32(0);
+                        }
+                }
+
+            }
+
+
+            string formatForMySql = question.Date.ToString("yyyy-MM-dd HH:mm");
+
+            query = "insert into question(question,level_range,create_date,account_id,subject_department_id) values('" + question.Question_descr + "'," + question.Level + ",'" + formatForMySql + "'," + CurrentUserInfo.CURENT_ACCOUNT.Id + "," + subjectdepartment_id + ")";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+                cmd.ExecuteNonQuery();
+
+            mysql.closeMysqlConnection();
+
+        }
         public void updateQuestion(Question question)
         {
-            throw new NotImplementedException();
+            string query = "select SD.id from subject_department SD where SD.subject_id=" + question.Subject.Id + " and SD.department_id=" + question.Department.Id + " ";
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+                CurrentUserInfo.PASSWORD,
+                CurrentUserInfo.HOSTNAME,
+                CurrentUserInfo.PORT,
+                CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            int subjectdepartment_id = -1;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader != null)
+                        while (reader.Read())
+                        {
+                            subjectdepartment_id = reader.GetInt32(0);
+                        }
+                }
+            }
+
+
+            string formatForMySql = question.Date.ToString("yyyy-MM-dd HH:mm");
+
+            query = "update question set question = '" + question.Question_descr + "',level_range=" + question.Level + ",create_date='" + formatForMySql + "',subject_department_id = " + subjectdepartment_id + " where id = " + question.Id + "";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+                cmd.ExecuteNonQuery();
+
+            mysql.closeMysqlConnection();
+
+        }
+        public void deleteQuestion(Question question)
+        {
+            logger.Debug("deleteQuestion()");
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+             CurrentUserInfo.PASSWORD,
+             CurrentUserInfo.HOSTNAME,
+             CurrentUserInfo.PORT,
+             CurrentUserInfo.DATABASE);
+
+            string query = "delete from question where id = " + question.Id + ";";
+            string answersIDs = "";
+            foreach (Answer answer in question.AnswerList)
+                answersIDs += answer.Id.ToString() + ",";
+
+            if (!String.IsNullOrEmpty(answersIDs))
+                answersIDs = answersIDs.Substring(0, answersIDs.Length - 1);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+            query = "delete from answer where id in (" + answersIDs + ");";
+
+            if (!String.IsNullOrEmpty(answersIDs))
+                using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            mysql.closeMysqlConnection();
+
+
+            logger.Info("Question With ID " + question.Id + " Deleted");
         }
     }
 }
