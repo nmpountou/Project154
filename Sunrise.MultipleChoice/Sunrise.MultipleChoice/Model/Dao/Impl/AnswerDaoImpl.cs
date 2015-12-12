@@ -17,7 +17,26 @@ namespace Quastionnaire.Model.Dao.Impl
 
         public void deleteAnswer(Answer answer)
         {
-            throw new NotImplementedException();
+
+            logger.Debug("deleteAnswer()");
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+             CurrentUserInfo.PASSWORD,
+             CurrentUserInfo.HOSTNAME,
+             CurrentUserInfo.PORT,
+             CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            string query = "delete from answer where id = " + answer.Id + "";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+
         }
 
         public List<Answer> findAnswer(Account account, Question question)
@@ -63,12 +82,34 @@ namespace Quastionnaire.Model.Dao.Impl
 
             mysql.closeMysqlConnection();
 
-
         }
 
         public void updateAnswer(Answer answer)
         {
-            throw new NotImplementedException();
+
+            logger.Debug("updateAnswer()");
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+             CurrentUserInfo.PASSWORD,
+             CurrentUserInfo.HOSTNAME,
+             CurrentUserInfo.PORT,
+             CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            string formatForMySql = answer.Date.ToString("yyyy-MM-dd HH:mm");
+
+            string query = "update answer set answer='"+answer.Answer_descr+"',create_date='"+ formatForMySql + "',correct="+(answer.Correct?1:0)+",account_id="+answer.Account.Id+" where id="+answer.Id+"";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                cmd.ExecuteNonQuery();
+
+            }
+
+            mysql.closeMysqlConnection();
+
         }
     }
 }

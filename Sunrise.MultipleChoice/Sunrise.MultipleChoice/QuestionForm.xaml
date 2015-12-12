@@ -94,7 +94,7 @@
                 <Button  Name="btEdit_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Answer_Click">
                     <Image Source="images\edit2.png" />
                 </Button>
-                <Button Name="btDelete_Answer" Command="Delete" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Answer_Click">
+                <Button Name="btDelete_Answer"  ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Answer_Click">
                     <Image Source="images\delete.png" />
                 </Button>
                 <Button  Name="btClear_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Answer_Click">

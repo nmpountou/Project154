@@ -30,6 +30,7 @@ namespace Sunrise.MultipleChoice
     {
         private List<Subject> subjectList;
         private Question selected_Question;
+        private Answer selected_Answer;
         private List<Question> questionData;
 
         public QuestionForm()
@@ -56,8 +57,8 @@ namespace Sunrise.MultipleChoice
                 cbSubject_Question.Items.Add(subject.Subject_descr);
             }
 
-            cbCorrect_Answer.Items.Add("No");
-            cbCorrect_Answer.Items.Add("Yes");
+            cbCorrect_Answer.Items.Add("False");
+            cbCorrect_Answer.Items.Add("True");
 
         }
 
@@ -155,6 +156,8 @@ namespace Sunrise.MultipleChoice
             if (answer == null)
                 return;
 
+            selected_Answer = answer;
+
             tbOwner_Answer.Text = answer.Account.Username.ToString();
             tbDate_Answer.Text = answer.Date.ToString();
             tbAnswer_Description.Text = answer.Answer_descr.ToString();
@@ -183,9 +186,14 @@ namespace Sunrise.MultipleChoice
                 return;
 
             Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level)};
+            question.Account = CurrentUserInfo.CURENT_ACCOUNT;
 
             IQuestionDao questionDao = new QuestionDaoImpl();
             questionDao.saveQuestion(question);
+
+            questionData.Add(question);
+            lvQuestion.ItemsSource = null;
+            lvQuestion.ItemsSource = questionData;
 
             MessageBox.Show("Question Saved", "Confirmation");
 
@@ -221,15 +229,11 @@ namespace Sunrise.MultipleChoice
             IQuestionDao questionDao = new QuestionDaoImpl();
             questionDao.updateQuestion(question);
 
-
             //Refresh
-            int subject_index = cbSubject_search.SelectedIndex;
-            int department_index = cbDepartment_search.SelectedIndex;
-
-            List<Question> questionData = loadQuestionData(CurrentUserInfo.CURENT_ACCOUNT, subjectList[subject_index], subjectList[subject_index].DepList[department_index]);
-            lvQuestion.ItemsSource = questionData;
+            questionData.Remove(selected_Question);
+            questionData.Add(question);
             lvQuestion.ItemsSource = null;
-
+            lvQuestion.ItemsSource = questionData;
 
             MessageBox.Show("Question Updated", "Confirmation");
         }
@@ -245,12 +249,10 @@ namespace Sunrise.MultipleChoice
             IQuestionDao questionDao = new QuestionDaoImpl();
             questionDao.deleteQuestion(selected_Question);
 
-            int subject_index = cbSubject_search.SelectedIndex;
-            int department_index = cbDepartment_search.SelectedIndex;
-
-            List<Question> questionData = loadQuestionData(CurrentUserInfo.CURENT_ACCOUNT, subjectList[subject_index], subjectList[subject_index].DepList[department_index]);
-            lvQuestion.ItemsSource = questionData;
+            //Refresh
+            questionData.Remove(selected_Question);
             lvQuestion.ItemsSource = null;
+            lvQuestion.ItemsSource = questionData;
 
             MessageBox.Show("Question Deleted", "Confirmation");
 
@@ -350,7 +352,6 @@ namespace Sunrise.MultipleChoice
 
             selected_Question = null;
 
-
         }
        
         //Answer ToolBAr
@@ -384,17 +385,80 @@ namespace Sunrise.MultipleChoice
             lvAnswer.ItemsSource = null;
             lvAnswer.ItemsSource = selected_Question.AnswerList;
 
+            MessageBox.Show("Answer Saved", "Confirmation");
         }
         private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
         {
 
+            if (selected_Question == null)
+            {
+                MessageBox.Show("Select Question First", "Confirmation");
+                return;
+            }
+            if (selected_Answer == null)
+            {
+                MessageBox.Show("Select Answer First", "Confirmation");
+                return;
+            }
+
+            string answer_descr = tbAnswer_Description.Text;
+            string correct = cbCorrect_Answer.Text;
+            bool corrext_answer;
+            int index_correct_answer = cbCorrect_Answer.SelectedIndex;
+
+            if (checkAnswerForNullInput(answer_descr, correct))
+            {
+                MessageBox.Show("Empty", "Confirmation");
+                return;
+            }
+
+            corrext_answer = index_correct_answer == 0 ? false : true;
+            Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = new DateTime(), Correct = corrext_answer };
+
+            answer.Id = selected_Answer.Id;
+            answer.Account = CurrentUserInfo.CURENT_ACCOUNT;
+
+            IAnswerDao answerDao = new AnswerDaoImpl();
+            answerDao.updateAnswer(answer);
+
+            lvAnswer.ItemsSource = null;
+
+            selected_Question.AnswerList.Remove(selected_Answer);
+            selected_Question.AnswerList.Add(answer);
+            lvAnswer.ItemsSource = null;
+            lvAnswer.ItemsSource = selected_Question.AnswerList;
+
+            MessageBox.Show("Answer Edited", "Confirmation");
+
         }
         private void btDelete_Answer_Click(object sender, RoutedEventArgs e)
         {
+            if (selected_Question == null)
+            {
+                MessageBox.Show("Select Question First", "Confirmation");
+                return;
+            }
+            if (selected_Answer == null)
+            {
+                MessageBox.Show("Select Answer First", "Confirmation");
+                return;
+            }
 
+            IAnswerDao answerDao = new AnswerDaoImpl();
+            answerDao.deleteAnswer(selected_Answer);
+
+
+            selected_Question.AnswerList.Remove(selected_Answer);
+            lvAnswer.ItemsSource = null;
+            lvAnswer.ItemsSource = selected_Question.AnswerList;
+
+            MessageBox.Show("Answer Deleted", "Confirmation");
         }
         private void btClear_Answer_Click(object sender, RoutedEventArgs e)
         {
+            tbAnswer_Description.Clear();
+            tbDate_Answer.Clear();
+            tbOwner_Answer.Clear();
 
         }
 
