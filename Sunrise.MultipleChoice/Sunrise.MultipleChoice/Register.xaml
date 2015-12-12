@@ -6,22 +6,22 @@
       xmlns:local="clr-namespace:Sunrise.MultipleChoice"
       xmlns:gif="http://wpfanimatedgif.codeplex.com" 
       mc:Ignorable="d"
-      Title="Register" Height="800" Width="700">
+      Title="Register" Height="785" Width="815">
     <!--Height="394" Width="432"-->
 
-    <Grid>
+    <Grid Margin="6,0,10,7">
         <Grid.RowDefinitions>
             <RowDefinition Height="183*"/>
             <RowDefinition Height="94*"/>
         </Grid.RowDefinitions>
         <Image gif:ImageBehavior.RepeatBehavior="2x"
-           gif:ImageBehavior.AnimatedSource="images\Registrtion_Images\registration_form.gif" Source="images/Registrtion_Images/registration_form.gif" Stretch="Fill" Height="42" VerticalAlignment="Top">
+           gif:ImageBehavior.AnimatedSource="images\Registrtion_Images\registration_form.gif" Source="images/Registrtion_Images/registration_form.gif" Stretch="Fill" Height="50" VerticalAlignment="Top" Margin="31,0,21,0">
             <!-- Margin="29,16,33,0"-->
             <Image.OpacityMask>
                 <ImageBrush ImageSource="images/Registrtion_Images/registration_form.gif" Stretch="Uniform"/>
             </Image.OpacityMask>
         </Image>
-        <Canvas Background="LightSkyBlue" Margin="0,61,0,159" Grid.RowSpan="2">
+        <Canvas Background="LightSkyBlue" Margin="5,61,0,218" Grid.RowSpan="2">
             <Image x:Name="Registration_image" Height="176" Canvas.Left="348" Canvas.Top="50" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
             <Label x:Name="Registration_label_user_name" Content="User name" Canvas.Left="40" Canvas.Top="296" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="70" />
             <Label x:Name="Registration_label_password" Content="Password" Canvas.Left="40" Canvas.Top="333" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="71" />
@@ -52,7 +52,7 @@
             <Image x:Name="Registration_image_error_username" Height="20" Canvas.Left="267" Canvas.Top="302" Width="20" RenderTransformOrigin="0.493,1.364" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
             <Image x:Name="Registration_image_error_password" Height="20" Canvas.Left="268" Canvas.Top="337" Width="20" RenderTransformOrigin="0.493,1.364" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
             <Image x:Name="Registration_image_error_re_password" Height="20" Canvas.Left="266" Canvas.Top="380" Width="20" RenderTransformOrigin="0.493,1.364" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
-            <Label x:Name="Registration_error_label" Content="Label" Canvas.Left="348" Canvas.Top="224" RenderTransformOrigin="-0.053,-0.038" FontFamily="Arial" FontSize="12" Foreground="Red" Height="249" Width="256" Visibility="Hidden"/>
+            <Label x:Name="Registration_error_label" Content="" Canvas.Left="348" Canvas.Top="224" RenderTransformOrigin="-0.053,-0.038" FontFamily="Arial" FontSize="12" Foreground="Red" Height="222" Width="336"/>
 
         </Canvas>
 
