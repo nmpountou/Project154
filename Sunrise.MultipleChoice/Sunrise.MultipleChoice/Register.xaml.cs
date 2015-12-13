@@ -37,9 +37,7 @@ namespace Sunrise.MultipleChoice
             Registration_comboBox_city.IsEnabled = false;
         }
         private void Registration_submit_button_Click(object sender, RoutedEventArgs e)
-        {
-            int avaliable = Registration_get_first_avaliabe_id();
-            logger.Debug("First id: "+avaliable);
+        {            
             String msg = "";
             Boolean validate = false;
             if (check_empty_textboxes())
@@ -84,9 +82,9 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_error_label.IsEnabled = false;
                 int id = Registration_get_first_avaliabe_id();
+                Registration_write_data_to_database(id);
             }
         }
-
         private void fill_combobox_country()
         {
             //Initialize the Connection, using default values of a user.
@@ -136,7 +134,8 @@ namespace Sunrise.MultipleChoice
                 while (reader.Read())
                 {
                     validation = true;
-                    logger.Debug("Found email!!!");
+                    Registration_image_error_email.Visibility = Visibility.Visible;
+                    logger.Debug("Found email in database.!!!");
                 }
             }
             catch (Exception ex)
@@ -148,6 +147,10 @@ namespace Sunrise.MultipleChoice
                 con.Close();
             }
 
+            if(validation == false && !Registration_email_textBox.Text.Equals(""))
+            {
+                Registration_image_error_email.Visibility = Visibility.Hidden;
+            }
             return validation;
         }
 
@@ -169,7 +172,8 @@ namespace Sunrise.MultipleChoice
                 while (reader.Read())
                 {
                     validation = true;
-                    logger.Debug("Found username!!!");
+                    Registration_image_error_username.Visibility = Visibility.Visible;
+                    logger.Debug("Found same username in databse!!!");
                 }
             }
             catch (Exception ex)
@@ -180,7 +184,10 @@ namespace Sunrise.MultipleChoice
             {
                 con.Close();
             }
-
+            if (validation == false)
+            {
+                Registration_image_error_username.Visibility = Visibility.Hidden;
+            }
             return validation;
         }
 
@@ -190,13 +197,14 @@ namespace Sunrise.MultipleChoice
             //Regex for making sure Email is valid
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Registration_email_textBox.Text);
-            if (!match.Success)
+            if (match.Success)
             {
-                Registration_image_error_email.Visibility = Visibility.Visible;
+                Registration_image_error_email.Visibility = Visibility.Hidden;
+                validation = false;
             }
             else
             {
-                validation = false;
+                Registration_image_error_email.Visibility = Visibility.Visible;
             }
             return validation;
         }
@@ -275,19 +283,14 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_image_error_password.Visibility = Visibility.Hidden;
             }
-            //Check the reverse.
             if (Registration_passwordBox_Copy.Password.Equals(""))
             {
-                Registration_image_error_password.Visibility = Visibility.Visible;
-            }
-            else if (Registration_passwordBox_Copy.Password.Equals(Registration_passwordBox.Password))
-            {
-                Registration_image_error_password.Visibility = Visibility.Hidden;
+                Registration_image_error_re_password.Visibility = Visibility.Visible;
+                validated = true;
             }
             else
             {
-                Registration_image_error_password.Visibility = Visibility.Visible;
-                validated = true;
+                Registration_image_error_re_password.Visibility = Visibility.Hidden;
             }
             return validated;
         }
@@ -296,7 +299,12 @@ namespace Sunrise.MultipleChoice
             Boolean validate = true;
             if (Registration_passwordBox_Copy.Password.Equals(Registration_passwordBox.Password))
             {
+                Registration_image_error_re_password.Visibility = Visibility.Hidden;
                 validate = false;
+            }
+            else
+            {
+                Registration_image_error_re_password.Visibility = Visibility.Visible;
             }
             return validate;
         }
@@ -313,10 +321,13 @@ namespace Sunrise.MultipleChoice
             Match match = regex.Match(Registration_passwordBox.Password);
             if (!match.Success)
             {
-                Registration_image_error_email.Visibility = Visibility.Visible;
+                Registration_image_error_password.Visibility = Visibility.Visible;
+                Registration_image_error_re_password.Visibility = Visibility.Visible;
             }
             else
             {
+                Registration_image_error_password.Visibility = Visibility.Hidden;
+                Registration_image_error_re_password.Visibility = Visibility.Hidden;
                 validation = false;
             }
 
@@ -431,6 +442,10 @@ namespace Sunrise.MultipleChoice
                 con.Close();
             }
             return availiable;
+        }
+        private void Registration_write_data_to_database(int id)
+        {
+
         }
     }
 }
