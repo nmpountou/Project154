@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sunrise.MultipleChoice"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1500"
+      d:DesignHeight="1500" d:DesignWidth="1500"
       Title="QuestionForm"
       ShowsNavigationUI="False">
 
@@ -31,7 +31,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Department:" Foreground="White"/>
             <ComboBox x:Name="cbDepartment_search" Grid.Column="1" Grid.Row="1"/>
             <Label Name="lblDepartment_search_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White"/>
-            
+
             <Button Name="btnSearch" Grid.Row="1" Grid.Column="3" Content="Search" Margin="10,0,0,0" Width="70px" Click="btnSearch_Click"/>
 
         </Grid>
@@ -39,7 +39,7 @@
         <Separator Padding="5" Margin="5" Background="White"/>
 
         <StackPanel  Orientation="Horizontal" Margin="5">
-            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px"  SelectionChanged="lvQuestion_SelectionChanged" SelectionMode="Single" >
+            <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px" SelectionMode="Single"   SelectionChanged="lvQuestion_SelectionChanged" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
@@ -55,9 +55,8 @@
                 </ListView.View>
             </ListView>
 
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
-            <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch" Width="600px" Margin="50,0,0,0" SelectionChanged="lvAnswer_SelectionChanged">
+            <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch"  Width="700px" Margin="50,0,0,0" SelectionChanged="lvAnswer_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
@@ -70,7 +69,7 @@
         </StackPanel>
         <StackPanel  Orientation="Horizontal">
 
-            <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
+            <ToolBar Background="#FFB2AEBD" Height="30px"  Width="700px" Margin="0,0,50,0">
                 <Button  Name="btSave_Question"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Question_Click">
                     <Image Source="images\save1.png" />
                 </Button>
@@ -85,9 +84,7 @@
                 </Button>
             </ToolBar>
 
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="50,0,50,0" Background="White" />
-
-            <ToolBar Background="#FFB2AEBD" Height="30px" Width="705">
+            <ToolBar Background="#FFB2AEBD" Height="30px"  Width="700px" Margin="50,0,0,0">
                 <Button  Name="btSave_Answer"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Answer_Click">
                     <Image Source="images\save1.png" />
                 </Button>
@@ -104,8 +101,8 @@
 
         </StackPanel>
 
-        <StackPanel  Orientation="Horizontal" Margin="5">
-            <Grid Margin="10">
+        <StackPanel  Orientation="Horizontal" >
+            <Grid  Margin="0,0,50,0"  Width="700px">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -147,9 +144,9 @@
                 <Label Name="lblQuestion_Description_msg" Grid.Row="3" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Grid>
 
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="93,0,50,0" Background="White" />
+            <!--<Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="93,0,50,0" Background="White" />-->
 
-            <Grid Margin="5">
+            <Grid Margin="50,0,0,0"  Width="700px">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -158,18 +155,18 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Label Grid.Row="0" Grid.Column="0" Content="Correct" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <ComboBox Name="cbCorrect_Answer" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" SelectionChanged="cbSubject_Question_SelectionChanged"/>
                 <Label Name="lblCorrect_Answer_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                
+
                 <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBox Name="tbOwner_Answer" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
                 <Label Name="lblOwner_Answer_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -186,12 +183,60 @@
 
 
         </StackPanel>
-        
-        
-        
 
+        <Separator Padding="5" Margin="5" Background="White"/>
         
-        
+        <Label Content="QUESTIONAIRE                                                                                                                                                                           QUESTIONS" Margin="0,10,0,0" Foreground="#FFEEEEEE" FontSize="14.667" FontWeight="Bold" />
+
+        <StackPanel  Orientation="Horizontal">
+
+            <ToolBar Background="#FFB2AEBD" Height="30px" Width="706"   >
+                <Button  Name="btRefresh_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btRefresh_Questionaire_Click">
+                    <Image Source="images\refresh.png" />
+                </Button>
+            </ToolBar>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+            <ListView x:Name="lvQuestionaire" Height="200" HorizontalAlignment="Stretch"  Width="700px" Margin="0,0,25,0"  SelectionMode="Single" SelectionChanged="lvQuestionaire_SelectionChanged"  >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Questionaire_Description"  DisplayMemberBinding="{Binding Questionaire_descr}" />
+                        <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
+                        <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Orientation="Vertical" Margin="0,50,0,0" >
+                <Button Width="80" Height="30" Content="ADD" Name="btnAddQuestionToQuestionaire" Click="btnAddQuestionToQuestionaire_Click"/>
+
+                <Button Width="80" Height="30" Content="REMOVE" Name="btnRemoveQuestionFromQuestionaire" Margin="0,20,0,0" Click="btnRemoveQuestionFromQuestionaire_Click"/>
+                
+            </StackPanel>
+
+
+            <ListView x:Name="lvQuestionaire_Question" Height="200" HorizontalAlignment="Stretch"  Width="700px" Margin="25,0,0,0"  SelectionMode="Single" SelectionChanged="lvQuestionaire_Question_SelectionChanged" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Level"  DisplayMemberBinding="{Binding Level}" />
+                        <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
+                        <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Question"  DisplayMemberBinding="{Binding Question_descr}" />
+                        <GridViewColumn Header="Subject"  DisplayMemberBinding="{Binding Subject.Subject_descr}" />
+                        <GridViewColumn Header="Department"  DisplayMemberBinding="{Binding Department.Department_descr}" />
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </StackPanel>
+
+
+
+
 
     </StackPanel>
 

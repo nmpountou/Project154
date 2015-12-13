@@ -31,7 +31,10 @@ namespace Sunrise.MultipleChoice
         private List<Subject> subjectList;
         private Question selected_Question;
         private Answer selected_Answer;
+        private Questionaire selected_Questionaire;
+        private Question selected_Questionaire_Question;
         private List<Question> questionData;
+        private List<Questionaire> questionaireData;
 
         public QuestionForm()
         {
@@ -41,8 +44,16 @@ namespace Sunrise.MultipleChoice
 
             setMsgLabelToHidden();
             initializeComboBoxInfo();
+            initializeQuestionaireData();
 
+        }
 
+        private void initializeQuestionaireData()
+        {
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
+
+            lvQuestionaire.ItemsSource = listQuestionaire;
         }
 
         //Initialize
@@ -164,6 +175,28 @@ namespace Sunrise.MultipleChoice
             cbCorrect_Answer.Text = answer.Correct.ToString();
 
             lvAnswer.SelectedItem = null;
+
+        }
+        private void lvQuestionaire_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Questionaire questionaire = (Questionaire)lvQuestionaire.SelectedItem;
+
+            if (questionaire == null)
+                return;
+
+            selected_Questionaire = questionaire;
+
+            lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
+
+        }
+        private void lvQuestionaire_Question_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Question question = (Question)lvQuestionaire_Question.SelectedItem;
+
+            if (question == null)
+                return;
+
+            selected_Questionaire_Question = question;
 
         }
 
@@ -483,7 +516,66 @@ namespace Sunrise.MultipleChoice
 
             return emptyField;
         }
-      
+
+        //Questionaire
+        private void btRefresh_Questionaire_Click(object sender, RoutedEventArgs e)
+        {
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
+
+            lvQuestionaire.ItemsSource = listQuestionaire;
+
+        }
+        private void btnAddQuestionToQuestionaire_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (selected_Questionaire == null)
+            {
+                MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+
+            if (selected_Question == null)
+            {
+                MessageBox.Show("Select Question First", "Confirmation");
+                return;
+            }
+
+            selected_Questionaire.QuestionList.Add(selected_Question);
+
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            dao.addQuestionToQuestionaire(selected_Questionaire,selected_Question);
+
+            lvQuestionaire_Question.ItemsSource = null;
+            lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
+
+            MessageBox.Show("Question Added", "Confirmation");
+        }
+        private void btnRemoveQuestionFromQuestionaire_Click(object sender, RoutedEventArgs e)
+        {
+            if (selected_Questionaire == null)
+            {
+                MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+          
+            if(selected_Questionaire_Question == null)
+            {
+                MessageBox.Show("Select Questionaire Question First", "Confirmation");
+                return;
+            }
+
+            selected_Questionaire.QuestionList.Remove(selected_Questionaire_Question);
+
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            dao.removeQuestionFromQuestionaire(selected_Questionaire, selected_Questionaire_Question);
+
+            lvQuestionaire_Question.ItemsSource = null;
+            lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
+
+            MessageBox.Show("Question Removed", "Confirmation");
+        }
+
         private void setMsgLabelToHidden()
         {
             lblSubject_search_msg.Visibility = Visibility.Hidden;
@@ -506,6 +598,6 @@ namespace Sunrise.MultipleChoice
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
 
-       
+
     }
 }

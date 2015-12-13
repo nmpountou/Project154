@@ -23,7 +23,6 @@ namespace Quastionnaire.Model.Dao.Impl
             logger.Debug("findQuestion()");
 
             List<Question> questionList = new List<Question>();
-            List<Answer> answerList = new List<Answer>();
 
             string query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
                            "inner join account A on A.id = Q.account_id " +
@@ -47,12 +46,6 @@ namespace Quastionnaire.Model.Dao.Impl
             //Account Fields
             int account_id;
             string username;
-
-            //Answer Fields
-            int answer_id;
-            string answer_descr;
-            DateTime date_answer;
-            bool correct_answer;
 
             //Questions
             using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
@@ -78,8 +71,46 @@ namespace Quastionnaire.Model.Dao.Impl
             } // command disposed here
             mysql.closeMysqlConnection();
 
+
             //Answer of Above Questions
-            mysql.openMysqlConnection();
+
+            if (questionList.Any())
+            {
+                mysql.openMysqlConnection();
+                setAnsersForIndividualQuestion(questionList, mysql);
+                mysql.closeMysqlConnection();
+            }
+         
+
+            //Debug
+            foreach (Question question in questionList)
+            {
+                Debug.WriteLine(question.Question_descr);
+                foreach (Answer answer in question.AnswerList)
+                    Debug.WriteLine(answer.Answer_descr);
+            }
+
+
+
+            return questionList;
+
+        }
+
+        public void setAnsersForIndividualQuestion(List<Question> questionList, MysqlConnector mysql)
+        {
+
+            if (questionList == null)
+                return;
+
+            List<Answer> answerList = new List<Answer>();
+
+            string query;
+            //Answer Fields
+            int answer_id;
+            string answer_descr;
+            DateTime date_answer;
+            bool correct_answer;
+
 
             foreach (Question question in questionList)
             {
@@ -95,7 +126,7 @@ namespace Quastionnaire.Model.Dao.Impl
                                 answer_id = reader.GetInt32(0);
                                 answer_descr = reader.GetString(1);
                                 date_answer = reader.GetDateTime(2);
-                                correct_answer = (reader.GetInt32(3)==0? false :true);
+                                correct_answer = (reader.GetInt32(3) == 0 ? false : true);
 
                                 answerList.Add(new Answer() { Id = answer_id, Answer_descr = answer_descr, Date = date_answer, Correct = correct_answer, Account = question.Account });
                             }
@@ -108,21 +139,10 @@ namespace Quastionnaire.Model.Dao.Impl
 
             }
 
-            mysql.closeMysqlConnection();
-
-            //Debug
-            foreach (Question question in questionList)
-            {
-                Debug.WriteLine(question.Question_descr);
-                foreach (Answer answer in question.AnswerList)
-                    Debug.WriteLine(answer.Answer_descr);
-            }
-
-
-
-            return questionList;
 
         }
+
+
         public List<Question> findQuestion(Account account, Subject subject, Department department)
         {
             throw new NotImplementedException();

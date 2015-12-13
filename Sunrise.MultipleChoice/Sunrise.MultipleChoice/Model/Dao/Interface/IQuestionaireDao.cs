@@ -12,6 +12,9 @@ namespace Quastionnaire.Model.Dao.Interface
         void saveQuestionaire(Questionaire questionaire);
         void deleteQuestionaire(Questionaire questionaire);
         void updateQuestionaire(Questionaire questionaire);
+        void addQuestionToQuestionaire(Questionaire questionaire, Question question);
+        void removeQuestionFromQuestionaire(Questionaire questionaire, Question question);
+
 
     }
 }

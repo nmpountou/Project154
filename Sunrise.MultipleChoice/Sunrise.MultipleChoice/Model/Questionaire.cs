@@ -12,12 +12,13 @@ namespace Quastionnaire.Model
         private string _questionaire_descr;
         private Account _account;
         private DateTime _date;
+        private List<Question> _questionList;
 
         public int id { get; set; }
         public string Questionaire_descr { get; set; }
         public Account Account { get; set; }
         public DateTime Date { get; set; }
-
+        public List<Question> QuestionList { get; set; }
 
 
     }
