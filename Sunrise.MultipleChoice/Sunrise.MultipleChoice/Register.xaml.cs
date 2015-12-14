@@ -28,18 +28,26 @@ namespace Sunrise.MultipleChoice
     {
         //Logger
         private ILog logger = LogManager.GetLogger(nameof(Register));
-
+        //Initialize the Connection, using default values of a user.
+        MysqlC init_con;
+        //init_con.initializeConnection();
+        MySqlConnection con;        
         public Register()
         {
             InitializeComponent();
             fill_combobox_country();
             //Must sellect country first.
             Registration_comboBox_city.IsEnabled = false;
+            initialize_mysql_connection();
         }
         private void Registration_submit_button_Click(object sender, RoutedEventArgs e)
         {            
             String msg = "";
             Boolean validate = false;
+            int id_user = 0 ;
+            int id_country = 0;
+            int id_city = 0;
+            int id_address = 0;
             if (check_empty_textboxes())
             {
                 msg += "Empty fields in registration form.\n ";
@@ -81,8 +89,11 @@ namespace Sunrise.MultipleChoice
             else
             {
                 Registration_error_label.IsEnabled = false;
-                int id = Registration_get_first_avaliabe_id();
-                Registration_write_data_to_database(id);
+                id_user = Registration_get_first_avaliabe_user_id();
+                id_country = Registration_comboBox_country_getid(Registration_comboBox_country.SelectedItem.ToString());
+                id_city = Registration_city_country_connection_id(id_country, Registration_comboBox_city.SelectedItem.ToString());
+                id_address = Registration_get_first_avaliabe_adress_id();
+                Registration_transaction_write_data_to_database(id_user,id_country,id_city,id_address,con);
             }
         }
         private void fill_combobox_country()
@@ -119,11 +130,11 @@ namespace Sunrise.MultipleChoice
         public Boolean check_unique_email()
         {
             Boolean validation = false;
-            //Initialize the Connection, using default values of a user.
-            //Create the temp Connection String
-            MysqlC init_con = new MysqlC();
-            //init_con.initializeConnection();
-            MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+            ////Initialize the Connection, using default values of a user.
+            ////Create the temp Connection String
+            //MysqlC init_con = new MysqlC();
+            ////init_con.initializeConnection();
+            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT email FROM user_information WHERE email = \"" + Registration_email_textBox.Text + "\";";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
@@ -147,7 +158,7 @@ namespace Sunrise.MultipleChoice
                 con.Close();
             }
 
-            if(validation == false && !Registration_email_textBox.Text.Equals(""))
+            if(validation == false && !Registration_email_textBox.Text.Equals("") && !check_validation_email())
             {
                 Registration_image_error_email.Visibility = Visibility.Hidden;
             }
@@ -157,11 +168,11 @@ namespace Sunrise.MultipleChoice
         public Boolean check_unique_username()
         {
             Boolean validation = false;
-            //Initialize the Connection, using default values of a user.
-            //Create the temp Connection String
-            MysqlC init_con = new MysqlC();
-            //init_con.initializeConnection();
-            MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+            ////Initialize the Connection, using default values of a user.
+            ////Create the temp Connection String
+            //MysqlC init_con = new MysqlC();
+            ////init_con.initializeConnection();
+            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT username FROM account WHERE username = \"" + Registration_username_textBox.Text + "\";";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
@@ -184,7 +195,7 @@ namespace Sunrise.MultipleChoice
             {
                 con.Close();
             }
-            if (validation == false)
+            if (validation == false && !Registration_username_textBox.Text.Equals(""))
             {
                 Registration_image_error_username.Visibility = Visibility.Hidden;
             }
@@ -345,11 +356,11 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_comboBox_city.IsEnabled = true;
                 int country_id = Registration_comboBox_country_getid(Registration_comboBox_country.SelectedItem.ToString());
-                //Initialize the Connection, using default values of a user.
-                //Create the temp Connection String
-                MysqlC init_con = new MysqlC();
-                //init_con.initializeConnection();
-                MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+                ////Initialize the Connection, using default values of a user.
+                ////Create the temp Connection String
+                //MysqlC init_con = new MysqlC();
+                ////init_con.initializeConnection();
+                //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
                 String query = "SELECT city FROM city WHERE country_id = " + country_id + ";";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader reader;
@@ -374,16 +385,44 @@ namespace Sunrise.MultipleChoice
                 }
             }
         }
+        private int Registration_city_country_connection_id(int country_id,String city)
+        {
+            int id = 0;
+            String query = "SELECT id FROM city WHERE country_id = " + country_id + " AND city = '"+city+"'";
+            MySqlCommand cmd = new MySqlCommand(query, con);
+            MySqlDataReader reader;
+            try
+            {
+                con.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    id = reader.GetInt16("id");
+                    logger.Debug("Find id for cities with  country id: " + country_id+" cities: "+city+"  ID:"+id);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("RETRIVE_ADRESS_ID_FAILED: ", ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+
+            return id;
+        }
         private int Registration_comboBox_country_getid(string country)
         {
             int country_id=0;
             country = Registration_comboBox_country.SelectedItem.ToString();
             logger.Debug("RETRIVE_COUNTRY: " + country);
-            //Initialize the Connection, using default values of a user.
-            //Create the temp Connection String
-            MysqlC init_con = new MysqlC();
-            //init_con.initializeConnection();
-            MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+            ////Initialize the Connection, using default values of a user.
+            ////Create the temp Connection String
+            //MysqlC init_con = new MysqlC();
+            ////init_con.initializeConnection();
+            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT id FROM country WHERE country = \"" + country + "\";";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
@@ -409,15 +448,14 @@ namespace Sunrise.MultipleChoice
             }
             return country_id;
         }
-        private int Registration_get_first_avaliabe_id()
+        private int Registration_get_first_avaliabe_user_id()
         {
             int availiable=0;
-            Boolean validation = false;
-            //Initialize the Connection, using default values of a user.
-            //Create the temp Connection String
-            MysqlC init_con = new MysqlC();
-            //init_con.initializeConnection();
-            MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+            ////Initialize the Connection, using default values of a user.
+            ////Create the temp Connection String
+            //MysqlC init_con = new MysqlC();
+            ////init_con.initializeConnection();
+            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             string query = "SELECT u.id + 1 AS FirstAvailableId " +
                 "FROM account u LEFT JOIN account u1 ON u1.id = u.id + 1 " +
                 "WHERE u1.id IS NULL ORDER BY u.id   LIMIT 0, 1";
@@ -443,9 +481,105 @@ namespace Sunrise.MultipleChoice
             }
             return availiable;
         }
-        private void Registration_write_data_to_database(int id)
+        private void Registration_transaction_write_data_to_database(int id_user,int id_country,int id_city,int address_id,MySqlConnection con)
         {
+            try
+            {
+                //Open the connection and create the appropriate objects fro transaction.
+                con.Open();
+                MySqlCommand command = con.CreateCommand();
+                MySqlTransaction trans;
+                trans = con.BeginTransaction();
+                command.Connection = con;
+                command.Transaction = trans;
+                try
+                {
+                    command.CommandText = "INSERT INTO questionaire.account(id,username,password)"
+                                            +"VALUES ('"+id_user+"','" + Registration_username_textBox.Text + "','" +
+                                            Registration_passwordBox.Password+"');";
+                    logger.Debug(command.CommandText);
+                    command.ExecuteNonQuery();
+                    command.CommandText = "INSERT INTO questionaire.address (id,street,country_id,city_id)VALUES('"
+                                        + address_id + "','"+ Registration_textBox_street.Text + "','" +
+                                        id_country + "','" +id_city +"');" ;
+                    logger.Debug(command.CommandText);
+                    command.ExecuteNonQuery();
+                    command.CommandText = "INSERT INTO questionaire.user_information(id,name,lastname,email,address_id)VALUES('"+
+                                            +id_user + "','"+Registration_name_textBox.Text + "','" + Registration_lastname_textBox.Text+"','"
+                                            + Registration_email_textBox.Text+ "','"+ address_id+"');" ;
+                    command.ExecuteNonQuery();
+                    //command.CommandText = "";
+                    //logger.Debug(command.CommandText);
+                    //command.ExecuteNonQuery();
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        trans.Rollback();
+                    }
+                    catch (MySqlException mse)
+                    {
+                        logger.Error("Cannot complete transaction(MySQLException). "+ mse);
+                    }
+                    logger.Error("Cannot complete transaction(MySQLTrnsaction error). " + ex);
 
+                }
+                finally
+                {
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("TRANSACTION_CONNECTION__TO CREATE_USER_TO_DATABSE_FAILED: ", ex);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+        private int Registration_get_first_avaliabe_adress_id()
+        {
+            int availiable = 0;
+            ////Initialize the Connection, using default values of a user.
+            ////Create the temp Connection String
+            //MysqlC init_con = new MysqlC();
+            ////init_con.initializeConnection();
+            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
+            string query = "SELECT u.id + 1 AS FirstAvailableId " +
+                "FROM address u LEFT JOIN address u1 ON u1.id = u.id + 1 " +
+                "WHERE u1.id IS NULL ORDER BY u.id   LIMIT 0, 1";
+            MySqlCommand cmd = new MySqlCommand(query, con);
+            MySqlDataReader reader;
+            try
+            {
+                con.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    availiable = reader.GetInt16("FirstAvailableId");
+                    logger.Debug("Found first avaliable address id!!!" + availiable);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("RETRIVE_AVAILIABLE_ADDRESS_ID_FAILED: ", ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return availiable;
+        }
+
+        private void initialize_mysql_connection()
+        {
+            init_con = new MysqlC();
+            con = new MySqlConnection(init_con.temp_connection_string());
+        }
+
     }
 }
