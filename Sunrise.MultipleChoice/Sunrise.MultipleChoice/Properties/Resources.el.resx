@@ -121,6 +121,10 @@
     <value>Επιτυχής σύνδεση.</value>
     <comment>Connection with database ok.</comment>
   </data>
+  <data name="Language_Selection" xml:space="preserve">
+    <value>Γλώσσα επιλογής Ελληνικά</value>
+    <comment>Language Selection.</comment>
+  </data>
   <data name="MessageBoxNo" xml:space="preserve">
     <value>Όχι</value>
     <comment>Option no for message box</comment>
@@ -132,5 +136,13 @@
   <data name="MessageBoxYes" xml:space="preserve">
     <value>Ναι</value>
     <comment>Option yes for message box</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Σύνδεση</value>
+    <comment>Login Screen Title Window.</comment>
+  </data>
+  <data name="User_name" xml:space="preserve">
+    <value>Όνομα Χρήστη</value>
+    <comment>Login Form User name. </comment>
   </data>
 </root>

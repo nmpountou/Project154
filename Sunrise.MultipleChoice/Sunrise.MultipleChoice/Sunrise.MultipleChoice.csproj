@@ -38,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,6 +95,8 @@
     <Compile Include="Forgot_Password.xaml.cs">
       <DependentUpon>Forgot_Password.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Localization\LocalizationInfo.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Model\Account\Account.cs" />
     <Compile Include="Model\Account\Address.cs" />
     <Compile Include="Model\Account\City.cs" />
@@ -107,8 +110,8 @@
     <Compile Include="Model\RetriveStringConnection.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\ValidInput.cs" />
-    <Compile Include="Properties\Resources-el.Designer.cs">
-      <DependentUpon>Resources-el.resx</DependentUpon>
+    <Compile Include="Properties\Resources.el.Designer.cs">
+      <DependentUpon>Resources.el.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -152,12 +155,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources-el.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources-el.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Properties\Resources.el.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.el.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />

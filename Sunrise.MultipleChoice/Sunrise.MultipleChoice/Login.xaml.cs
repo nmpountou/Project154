@@ -17,19 +17,20 @@ using System.Windows.Shapes;
 using System.Globalization;
 using System.Threading;
 using MySql.Data.MySqlClient;
+using Sunrise.MultipleChoice.Localization;
 
 namespace Sunrise.MultipleChoice
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Login : Window
     {
         private MysqlC mysqlc;
         public Login()
         {
             //Language default start
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("el");
             Sunrise.MultipleChoice.Data.Logger.Setup();
             InitializeComponent();
         }
@@ -88,6 +89,43 @@ namespace Sunrise.MultipleChoice
 
             //System.Uri resourceLocater = new System.Uri("Register.xaml",System.UriKind.Relative);
             //System.Windows.Application.LoadComponent(this, resourceLocater);
+        }
+
+        private void Language_button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (Login_Language_Button.Content.ToString() =="EN" )
+            {
+                Login_Language_Button.Content = "GR";
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("el");
+                CultureInfo ci = new CultureInfo("el");
+                Thread.CurrentThread.CurrentCulture = ci;
+                Thread.CurrentThread.CurrentUICulture = ci;
+                //var oldWindow = Application.Current.MainWindow;
+                //Application.Current.MainWindow = new Sunrise.MultipleChoice.Login();
+                //Application.Current.MainWindow.Show();
+                //oldWindow.Close();
+                
+                Localization.LocalizationManager.UpdateResources();
+                
+                MessageBox.Show(Properties.Resources.Language_Selection);
+            }
+            else
+            {
+                Login_Language_Button.Content = "EN";
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+                CultureInfo ci = new CultureInfo("en");
+                Thread.CurrentThread.CurrentCulture = ci;
+                Thread.CurrentThread.CurrentUICulture = ci;
+                //var oldWindow = Application.Current.MainWindow;
+                //Application.Current.MainWindow = new Sunrise.MultipleChoice.Login();
+                //Application.Current.MainWindow.Show();
+                //oldWindow.Close();
+                Localization.LocalizationManager.UpdateResources();
+                MessageBox.Show(Properties.Resources.Language_Selection);
+
+            }
+
         }
     }
 }

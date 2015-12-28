@@ -22,7 +22,7 @@ namespace Sunrise.MultipleChoice.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Sunrise.MultipleChoice.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sunrise.MultipleChoice.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Sunrise.MultipleChoice.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace Sunrise.MultipleChoice.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Connection Success!.
         /// </summary>
-        internal static string Connection_succeed {
+        public static string Connection_succeed {
             get {
                 return ResourceManager.GetString("Connection_succeed", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language Selected English.
+        /// </summary>
+        public static string Language_Selection {
+            get {
+                return ResourceManager.GetString("Language_Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        internal static string MessageBoxNo {
+        public static string MessageBoxNo {
             get {
                 return ResourceManager.GetString("MessageBoxNo", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace Sunrise.MultipleChoice.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
-        internal static string MessageBoxOk {
+        public static string MessageBoxOk {
             get {
                 return ResourceManager.GetString("MessageBoxOk", resourceCulture);
             }
@@ -90,9 +99,27 @@ namespace Sunrise.MultipleChoice.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
-        internal static string MessageBoxYes {
+        public static string MessageBoxYes {
             get {
                 return ResourceManager.GetString("MessageBoxYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name.
+        /// </summary>
+        public static string User_name {
+            get {
+                return ResourceManager.GetString("User_name", resourceCulture);
             }
         }
     }
