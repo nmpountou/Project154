@@ -51,7 +51,7 @@ namespace Sunrise.MultipleChoice.Localization
         public static void UpdateResources()
         {
             List<WeakReference> deadReferences = new List<WeakReference>();
-
+           
             foreach (WeakReference reference in Elements)
             {
                 FrameworkElement element = reference.Target as FrameworkElement;
@@ -59,7 +59,9 @@ namespace Sunrise.MultipleChoice.Localization
                 if (element != null)
                 {
                     LocalizationInfo localizationInfo = GetLocalization(element);
-
+                    //////////////////////////////////////////
+                    //MessageBox.Show(element.ToString());
+                    //////////////////////////////////////////
                     if (localizationInfo != null)
                     {
                         element.SetValue(localizationInfo.Property,

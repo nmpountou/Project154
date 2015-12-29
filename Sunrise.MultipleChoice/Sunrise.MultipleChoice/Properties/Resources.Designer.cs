@@ -79,6 +79,42 @@ namespace Sunrise.MultipleChoice.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Account.
+        /// </summary>
+        public static string Login_button_new_Account {
+            get {
+                return ResourceManager.GetString("Login_button_new_Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forget_Password.
+        /// </summary>
+        public static string Login_Forget_Password {
+            get {
+                return ResourceManager.GetString("Login_Forget_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login_Login_Button {
+            get {
+                return ResourceManager.GetString("Login_Login_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Login_Password {
+            get {
+                return ResourceManager.GetString("Login_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string MessageBoxNo {

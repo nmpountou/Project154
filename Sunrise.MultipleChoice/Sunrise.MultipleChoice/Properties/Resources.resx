@@ -125,6 +125,22 @@
     <value>Language Selected English</value>
     <comment>Select the language.</comment>
   </data>
+  <data name="Login_button_new_Account" xml:space="preserve">
+    <value>New Account</value>
+    <comment>Login Form New Account</comment>
+  </data>
+  <data name="Login_Forget_Password" xml:space="preserve">
+    <value>Forget_Password</value>
+    <comment>Login form forget Password</comment>
+  </data>
+  <data name="Login_Login_Button" xml:space="preserve">
+    <value>Login</value>
+    <comment>Login button</comment>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>Login form password</comment>
+  </data>
   <data name="MessageBoxNo" xml:space="preserve">
     <value>No</value>
     <comment>Option no for message box</comment>

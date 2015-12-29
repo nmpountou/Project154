@@ -125,6 +125,22 @@
     <value>Γλώσσα επιλογής Ελληνικά</value>
     <comment>Language Selection.</comment>
   </data>
+  <data name="Login_button_new_Account" xml:space="preserve">
+    <value>Δημιουργία Λογαριασμού</value>
+    <comment>Login Form New Account</comment>
+  </data>
+  <data name="Login_Forget_Password" xml:space="preserve">
+    <value>Ξέχασα τον κωδικό μου</value>
+    <comment>Login Form Forget Password</comment>
+  </data>
+  <data name="Login_Login_Button" xml:space="preserve">
+    <value>Σύνδεση</value>
+    <comment>Login screen. Login Button</comment>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Κωδικός</value>
+    <comment>Login Form Password</comment>
+  </data>
   <data name="MessageBoxNo" xml:space="preserve">
     <value>Όχι</value>
     <comment>Option no for message box</comment>

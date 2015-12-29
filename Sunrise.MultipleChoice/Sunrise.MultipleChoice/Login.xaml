@@ -6,53 +6,90 @@
       xmlns:local="clr-namespace:Sunrise.MultipleChoice.Localization"
       xmlns:resources="clr-namespace:Sunrise.MultipleChoice.Properties"
     mc:Ignorable="d"
-      Title="{x:Static resources:Resources.Title}" Width="882" Height="574">
-    <!--xmlns:p="clr-namespace:Sunrise.MultipleChoice.Properties"-->
-    <Grid Margin="0,0,1,1" RenderTransformOrigin="0.49,0.606">
-        <Canvas Background="LightSkyBlue" Margin="27,13,0,0" RenderTransformOrigin="0.5,0.5" Height="516" VerticalAlignment="Top" HorizontalAlignment="Left" Width="754">
-            <Canvas.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.151"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Canvas.RenderTransform>
-            <Image x:Name="Login_image" Height="176" Canvas.Left="44" Canvas.Top="1" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
-            <Button x:Name="Login_exit_button" Content="" Canvas.Left="574" Canvas.Top="25" Width="27" Height="26" BorderBrush="White" Click="Login_exit_button_Click" IsCancel="True">
-                <Button.Background>
-                    <ImageBrush ImageSource="images/Login_Images/Login_exit.png" TileMode="Tile"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="Login_Language_Button" Content="EN" Canvas.Left="574" Canvas.Top="60" Width="30" Click="Language_button_Click"/>
-        </Canvas>
+      Title="{x:Static resources:Resources.Title}" Width="880" Height="600">
+    <local:LocalizationManager.Localization>
+        <local:LocalizationInfo Property="{x:Static Window.TitleProperty}" ResourceKey="Title"/>
+    </local:LocalizationManager.Localization>
 
-        <Canvas x:Name="Login_canvas_white" HorizontalAlignment="Right" Height="198" Margin="0,190,223,0" VerticalAlignment="Top" Width="572" Background="White">
-            <Button x:Name="Login_button" Content="Login" Height="26" Canvas.Left="501" Canvas.Top="69" Width="58" Background="DeepSkyBlue" FontFamily="Arial Narrow" FontSize="16" BorderBrush="White" FontStyle="Oblique" Foreground="White" RenderTransformOrigin="0.904,0.096" Click="Login_button_Click"/>
-            <Label x:Name="Login_label_user_name" Content="{x:Static  resources:Resources.User_name}"  Canvas.Left="315" Canvas.Top="3" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="93" />
-            <Label x:Name="Login_label_password" Content="Password" Canvas.Left="320" Canvas.Top="37" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" />
+    <Grid Margin="0,0,49,54" RenderTransformOrigin="0.49,0.606" HorizontalAlignment="Center" Width="792">
+
+        <Border Margin="58,24,-20,-25" Height="516" VerticalAlignment="Top" HorizontalAlignment="Left" Width="754">
+            <Grid Margin="1,1,-1,5">
+                <Canvas Background="LightSkyBlue" RenderTransformOrigin="0.5,0.5" Margin="-10,-10,-10,-2">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.151"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Image x:Name="Login_image" Height="176" Canvas.Left="44" Canvas.Top="1" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
+                    <Button x:Name="Login_exit_button" Content="" Canvas.Left="565" Canvas.Top="18" Width="27" Height="26" BorderBrush="White" Click="Login_exit_button_Click" IsCancel="True">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/Login_Images/Login_exit.png" TileMode="Tile"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="Login_Language_Button" Content="EN" Canvas.Left="563" Canvas.Top="57" Width="30" Click="Language_button_Click" Background="#FF5AADFF" BorderBrush="#FF2300FF"/>
+                </Canvas>
+
+            </Grid>
+
+        </Border>
+
+        <Canvas x:Name="Login_canvas_white" HorizontalAlignment="Right" Height="198" Margin="0,202,127,0" VerticalAlignment="Top" Width="572" Background="White">
+
+            <Button x:Name="Login_button" Content="{x:Static resources:Resources.Login_Login_Button}" Height="28" Canvas.Left="496" Canvas.Top="69" Width="63" Background="DeepSkyBlue" FontFamily="Arial Narrow" FontSize="16" BorderBrush="White" FontStyle="Oblique" Foreground="White" RenderTransformOrigin="0.904,0.096" Click="Login_button_Click">
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static  ContentControl.ContentProperty}" ResourceKey="Login_Login_Button"/>
+                </local:LocalizationManager.Localization>
+            </Button>
+            <Label x:Name="Login_label_user_name" Content="{x:Static resources:Resources.User_name}"  Canvas.Left="315" Canvas.Top="3" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="93">
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static ContentControl.ContentProperty}" ResourceKey="User_name" />
+                </local:LocalizationManager.Localization>
+            </Label>
+            <Label x:Name="Login_label_password" Content="{x:Static resources:Resources.Login_Password}" Canvas.Left="315" Canvas.Top="37" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="87" >
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static ContentControl.ContentProperty}" ResourceKey="Login_Password" />
+                </local:LocalizationManager.Localization>
+            </Label>
+
             <TextBox x:Name="Login_username_textBox" Height="18" Canvas.Left="414" TextWrapping="Wrap" Text="" Canvas.Top="8" Width="148" BorderBrush="DeepSkyBlue"/>
             <PasswordBox x:Name="Login_passwordBox" Canvas.Left="413" Canvas.Top="42" Width="148" BorderBrush="DeepSkyBlue"/>
-            <Button x:Name="Login_button_forget_password" Content="Forget My Password" Canvas.Left="297" Canvas.Top="112" Width="109" Background="White" FontFamily="Arial Narrow" FontSize="12" BorderBrush="DeepSkyBlue" Foreground="DeepSkyBlue" Height="25"/>
-            <Button x:Name="Login_button_new_Account" Content="New Account" Canvas.Left="462" Canvas.Top="113" Width="81" Background="White" FontFamily="Arial Narrow" FontSize="12" BorderBrush="DeepSkyBlue" Foreground="DeepSkyBlue" Height="24" Click="Login_button_new_Account_Click" />
+
+            <Button x:Name="Login_button_forget_password" Content="{x:Static resources:Resources.Login_Forget_Password}"  Canvas.Left="305" Canvas.Top="110" Width="112" Background="White" FontFamily="Arial Narrow" FontSize="12" BorderBrush="DeepSkyBlue" Foreground="DeepSkyBlue" Height="25">
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static  ContentControl.ContentProperty}" ResourceKey="Login_Forget_Password"/>
+                </local:LocalizationManager.Localization>
+            </Button>
+            <Button x:Name="Login_button_new_Account" Content="{x:Static resources:Resources.Login_button_new_Account}" Canvas.Left="438" Canvas.Top="110" Width="120" Background="White" FontFamily="Arial Narrow" FontSize="12" BorderBrush="DeepSkyBlue" Foreground="DeepSkyBlue" Height="24" Click="Login_button_new_Account_Click">
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static  ContentControl.ContentProperty}" ResourceKey="Login_button_new_Account"/>
+                </local:LocalizationManager.Localization>
+            </Button>
+
             <Image x:Name="Login_image_error_user_name" Height="20" Canvas.Left="576" Canvas.Top="6" Width="20" RenderTransformOrigin="0.5,0.46" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
             <Image x:Name="Login_image_error_password" Height="20" Canvas.Left="575" Canvas.Top="40" Width="20" RenderTransformOrigin="0.493,1.364" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
+
             <Image x:Name="Login_Process" Height="21" Canvas.Left="576" Canvas.Top="72" Width="18" Source="images/Login_Images/login_process_.gif" RenderTransformOrigin="0.323,0.417" Visibility="Hidden"/>
 
-            <TextBlock Text="{x:Static resources:Resources.User_name}" Canvas.Left="42" Canvas.Top="53">
+            <!--<TextBlock Text="{x:Static resources:Resources.User_name}" Canvas.Left="42" Canvas.Top="53">
             <local:LocalizationManager.Localization>
                 <local:LocalizationInfo Property="{x:Static TextBlock.TextProperty}" ResourceKey="User_name"/>            
             </local:LocalizationManager.Localization>
             </TextBlock>
 
-            <!--<Label Content="{x:Static resources:Resources.User_name}" Name="Test" Canvas.Left="41" Canvas.Top="96" TextElement.FontFamily="Arial" >
+            <Label Content="{x:Static resources:Resources.User_name}"  Name="Test" Canvas.Left="36" Canvas.Top="79" TextElement.FontFamily="Arial" FontSize="14" >
                 <local:LocalizationManager.Localization>
-                    <local:LocalizationInfo Property="{x:Static Label.Text }" ResourceKey="User_name"/>
+                    <local:LocalizationInfo Property="{x:Static ContentControl.ContentProperty}" ResourceKey="User_name" />
                 </local:LocalizationManager.Localization>
-            </Label>-->
-
+            </Label>
+            <Button x:Name="button" Content="{x:Static resources:Resources.User_name}" Canvas.Left="44" Canvas.Top="114" Width="75">
+                <local:LocalizationManager.Localization>
+                    <local:LocalizationInfo Property="{x:Static ContentControl.ContentProperty}" ResourceKey="User_name" />
+                </local:LocalizationManager.Localization>
+            </Button>-->
         </Canvas>
-
-
     </Grid>
 </Window>
