@@ -142,6 +142,168 @@ namespace Sunrise.MultipleChoice.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string Registation_form_city {
+            get {
+                return ResourceManager.GetString("Registation_form_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Registation_form_country {
+            get {
+                return ResourceManager.GetString("Registation_form_country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Registation_form_email {
+            get {
+                return ResourceManager.GetString("Registation_form_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string Registation_form_last_name {
+            get {
+                return ResourceManager.GetString("Registation_form_last_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Registation_form_name {
+            get {
+                return ResourceManager.GetString("Registation_form_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Registation_form_password {
+            get {
+                return ResourceManager.GetString("Registation_form_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string Registation_form_street {
+            get {
+                return ResourceManager.GetString("Registation_form_street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty fields in registration form..
+        /// </summary>
+        public static string Registration_form_errormessages_empty_values {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_empty_values", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must be identical..
+        /// </summary>
+        public static string Registration_form_errormessages_identical_passwords {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_identical_passwords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must select a unique email..
+        /// </summary>
+        public static string Registration_form_errormessages_unique_email {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_unique_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must select a unique username..
+        /// </summary>
+        public static string Registration_form_errormessages_unique_username {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_unique_username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non validate email..
+        /// </summary>
+        public static string Registration_form_errormessages_validate_email {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_validate_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PASSWORD Must contain at least one:.
+        /// </summary>
+        public static string Registration_form_errormessages_validate_password1 {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_validate_password1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lower case letter, one upper case letter.
+        /// </summary>
+        public static string Registration_form_errormessages_validate_password2 {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_validate_password2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one digit and one special character.
+        /// </summary>
+        public static string Registration_form_errormessages_validate_password3 {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_validate_password3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid special characters are –   @#$%^&amp;+=.
+        /// </summary>
+        public static string Registration_form_errormessages_validate_password4 {
+            get {
+                return ResourceManager.GetString("Registration_form_errormessages_validate_password4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re-enter Password.
+        /// </summary>
+        public static string Registration_form_Re_enter_Password {
+            get {
+                return ResourceManager.GetString("Registration_form_Re_enter_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration.
+        /// </summary>
+        public static string Registration_form_submit_button {
+            get {
+                return ResourceManager.GetString("Registration_form_submit_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Title {

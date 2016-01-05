@@ -161,4 +161,58 @@
     <value>User name</value>
     <comment>Login form: user name</comment>
   </data>
+  <data name="Registation_form_city" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Registation_form_country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Registation_form_email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Registation_form_last_name" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="Registation_form_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Registation_form_password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Registation_form_street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="Registration_form_errormessages_empty_values" xml:space="preserve">
+    <value>Empty fields in registration form.</value>
+  </data>
+  <data name="Registration_form_errormessages_identical_passwords" xml:space="preserve">
+    <value>Passwords must be identical.</value>
+  </data>
+  <data name="Registration_form_errormessages_unique_email" xml:space="preserve">
+    <value>Must select a unique email.</value>
+  </data>
+  <data name="Registration_form_errormessages_unique_username" xml:space="preserve">
+    <value>Must select a unique username.</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_email" xml:space="preserve">
+    <value>Non validate email.</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password1" xml:space="preserve">
+    <value>PASSWORD Must contain at least one:</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password2" xml:space="preserve">
+    <value>lower case letter, one upper case letter</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password3" xml:space="preserve">
+    <value>one digit and one special character</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password4" xml:space="preserve">
+    <value>Valid special characters are –   @#$%^&amp;+=</value>
+  </data>
+  <data name="Registration_form_Re_enter_Password" xml:space="preserve">
+    <value>Re-enter Password</value>
+  </data>
+  <data name="Registration_form_submit_button" xml:space="preserve">
+    <value>Registration</value>
+  </data>
 </root>

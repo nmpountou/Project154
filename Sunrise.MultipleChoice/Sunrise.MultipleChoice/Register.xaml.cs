@@ -18,19 +18,19 @@ using MySql.Data.MySqlClient;
 using log4net;
 //Regural Expression
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Sunrise.MultipleChoice
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction login for Register.xaml
     /// </summary>
     public partial class Register : Window
     {
         //Logger
         private ILog logger = LogManager.GetLogger(nameof(Register));
-        //Initialize the Connection, using default values of a user.
+        //Initialize the Connection, using default values of a user(to write to database.).
         MysqlC init_con;
-        //init_con.initializeConnection();
         MySqlConnection con;        
         public Register()
         {
@@ -50,35 +50,44 @@ namespace Sunrise.MultipleChoice
             int id_address = 0;
             if (check_empty_textboxes())
             {
-                msg += "Empty fields in registration form.\n ";
+                //msg += "Empty fields in registration form.\n ";
+                msg += Properties.Resources.Registration_form_errormessages_empty_values+"\n"; 
                 validate = true;
             }
             if (check_validation_email())
             {
-                msg += "Non validate email.\n";
+                //msg += "Non validate email.\n";
+                msg += Properties.Resources.Registration_form_errormessages_validate_email + "\n";
                 validate = true;
             }
             if (check_unique_username())
             {
-                msg += "Must select a unique username.\n";
+                //msg += "Must select a unique username.\n";
+                msg += Properties.Resources.Registration_form_errormessages_unique_username + "\n";
                 validate = true;
             }
             if (check_unique_email())
             {
-                msg += "Must select a unique email.\n";
+                //msg += "Must select a unique email.\n";
+                msg +=Properties.Resources.Registration_form_errormessages_unique_email+"\n";
                 validate = true;
             }
             if (check_password_similarity())
             {
-                msg += "Passwords must be identical.\n";
+                //msg += "Passwords must be identical.\n";
+                msg += Properties.Resources.Registration_form_errormessages_identical_passwords + "\n";
                 validate = true;
             }
             if (check_password_validation())
             {
-                msg += "PASSWORD Must contain at least one:\n";
-                msg += "lower case letter, one upper case letter\n";
-                msg+= "one digit and one special character.\n";
-                msg += "Valid special characters are –   @#$%^&+=";
+                //msg += "PASSWORD Must contain at least one:\n";
+                msg += Properties.Resources.Registration_form_errormessages_validate_password1 + "\n";
+                //msg += "lower case letter, one upper case letter\n";
+                msg += Properties.Resources.Registration_form_errormessages_validate_password2 + "\n";
+                //msg+= "one digit and one special character.\n";
+                msg += Properties.Resources.Registration_form_errormessages_validate_password3 + "\n";
+                //msg += "Valid special characters are –   @#$%^&+=";
+                msg += Properties.Resources.Registration_form_errormessages_validate_password4 + "\n";
                 validate = true;
             }
             if (validate == true)
@@ -98,13 +107,9 @@ namespace Sunrise.MultipleChoice
         }
         private void fill_combobox_country()
         {
-            //Initialize the Connection, using default values of a user.
-            //Create the temp Connection String
             MysqlC init_con = new MysqlC();
-            //init_con.initializeConnection();
-
             MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
-            String query = "SELECT * FROM country;";
+            String query = "SELECT * FROM country WHERE language = '"+ Thread.CurrentThread.CurrentUICulture.Name.Substring(0,2)+"';";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
             try
@@ -130,11 +135,6 @@ namespace Sunrise.MultipleChoice
         public Boolean check_unique_email()
         {
             Boolean validation = false;
-            ////Initialize the Connection, using default values of a user.
-            ////Create the temp Connection String
-            //MysqlC init_con = new MysqlC();
-            ////init_con.initializeConnection();
-            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT email FROM user_information WHERE email = \"" + Registration_email_textBox.Text + "\";";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
@@ -168,11 +168,6 @@ namespace Sunrise.MultipleChoice
         public Boolean check_unique_username()
         {
             Boolean validation = false;
-            ////Initialize the Connection, using default values of a user.
-            ////Create the temp Connection String
-            //MysqlC init_con = new MysqlC();
-            ////init_con.initializeConnection();
-            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT username FROM account WHERE username = \"" + Registration_username_textBox.Text + "\";";
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
@@ -356,12 +351,9 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_comboBox_city.IsEnabled = true;
                 int country_id = Registration_comboBox_country_getid(Registration_comboBox_country.SelectedItem.ToString());
-                ////Initialize the Connection, using default values of a user.
-                ////Create the temp Connection String
-                //MysqlC init_con = new MysqlC();
-                ////init_con.initializeConnection();
-                //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
-                String query = "SELECT city FROM city WHERE country_id = " + country_id + ";";
+                String query = "SELECT city FROM city WHERE country_id = "+country_id+" AND language ='"+ Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2)+"';";
+                logger.Debug("Execute the query: "+query);
+                MessageBox.Show(query);
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader reader;
                 try
@@ -418,24 +410,21 @@ namespace Sunrise.MultipleChoice
             int country_id=0;
             country = Registration_comboBox_country.SelectedItem.ToString();
             logger.Debug("RETRIVE_COUNTRY: " + country);
-            ////Initialize the Connection, using default values of a user.
-            ////Create the temp Connection String
-            //MysqlC init_con = new MysqlC();
-            ////init_con.initializeConnection();
-            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             String query = "SELECT id FROM country WHERE country = \"" + country + "\";";
+            logger.Debug(query);
             MySqlCommand cmd = new MySqlCommand(query, con);
             MySqlDataReader reader;
             try
             {
                 con.Open();
+
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                      country_id = reader.GetInt16("id");
                      //Registration_comboBox_country.Items.Add(country_id);
                      logger.Debug("Find cities for country id: " + country_id);
-                     //Registration_comboBox_country.Items.Add(country_id);
+                    //Registration_comboBox_country.Items.Add(country_id);
                 }
             }
             catch (Exception ex)
@@ -451,11 +440,6 @@ namespace Sunrise.MultipleChoice
         private int Registration_get_first_avaliabe_user_id()
         {
             int availiable=0;
-            ////Initialize the Connection, using default values of a user.
-            ////Create the temp Connection String
-            //MysqlC init_con = new MysqlC();
-            ////init_con.initializeConnection();
-            //MySqlConnection con = new MySqlConnection(init_con.temp_connection_string());
             string query = "SELECT u.id + 1 AS FirstAvailableId " +
                 "FROM account u LEFT JOIN account u1 ON u1.id = u.id + 1 " +
                 "WHERE u1.id IS NULL ORDER BY u.id   LIMIT 0, 1";
@@ -580,6 +564,5 @@ namespace Sunrise.MultipleChoice
             init_con = new MysqlC();
             con = new MySqlConnection(init_con.temp_connection_string());
         }
-
     }
 }

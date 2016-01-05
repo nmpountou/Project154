@@ -163,7 +163,7 @@ namespace Sunrise.MultipleChoice
         }
         public String temp_connection_string()
         {
-            string cs = @"server=" + hostname.Trim() + ";userid=" + username.Trim() + ";password=" + password + ";database=" + database.Trim();
+            string cs = @"server=" + hostname.Trim() + ";userid=" + username.Trim() + ";password=" + password + ";database=" + database.Trim()+ ";CHARSET=utf8;";
             return cs;
         }
         //public string Password

@@ -44,7 +44,7 @@ namespace Sunrise.MultipleChoice.Data
             Logger.Setup();
             logger.Debug("initializeConnection()");
 
-            connection = new MySqlConnection("Server = " + hostname + "; Port = " + port + "; Database = " + database + "; Uid = " + username + "; Pwd = " + password + ";");
+            connection = new MySqlConnection("Server = " + hostname + "; Port = " + port + "; Database = " + database + "; Uid = " + username + "; Pwd = " + password + ";"+ ";CharSet=UTF8;");
         }
         public void openMysqlConnection()
         {

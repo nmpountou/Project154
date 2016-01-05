@@ -161,4 +161,58 @@
     <value>Όνομα Χρήστη</value>
     <comment>Login Form User name. </comment>
   </data>
+  <data name="Registation_form_city" xml:space="preserve">
+    <value>Πόλη</value>
+  </data>
+  <data name="Registation_form_country" xml:space="preserve">
+    <value>Χώρα</value>
+  </data>
+  <data name="Registation_form_email" xml:space="preserve">
+    <value>Ηλ. Ταχυδρομείο</value>
+  </data>
+  <data name="Registation_form_last_name" xml:space="preserve">
+    <value>Επώνυμο</value>
+  </data>
+  <data name="Registation_form_name" xml:space="preserve">
+    <value> Όνομα</value>
+  </data>
+  <data name="Registation_form_password" xml:space="preserve">
+    <value>Κωδικός</value>
+  </data>
+  <data name="Registation_form_street" xml:space="preserve">
+    <value>Όδος</value>
+  </data>
+  <data name="Registration_form_errormessages_empty_values" xml:space="preserve">
+    <value>Άδεια πεδία στην φόρμα.</value>
+  </data>
+  <data name="Registration_form_errormessages_identical_passwords" xml:space="preserve">
+    <value>Ο πρωσοπικός κωδικός πρέπει να ταυτίζεται.</value>
+  </data>
+  <data name="Registration_form_errormessages_unique_email" xml:space="preserve">
+    <value>Η διεύθυνση ηλ.ταχυφρομείου πρέπει να είναι μοναδική.</value>
+  </data>
+  <data name="Registration_form_errormessages_unique_username" xml:space="preserve">
+    <value>Το όνομα χρήστη πρέπει να είναι μοναδικό.</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_email" xml:space="preserve">
+    <value>Mη έγκυος λογαριασμός ηλ.ταχυδρομείου.</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password1" xml:space="preserve">
+    <value>Ο προσωπικός κωδικός πρέπει να περιέχει τουλάχιστο:</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password2" xml:space="preserve">
+    <value>ένα μικρό γράμμα, ένα κεφαλαίο γράμμα,</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password3" xml:space="preserve">
+    <value>ένα νούμερο και ένα ειδικό χαρακτήρα.</value>
+  </data>
+  <data name="Registration_form_errormessages_validate_password4" xml:space="preserve">
+    <value>Ειδικοί χαρακτήρες είναι τα σύμβολα - @#$%^&amp;+=</value>
+  </data>
+  <data name="Registration_form_Re_enter_Password" xml:space="preserve">
+    <value>Επαναεισαγωγή Κωδικού</value>
+  </data>
+  <data name="Registration_form_submit_button" xml:space="preserve">
+    <value>Υποβολή</value>
+  </data>
 </root>

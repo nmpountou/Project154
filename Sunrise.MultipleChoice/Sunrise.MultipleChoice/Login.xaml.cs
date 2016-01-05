@@ -37,7 +37,8 @@ namespace Sunrise.MultipleChoice
 
         private void Login_exit_button_Click(object sender, RoutedEventArgs e)
         {
-                      
+            var oldWindow = Application.Current.MainWindow;
+            oldWindow.Close();
         }
 
         private void Login_button_Click(object sender, RoutedEventArgs e)
@@ -93,39 +94,23 @@ namespace Sunrise.MultipleChoice
 
         private void Language_button_Click(object sender, RoutedEventArgs e)
         {
-            
+            CultureInfo ci;
             if (Login_Language_Button.Content.ToString() =="EN" )
             {
                 Login_Language_Button.Content = "GR";
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("el");
-                CultureInfo ci = new CultureInfo("el");
-                Thread.CurrentThread.CurrentCulture = ci;
-                Thread.CurrentThread.CurrentUICulture = ci;
-                //var oldWindow = Application.Current.MainWindow;
-                //Application.Current.MainWindow = new Sunrise.MultipleChoice.Login();
-                //Application.Current.MainWindow.Show();
-                //oldWindow.Close();
-                
-                Localization.LocalizationManager.UpdateResources();
-                
-                MessageBox.Show(Properties.Resources.Language_Selection);
+                ci = new CultureInfo("el");
             }
             else
             {
                 Login_Language_Button.Content = "EN";
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
-                CultureInfo ci = new CultureInfo("en");
-                Thread.CurrentThread.CurrentCulture = ci;
-                Thread.CurrentThread.CurrentUICulture = ci;
-                //var oldWindow = Application.Current.MainWindow;
-                //Application.Current.MainWindow = new Sunrise.MultipleChoice.Login();
-                //Application.Current.MainWindow.Show();
-                //oldWindow.Close();
-                Localization.LocalizationManager.UpdateResources();
-                MessageBox.Show(Properties.Resources.Language_Selection);
-
+                ci = new CultureInfo("en");
             }
-
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Localization.LocalizationManager.UpdateResources();
+            MessageBox.Show(Properties.Resources.Language_Selection);
         }
     }
 }
