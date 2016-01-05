@@ -10,7 +10,7 @@ namespace Quastionnaire.Model.Dao.Interface
     interface IQuestionDao
     {
         List<Question> findQuestion(Account account,Subject subject,Department department);
-        List<Question> findQuestion(Subject subject, Department department);
+        List<Question> findQuestion(string username,Subject subject, Department department);
         void saveQuestion(Question question);
         void deleteQuestion(Question question);
         void updateQuestion(Question question);

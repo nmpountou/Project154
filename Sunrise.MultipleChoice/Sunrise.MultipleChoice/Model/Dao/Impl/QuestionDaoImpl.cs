@@ -18,15 +18,22 @@ namespace Quastionnaire.Model.Dao.Impl
         private ILog logger = LogManager.GetLogger(nameof(QuestionDaoImpl));
 
 
-        public List<Question> findQuestion(Subject subject, Department department)
+        public List<Question> findQuestion(string usernameF,Subject subject, Department department)
         {
             logger.Debug("findQuestion()");
 
             List<Question> questionList = new List<Question>();
+            string query = "";
 
-            string query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
+            if(usernameF != "all")
+                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
                            "inner join account A on A.id = Q.account_id " +
-                           "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + "; ";
+                           "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + " and A.username = '" + usernameF + "'; ";
+            else
+                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
+                          "inner join account A on A.id = Q.account_id " +
+                          "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + " ; ";
+
 
             MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
                CurrentUserInfo.PASSWORD,
