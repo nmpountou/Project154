@@ -9,7 +9,10 @@
     <Grid>
         <Canvas HorizontalAlignment="Center" Height="707" Margin="22,10,0,0" VerticalAlignment="Top" Width="850" Background="LightSkyBlue">
             <Image x:Name="export_to_pdf_image_logo" Height="113" Canvas.Left="699" Canvas.Top="10" Width="129" Source="images/Login_Images/Login_questionnaire.jpg"/>
-            <Button x:Name="Export_to_pdf_button_submit" Content="Submit" Height="31" Canvas.Left="676" Canvas.Top="598" Width="143" BorderBrush="White" Foreground="DeepSkyBlue" Background="#FFFFFFFD" Click="Export_to_pdf_button_submit_Click"/>
+            <Button x:Name="Export_to_pdf_button_submit" Content="Submit" Height="31" Canvas.Left="676" Canvas.Top="598" Width="143" BorderBrush="#FF2548B2" Foreground="DeepSkyBlue" Background="#FFFFFFFD" Click="Export_to_pdf_button_submit_Click"/>
+            <Button x:Name="Export_to_pdf_Select_Folder" Content="Select Folder" Height="32" Canvas.Left="10" Canvas.Top="471" Width="134" Foreground="DeepSkyBlue" Background="White" BorderBrush="#FF2548B2" Click="button_Click"/>
+            <TextBox x:Name="textBox" Height="32" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="471" Width="229" BorderBrush="#FF2548B2"/>
+            <Label x:Name="label" Content="Label" Canvas.Left="10" Canvas.Top="508" Width="134"/>
         </Canvas>
 
     </Grid>

@@ -19,6 +19,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
+
 namespace Sunrise.MultipleChoice
 {
     /// <summary>
@@ -47,6 +48,12 @@ namespace Sunrise.MultipleChoice
             document.Save(filename);
             // ...and start a viewer.
             Process.Start(filename);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
         }
     }
 }
