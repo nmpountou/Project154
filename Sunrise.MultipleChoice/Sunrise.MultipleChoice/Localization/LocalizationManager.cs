@@ -18,7 +18,8 @@ namespace Sunrise.MultipleChoice.Localization
         private static HashSet<WeakReference> Elements = new HashSet<WeakReference>();
 
         // Localization Property
-        public static DependencyProperty LocalizationProperty = DependencyProperty.RegisterAttached("Localization",typeof(LocalizationInfo),typeof(FrameworkElement));
+        //Last parameter set to null to work and don't write the error.
+        public static DependencyProperty LocalizationProperty = DependencyProperty.RegisterAttached("Localization",typeof(LocalizationInfo),typeof(FrameworkElement),null);
 
         /// <summary>
         /// Sets the localization.

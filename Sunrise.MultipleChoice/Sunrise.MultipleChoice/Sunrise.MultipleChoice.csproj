@@ -58,6 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Desktop\Dll Libriries\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>..\packages\PDFSharp-MigraDocFoundation-1_32\PdfSharp-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
