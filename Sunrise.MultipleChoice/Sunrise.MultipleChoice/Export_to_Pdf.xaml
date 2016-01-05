@@ -1,0 +1,16 @@
+﻿<Window x:Class="Sunrise.MultipleChoice.Export_to_Pdf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sunrise.MultipleChoice"
+        mc:Ignorable="d"
+        Title="Export_to_Pdf" Height="800" Width="1000">
+    <Grid>
+        <Canvas HorizontalAlignment="Center" Height="707" Margin="22,10,0,0" VerticalAlignment="Top" Width="850" Background="LightSkyBlue">
+            <Image x:Name="export_to_pdf_image_logo" Height="113" Canvas.Left="699" Canvas.Top="10" Width="129" Source="images/Login_Images/Login_questionnaire.jpg"/>
+            <Button x:Name="Export_to_pdf_button_submit" Content="Submit" Height="31" Canvas.Left="676" Canvas.Top="598" Width="143" BorderBrush="White" Foreground="DeepSkyBlue" Background="#FFFFFFFD" Click="Export_to_pdf_button_submit_Click"/>
+        </Canvas>
+
+    </Grid>
+</Window>

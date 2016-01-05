@@ -38,6 +38,9 @@ namespace Sunrise.MultipleChoice
         private void Login_exit_button_Click(object sender, RoutedEventArgs e)
         {
             var oldWindow = Application.Current.MainWindow;
+            
+            Export_to_Pdf wpdf = new Export_to_Pdf();
+            wpdf.Visibility = Visibility.Visible;
             oldWindow.Close();
         }
 
