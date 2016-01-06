@@ -17,7 +17,7 @@
             </Button>
             <TextBox x:Name="Export_to_pdf__select_folder_save" Height="26" Canvas.Left="609" TextWrapping="Wrap" Canvas.Top="525" Width="177" BorderBrush="#FF2548B2" IsReadOnly="True" HorizontalContentAlignment="Center" />
             <Label x:Name="Export_to_pdf_label_filename" Content="File Name" Canvas.Left="757" Canvas.Top="560" Width="66" Height="26" Background="White" BorderBrush="#FF2548B2" Foreground="DeepSkyBlue" HorizontalContentAlignment="Center"/>
-            <GroupBox x:Name="export_to_pdf_groupbox_land_port" Header="Orientation" Canvas.Left="10" Canvas.Top="560" Height="69" Width="170" FontSize="14.667" FontFamily="White" Foreground="White">
+            <GroupBox x:Name="export_to_pdf_groupbox_land_port" Header="Orientation" Canvas.Left="24" Canvas.Top="570" Height="69" Width="170" FontSize="14.667" FontFamily="White" Foreground="White">
                 <Grid>
                     <RadioButton x:Name="export_to_pdf_Radiobutton_Portrait" Content="Portrait" HorizontalAlignment="Left" Margin="21,0,0,26" RenderTransformOrigin="0.33,-0.529" IsChecked="True" />
                     <RadioButton x:Name="export_to_pdf_Radiobutton_Landscape" Content="Landscape" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.33,-0.529"/>
@@ -66,6 +66,19 @@
                         <ComboBoxItem Name="fontstyle_underline">Underline</ComboBoxItem>
                     </ComboBox>
                 </Canvas>
+            </GroupBox>
+            <GroupBox x:Name="groupBox1" Header="Paper" Height="57" Canvas.Left="24" Canvas.Top="480" Width="144" Foreground="White">
+                <Grid HorizontalAlignment="Left" Height="35" Margin="10,0,0,0" VerticalAlignment="Top" Width="96">
+                    <Label x:Name="label1" Content="Size" HorizontalAlignment="Left" Margin="0,10,0,-1" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.192"/>
+                    <ComboBox x:Name="Export_to_pdf_combobox_pagesize" HorizontalAlignment="Left" Margin="46,13,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.353,-0.318">
+                        <ComboBoxItem IsSelected="True" Name="pagesize_A4">A4</ComboBoxItem>
+                        <ComboBoxItem Name="pagesize_A0">A0</ComboBoxItem>
+                        <ComboBoxItem Name="pagesize_A1" >A1</ComboBoxItem>
+                        <ComboBoxItem Name="pagesize_A2" >A2</ComboBoxItem>
+                        <ComboBoxItem Name="pagesize_A3" >A3</ComboBoxItem>
+                        <ComboBoxItem Name="pagesize_A5" >A5</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
             </GroupBox>
         </Canvas>
 

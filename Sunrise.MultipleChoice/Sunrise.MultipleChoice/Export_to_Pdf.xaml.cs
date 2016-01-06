@@ -35,19 +35,22 @@ namespace Sunrise.MultipleChoice
         public Export_to_Pdf()
         {
             InitializeComponent();
+            //create object for pdf.
             document = new PdfDocument();
             page = document.AddPage();
             gfx = XGraphics.FromPdfPage(page);
-            //Set by default the font object
+            //Set by default values.
             font = new XFont("Arial", 12, XFontStyle.Regular);
-            
+            page.Size = PageSize.A4;
+            page.Orientation = PageOrientation.Portrait;
         }
 
         private void Export_to_pdf_button_submit_Click(object sender, RoutedEventArgs e)
         {
             set_title_subject_author_keyword();
-            set_font();            
-
+            set_font();
+            page_size();
+            page_orientation();
             gfx.DrawString("Hello, World!", font, XBrushes.Black,new XRect(5, 5, page.Width, page.Height),XStringFormats.TopLeft);
 
             if (Export_to_pdf__textbox_filename.Text=="")
@@ -58,7 +61,7 @@ namespace Sunrise.MultipleChoice
             {
                 filename = Export_to_pdf__textbox_filename.Text+".pdf";
             }
-
+            
             document.Save(Export_to_pdf__select_folder_save.Text+filename);
             // ...and start a viewer.
            Process.Start(Export_to_pdf__select_folder_save.Text+filename);
@@ -122,6 +125,44 @@ namespace Sunrise.MultipleChoice
             document.Info.Author = Export_to_pdf__textbox_author.Text;
             document.Info.Subject = Export_to_pdf__textbox_subject.Text;
             document.Info.Keywords = Export_to_pdf__textbox_keyword.Text;
+        }
+        private void page_size()
+        {
+            if (pagesize_A0.IsSelected)
+            {
+                page.Size = PageSize.A0;
+            }
+            else if (pagesize_A1.IsSelected)
+            {
+                page.Size = PageSize.A1;
+            }
+            else if (pagesize_A2.IsSelected)
+            {
+                page.Size = PageSize.A2;
+            }
+            else if (pagesize_A3.IsSelected)
+            {
+                page.Size = PageSize.A3;
+            }
+            else if (pagesize_A4.IsSelected)
+            {
+                page.Size = PageSize.A4;
+            }
+            else if (pagesize_A5.IsSelected)
+            {
+                page.Size = PageSize.A5;
+            }
+        }
+        private void page_orientation()
+        {
+            if (Convert.ToBoolean(export_to_pdf_Radiobutton_Portrait.IsChecked))
+            {
+                page.Orientation = PageOrientation.Portrait;
+            }
+            else
+            {
+                page.Orientation = PageOrientation.Landscape;
+            }
         }
     }
 }
