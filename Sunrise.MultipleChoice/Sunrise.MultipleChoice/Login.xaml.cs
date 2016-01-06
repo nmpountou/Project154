@@ -40,9 +40,9 @@ namespace Sunrise.MultipleChoice
         {
             var oldWindow = Application.Current.MainWindow;
             
-           // Export_to_Pdf wpdf = new Export_to_Pdf();
-            //wpdf.Visibility = Visibility.Visible;
-            oldWindow.Close();
+           Export_to_Pdf wpdf = new Export_to_Pdf();
+           wpdf.Visibility = Visibility.Visible;
+           oldWindow.Close();
         }
 
         private void Login_button_Click(object sender, RoutedEventArgs e)

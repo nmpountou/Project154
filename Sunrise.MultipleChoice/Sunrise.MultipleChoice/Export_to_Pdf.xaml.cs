@@ -32,6 +32,7 @@ namespace Sunrise.MultipleChoice
         XGraphics gfx;
         XFont font;
         string filename;
+        int questionaire;
         public Export_to_Pdf()
         {
             InitializeComponent();
@@ -44,6 +45,10 @@ namespace Sunrise.MultipleChoice
             page.Size = PageSize.A4;
             page.Orientation = PageOrientation.Portrait;
         }
+        public Export_to_Pdf(int questionaire): this()
+        {
+            this.questionaire = questionaire;
+        }
 
         private void Export_to_pdf_button_submit_Click(object sender, RoutedEventArgs e)
         {
@@ -51,7 +56,9 @@ namespace Sunrise.MultipleChoice
             set_font();
             page_size();
             page_orientation();
-            gfx.DrawString("Hello, World!", font, XBrushes.Black,new XRect(5, 5, page.Width, page.Height),XStringFormats.TopLeft);
+            header();
+            insert_questions("Hello, World!");
+            //gfx.DrawString("Hello, World!", font, XBrushes.Black,new XRect(5, 5, page.Width, page.Height),XStringFormats.TopLeft);
 
             if (Export_to_pdf__textbox_filename.Text=="")
             {
@@ -162,6 +169,33 @@ namespace Sunrise.MultipleChoice
             else
             {
                 page.Orientation = PageOrientation.Landscape;
+            }
+        }
+        private void header()
+        {
+            // Draw a line below the text
+            gfx.DrawLine(XPens.Black, 0, 10, page.Width, page.Height);
+
+            // Draw a line above the text
+            gfx.DrawLine(XPens.Black, 0, 20, page.Width, page.Height);
+        }
+        private void insert_questions(String question)
+        {
+            string text1 = "asdfasdfasdfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdfsadf";
+            string text2 = "sdfafasdfasdfasdfdasfffffffffffffffffffffffasdfasdfasdf";
+            //XRect xrt = new XRect(5, 5, page.Width, page.Height);
+            double y = 20;
+            XRect xrt = new XRect(20, 0, page.Width, page.Height);
+            for (int i=0;i<50;i++)
+            {
+                gfx.DrawString(" "+i.ToString(), font, XBrushes.Black, xrt, XStringFormats.TopLeft);
+                xrt.Y += y;
+                if (i%30==0&& i==0)
+                {
+                    page = document.AddPage();
+                    gfx = XGraphics.FromPdfPage(page);
+                    xrt.Y = 0;
+                }
             }
         }
     }
