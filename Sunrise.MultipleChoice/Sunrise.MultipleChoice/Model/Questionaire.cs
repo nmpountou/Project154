@@ -15,7 +15,7 @@ namespace Quastionnaire.Model
         private List<Question> _questionList = new List<Question>();
         private bool _hasQuestions = false;
 
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Questionaire_descr { get; set; }
         public Account Account { get; set; }
         public DateTime Date { get; set; }

@@ -36,8 +36,14 @@ namespace Sunrise.MultipleChoice
         private Question selected_Questionaire_Question;
         private List<Question> questionData;
 
-        public enum UsernameType { Undefined,ALL, MINE,OTHER };
+        public enum UsernameType { Undefined, ALL, MINE, OTHER };
+        public enum DateType { Undefined, ALL, OTHER };
+
         private UsernameType usernameType = UsernameType.Undefined;
+
+        //Seatch Questionaire
+        private UsernameType userNameTypeQuestionaire = UsernameType.Undefined;
+        private DateType dateTypeQuestionaire = DateType.Undefined;
 
         public QuestionForm()
         {
@@ -47,7 +53,7 @@ namespace Sunrise.MultipleChoice
 
             setMsgLabelToHidden();
             initializeComboBoxInfo();
-            initializeQuestionaireData();
+            //initializeQuestionaireData();
 
         }
 
@@ -66,22 +72,29 @@ namespace Sunrise.MultipleChoice
             cbCorrect_Answer.Items.Add("False");
             cbCorrect_Answer.Items.Add("True");
 
-
             cbUsernameType_search.Items.Add("ALL");
             cbUsernameType_search.Items.Add("MINE");
             cbUsernameType_search.Items.Add("OTHER");
+
+            cbUsernameType_Questionairesearch.Items.Add("ALL");
+            cbUsernameType_Questionairesearch.Items.Add("MINE");
+            cbUsernameType_Questionairesearch.Items.Add("OTHER");
+
+            cbDateType_Questionairesearch.Items.Add("ALL");
+            cbDateType_Questionairesearch.Items.Add("OTHER");
+
 
 
         }
         private void initializeQuestionaireData()
         {
-            IQuestionaireDao dao = new QuestionaireDaoImpl();
-            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
+            //IQuestionaireDao dao = new QuestionaireDaoImpl();
+           // List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
 
-            lvQuestionaire.ItemsSource = listQuestionaire;
+           // lvQuestionaire.ItemsSource = listQuestionaire;
         }
 
-        //Search
+        //Search Question
         private void cbSubject_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -91,6 +104,30 @@ namespace Sunrise.MultipleChoice
             List<Department> listDep = subjectList[index].DepList;
             foreach (Department dep in listDep)
                 cbDepartment_search.Items.Add(dep.Department_descr);
+
+        }
+        private void cbUsernameType_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int choice = cbUsernameType_search.SelectedIndex;
+
+            switch (choice)
+            {
+                case 0:
+                    usernameType = UsernameType.ALL;
+                    tbUsername_search.IsEnabled = false;
+                    tbUsername_search.Text = "";
+                    break;
+                case 1:
+                    usernameType = UsernameType.MINE;
+                    tbUsername_search.IsEnabled = false;
+                    tbUsername_search.Text = "";
+                    break;
+                case 2:
+                    usernameType = UsernameType.OTHER;
+                    tbUsername_search.IsEnabled = true;
+                    tbUsername_search.Text = "";
+                    break;
+            }
 
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -120,7 +157,7 @@ namespace Sunrise.MultipleChoice
                 case UsernameType.OTHER:
 
                     username = tbUsername_search.Text;
-                  
+
                     break;
                 case UsernameType.ALL:
                     username = "all";
@@ -128,13 +165,13 @@ namespace Sunrise.MultipleChoice
             }
 
             //Check Empty Fields
-            if (checkSearchForNullInput(subject, department,username))
+            if (checkSearchForNullInput(subject, department, username))
             {
                 MessageBox.Show("Empty Fields", "Confirmation");
                 return;
             }
             //Check if Searched Username Existt
-            if(usernameType == UsernameType.OTHER)
+            if (usernameType == UsernameType.OTHER)
                 if (!usernameExist(username))
                 {
                     MessageBox.Show("Username Dosent Exist");
@@ -151,31 +188,6 @@ namespace Sunrise.MultipleChoice
 
         }
 
-        private void cbUsernameType_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int choice = cbUsernameType_search.SelectedIndex;
-
-            switch (choice)
-            {
-                case 0:
-                    usernameType = UsernameType.ALL;
-                    tbUsername_search.IsEnabled = false;
-                    tbUsername_search.Text = "";
-                    break;
-                case 1:
-                    usernameType = UsernameType.MINE;
-                    tbUsername_search.IsEnabled = false;
-                    tbUsername_search.Text = "";
-                    break;
-                case 2:
-                    usernameType = UsernameType.OTHER;
-                    tbUsername_search.IsEnabled = true;
-                    tbUsername_search.Text = "";
-                    break;
-            }
-
-        }
-
         private bool usernameExist(string username)
         {
             bool usernameExist = false;
@@ -186,22 +198,21 @@ namespace Sunrise.MultipleChoice
              CurrentUserInfo.PORT,
              CurrentUserInfo.DATABASE);
 
-            string query = "select username from account where username = '"+ username +"'";
+            string query = "select username from account where username = '" + username + "'";
 
             mysql.initializeConnection();
             mysql.openMysqlConnection();
 
-            using (MySqlCommand cmd = new MySqlCommand(query,mysql.MysqlConnection))
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                    if (reader.HasRows)
-                        usernameExist = true;
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+                if (reader.HasRows)
+                    usernameExist = true;
 
-             mysql.closeMysqlConnection();
+            mysql.closeMysqlConnection();
 
             return usernameExist;
         }
-
-        private bool checkSearchForNullInput(string subject, string department,string username)
+        private bool checkSearchForNullInput(string subject, string department, string username)
         {
             bool emptyField = false;
 
@@ -239,7 +250,133 @@ namespace Sunrise.MultipleChoice
 
         }
 
-        //Table OnClick
+        //Search Questionaire
+        private void cbUsernameType_Questionairesearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int choice = cbUsernameType_Questionairesearch.SelectedIndex;
+
+            switch (choice)
+            {
+                case 0:
+                    userNameTypeQuestionaire = UsernameType.ALL;
+                    tbUsername_Questionairesearch.IsEnabled = false;
+                    tbUsername_Questionairesearch.Text = "";
+                    break;
+                case 1:
+                    userNameTypeQuestionaire = UsernameType.MINE;
+                    tbUsername_Questionairesearch.IsEnabled = false;
+                    tbUsername_Questionairesearch.Text = "";
+                    break;
+                case 2:
+                    userNameTypeQuestionaire = UsernameType.OTHER;
+                    tbUsername_Questionairesearch.IsEnabled = true;
+                    tbUsername_Questionairesearch.Text = "";
+                    break;
+            }
+
+        }
+        private void cbDateType_Questionairesearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            int choice = cbDateType_Questionairesearch.SelectedIndex;
+
+            switch (choice)
+            {
+                case 0:
+                    dateTypeQuestionaire = DateType.ALL;
+                    dpDate_Questionairesearch.IsEnabled = false;
+                    break;
+                case 1:
+                    dateTypeQuestionaire = DateType.OTHER;
+                    dpDate_Questionairesearch.IsEnabled = true;
+                    break;
+            }
+
+
+        }
+        private void btnQuestionairesearch_Click(object sender, RoutedEventArgs e)
+        {
+
+            cbUsernameType_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            cbDateType_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            lblUsername_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            lblDate_Questionairesearch_msg.Visibility = Visibility.Hidden;
+
+            if (userNameTypeQuestionaire == UsernameType.Undefined)
+            {
+                MessageBox.Show("UsernameType Empty");
+                cbUsernameType_Questionairesearch_msg.Visibility = Visibility.Visible;
+                cbUsernameType_Questionairesearch_msg.Foreground = Brushes.Red;
+                cbUsernameType_Questionairesearch_msg.Content = "Empty";
+                return;
+            }
+            if (dateTypeQuestionaire == DateType.Undefined)
+            {
+                MessageBox.Show("DateType Empty");
+                cbDateType_Questionairesearch_msg.Visibility = Visibility.Visible;
+                cbDateType_Questionairesearch_msg.Foreground = Brushes.Red;
+                cbDateType_Questionairesearch_msg.Content = "Empty";
+                return;
+            }
+
+            string username="";
+            DateTime? date = new DateTime();
+
+            switch (userNameTypeQuestionaire)
+            {
+                case UsernameType.ALL:
+                    break;
+                case UsernameType.MINE:
+                    username = CurrentUserInfo.USERNAME;
+                    break;
+                case UsernameType.OTHER:
+                    username = tbUsername_Questionairesearch.Text;
+                    if (String.IsNullOrEmpty(username))
+                    {
+                        MessageBox.Show("Username Field Empty");
+                        lblUsername_Questionairesearch_msg.Visibility = Visibility.Visible;
+                        lblUsername_Questionairesearch_msg.Foreground = Brushes.Red;
+                        lblUsername_Questionairesearch_msg.Content = "Empty";
+                        return;
+                    }
+                    //Check if Searched Username Existt
+                    if (!usernameExist(username))
+                    {
+                        MessageBox.Show("Username Dosent Exist");
+                        return;
+                    }
+                    break;
+
+            }
+            switch (dateTypeQuestionaire)
+            {
+                case DateType.ALL:
+                    break;
+                case DateType.OTHER:
+                    date = dpDate_Questionairesearch.SelectedDate;
+                    if(date == null)
+                    {
+                        MessageBox.Show("Date Field Null");
+                        lblDate_Questionairesearch_msg.Visibility = Visibility.Visible;
+                        lblDate_Questionairesearch_msg.Foreground = Brushes.Red;
+                        lblDate_Questionairesearch_msg.Content = "Empty";
+                        return;
+                    }
+
+                    break;
+            }
+
+            DateTime dateTime = DateTime.Parse(date.ToString());
+
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            List<Questionaire> listQuestionaire = dao.findQuestionare(username, dateTime, userNameTypeQuestionaire, dateTypeQuestionaire);
+            lvQuestionaire.ItemsSource = listQuestionaire;
+
+
+            MessageBox.Show("Questionaire Retrieved", "Confirmation");
+        }
+
+        //Table
         private void lvQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -257,13 +394,6 @@ namespace Sunrise.MultipleChoice
 
             Debug.WriteLine("Sos " + selected_Question.Question_descr);
 
-
-            // tbLevel_Question.Text;
-            // tbOwner_Question.Text;
-            // tbDate_Question.Text;
-            // tbQuestion_Description.Text;
-            // cbSubject_Question.Text;
-            //cbDepartment_Question.Text;
 
             tbLevel_Question.Text = question.Level.ToString();
             tbOwner_Question.Text = question.Account.Username.ToString();
@@ -305,6 +435,11 @@ namespace Sunrise.MultipleChoice
 
             selected_Questionaire = questionaire;
 
+            Debug.WriteLine("******************" + selected_Questionaire.Questionaire_descr + "***********");
+            Debug.WriteLine("******************" + selected_Questionaire.QuestionList.Count + "***********");
+
+
+            //Load Questions Table
             lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
 
         }
@@ -358,7 +493,7 @@ namespace Sunrise.MultipleChoice
                 lvQuestion.ItemsSource = null;
                 lvQuestion.ItemsSource = questionData;
             }
-              
+
 
             MessageBox.Show("Question Saved", "Confirmation");
 
@@ -528,7 +663,7 @@ namespace Sunrise.MultipleChoice
             List<Question> questionList;
             IQuestionDao questionDao = new QuestionDaoImpl();
 
-            questionList = questionDao.findQuestion(username,subject, department);
+            questionList = questionDao.findQuestion(username, subject, department);
 
             return questionList;
         }
@@ -682,7 +817,6 @@ namespace Sunrise.MultipleChoice
 
             return emptyField;
         }
-
         private void clearAnswerWidgets()
         {
             lblAnswer_Description_msg.Visibility = Visibility.Hidden;
@@ -697,10 +831,10 @@ namespace Sunrise.MultipleChoice
         //Questionaire
         private void btRefresh_Questionaire_Click(object sender, RoutedEventArgs e)
         {
-            IQuestionaireDao dao = new QuestionaireDaoImpl();
-            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
+           // IQuestionaireDao dao = new QuestionaireDaoImpl();
+            //List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
 
-            lvQuestionaire.ItemsSource = listQuestionaire;
+           // lvQuestionaire.ItemsSource = listQuestionaire;
 
         }
         private void btnAddQuestionToQuestionaire_Click(object sender, RoutedEventArgs e)
@@ -771,11 +905,21 @@ namespace Sunrise.MultipleChoice
             lblDate_Answer_msg.Visibility = Visibility.Hidden;
             lblAnswer_Description_msg.Visibility = Visibility.Hidden;
 
+            cbUsernameType_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            cbDateType_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            lblUsername_Questionairesearch_msg.Visibility = Visibility.Hidden;
+            lblDate_Questionairesearch_msg.Visibility = Visibility.Hidden;
+
+            tbUsername_search.IsEnabled = false;
+            tbUsername_Questionairesearch.IsEnabled = false;
+            dpDate_Questionairesearch.IsEnabled = false;
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
+
 
     }
 }

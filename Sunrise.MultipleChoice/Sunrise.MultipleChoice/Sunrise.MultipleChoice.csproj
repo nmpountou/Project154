@@ -109,9 +109,6 @@
     <Compile Include="ButtonStackPanel.xaml.cs">
       <DependentUpon>ButtonStackPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Export_to_Pdf.xaml.cs">
-      <DependentUpon>Export_to_Pdf.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forgot_Password.xaml.cs">
       <DependentUpon>Forgot_Password.xaml</DependentUpon>
     </Compile>
@@ -122,6 +119,7 @@
     <Compile Include="Model\Account\City.cs" />
     <Compile Include="Model\Account\Country.cs" />
     <Compile Include="Model\Account\UserInformation.cs" />
+    <Compile Include="Model\Dao\Interface\IAccountDaoImpl.cs" />
     <Compile Include="Model\Dao\Interface\IDepartmentDao.cs" />
     <Compile Include="Model\Dao\Impl\DepartmentDaoImpl.cs" />
     <Compile Include="Model\Dao\Impl\SubjectDaoImpl.cs" />
@@ -207,10 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ButtonStackPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Export_to_Pdf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

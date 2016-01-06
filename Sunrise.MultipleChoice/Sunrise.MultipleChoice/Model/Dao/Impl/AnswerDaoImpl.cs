@@ -50,7 +50,7 @@ namespace Quastionnaire.Model.Dao.Impl
             mysql.initializeConnection();
             mysql.openMysqlConnection();
 
-            string formatForMySql = answer.Date.ToString("yyyy-MM-dd HH:mm");
+            string formatForMySql = answer.Date.ToString("yyyy-MM-dd");
 
             string query = "update answer set answer='" + answer.Answer_descr + "',create_date='" + formatForMySql + "',correct=" + (answer.Correct ? 1 : 0) + ",account_id=" + answer.Account.Id + " where id=" + answer.Id + "";
 
@@ -65,7 +65,7 @@ namespace Quastionnaire.Model.Dao.Impl
 
             logger.Debug("saveAnswer()");
 
-            string formatForMySql = answer.Date.ToString("yyyy-MM-dd HH:mm");
+            string formatForMySql = answer.Date.ToString("yyyy-MM-dd");
 
             string query = "insert into answer(answer,create_date,correct,account_id) values('" + answer.Answer_descr + "','" + formatForMySql + "'," + (answer.Correct ? 1 : 0) + "," + answer.Account.Id + ")";
 
@@ -133,7 +133,7 @@ namespace Quastionnaire.Model.Dao.Impl
                         answer_id = reader.GetInt32(0);
                         answer = reader.GetString(1);
                         correct = reader.GetInt32(2) == 1 ? true : false;
-                        date_answer = reader.GetDateTime(3);
+                        date_answer = reader.GetDateTime(3).Date;
                         account_id = reader.GetInt32(4);
 
                         tempAnswer = new Answer() { Id = answer_id, Answer_descr = answer, Correct = correct, Date = date_answer, Account = new Account() { Id = account_id } };

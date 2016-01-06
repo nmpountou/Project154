@@ -65,7 +65,11 @@ namespace Quastionnaire.Model.Dao.Impl
                         {
                             question_id = reader.GetInt32(0);
                             question_descr = reader.GetString(1);
-                            date_question = reader.GetDateTime(2);
+                            date_question = reader.GetDateTime(2).Date;
+
+                            Debug.Write("NOWWWWWWWWWW");
+                            Debug.Write(date_question.ToString("MM/dd/yyyy"));
+
                             account_id = reader.GetInt32(3);
                             level_question = reader.GetInt32(4);
                             username = reader.GetString(5);
@@ -96,6 +100,8 @@ namespace Quastionnaire.Model.Dao.Impl
                 foreach (Answer answer in question.AnswerList)
                     Debug.WriteLine(answer.Answer_descr);
             }
+
+
 
 
 
@@ -132,7 +138,7 @@ namespace Quastionnaire.Model.Dao.Impl
                             {
                                 answer_id = reader.GetInt32(0);
                                 answer_descr = reader.GetString(1);
-                                date_answer = reader.GetDateTime(2);
+                                date_answer = reader.GetDateTime(2).Date;
                                 correct_answer = (reader.GetInt32(3) == 0 ? false : true);
 
                                 answerList.Add(new Answer() { Id = answer_id, Answer_descr = answer_descr, Date = date_answer, Correct = correct_answer, Account = question.Account });
@@ -185,7 +191,7 @@ namespace Quastionnaire.Model.Dao.Impl
             }
 
 
-            string formatForMySql = question.Date.ToString("yyyy-MM-dd HH:mm");
+            string formatForMySql = question.Date.ToString("yyyy-MM-dd");
 
             query = "insert into question(question,level_range,create_date,account_id,subject_department_id) values('" + question.Question_descr + "'," + question.Level + ",'" + formatForMySql + "'," + question.Account.Id + "," + subjectdepartment_id + ")";
             long new_questionId;
@@ -229,7 +235,7 @@ namespace Quastionnaire.Model.Dao.Impl
             }
 
 
-            string formatForMySql = question.Date.ToString("yyyy-MM-dd HH:mm");
+            string formatForMySql = question.Date.ToString("yyyy-MM-dd");
 
             query = "update question set question = '" + question.Question_descr + "',level_range=" + question.Level + ",create_date='" + formatForMySql + "',subject_department_id = " + subjectdepartment_id + " where id = " + question.Id + "";
 
@@ -261,21 +267,21 @@ namespace Quastionnaire.Model.Dao.Impl
             mysql.openMysqlConnection();
 
             using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
-            {
                 cmd.ExecuteNonQuery();
-            }
 
             query = "delete from answer where id in (" + answersIDs + ");";
 
             if (!String.IsNullOrEmpty(answersIDs))
                 using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
-                {
                     cmd.ExecuteNonQuery();
-                }
-            mysql.closeMysqlConnection();
 
+
+            mysql.closeMysqlConnection();
 
             logger.Info("Question With ID " + question.Id + " Deleted");
         }
+
+
+
     }
 }
