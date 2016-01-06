@@ -492,7 +492,7 @@ namespace Sunrise.MultipleChoice
                                             +id_user + "','"+Registration_name_textBox.Text + "','" + Registration_lastname_textBox.Text+"','"
                                             + Registration_email_textBox.Text+ "','"+ address_id+"');" ;
                     command.ExecuteNonQuery();
-                    command.CommandText = "CREATE USER '"+Registration_username_textBox.Text+"'@'localhost' IDENTIFIED BY '"+ Registration_lastname_textBox.Text+ "';";
+                    command.CommandText = "CREATE USER '"+Registration_username_textBox.Text+"'@'localhost' IDENTIFIED BY '"+ Registration_passwordBox.Password + "';";
                     logger.Debug(command.CommandText);
                     command.ExecuteNonQuery();
                     command.CommandText = "GRANT ALL PRIVILEGES ON *.* TO '"+ Registration_username_textBox.Text + "'@'localhost'"+"WITH GRANT OPTION;";
