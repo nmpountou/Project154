@@ -492,10 +492,18 @@ namespace Sunrise.MultipleChoice
                                             +id_user + "','"+Registration_name_textBox.Text + "','" + Registration_lastname_textBox.Text+"','"
                                             + Registration_email_textBox.Text+ "','"+ address_id+"');" ;
                     command.ExecuteNonQuery();
-                    //command.CommandText = "";
-                    //logger.Debug(command.CommandText);
-                    //command.ExecuteNonQuery();
+                    command.CommandText = "CREATE USER '"+Registration_username_textBox.Text+"'@'localhost' IDENTIFIED BY '"+ Registration_lastname_textBox.Text+ "';";
+                    logger.Debug(command.CommandText);
+                    command.ExecuteNonQuery();
+                    command.CommandText = "GRANT ALL PRIVILEGES ON *.* TO '"+ Registration_username_textBox.Text + "'@'localhost'"+"WITH GRANT OPTION;";
+                    logger.Debug(command.CommandText);
+                    command.ExecuteNonQuery();
+                    //EXAMPLE
+                    //CREATE USER 'test'@'localhost' IDENTIFIED BY '123456';
+                    //GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
                     trans.Commit();
+                    MessageBox.Show(Properties.Resources.Registration_complete);
+                    this.Visibility = Visibility.Hidden;
                 }
                 catch (Exception ex)
                 {
@@ -524,6 +532,7 @@ namespace Sunrise.MultipleChoice
             {
                 con.Close();
             }
+            
         }
         private int Registration_get_first_avaliabe_adress_id()
         {

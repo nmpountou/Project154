@@ -27,6 +27,7 @@ namespace Sunrise.MultipleChoice
     public partial class Login : Window
     {
         private MysqlC mysqlc;
+        Register reg;
         public Login()
         {
             //Language default start
@@ -77,20 +78,21 @@ namespace Sunrise.MultipleChoice
                     //Retrive the connection string
                     //WORKS
                     //String connection = (new Model.RetriveStringConnection()).get_sc();
-                    //MessageBox.Show(connection);
-                    //Close the form.               
-                    this.Login_exit_button_Click(sender, e);
+                    //Close the form.
+
+                    //take the username and the password from reg to make connection               
+                    this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
+                    //CALL the menu from Costas. pass the password and the username
+                    //this.Login_exit_button_Click(sender, e);
+                    
                 }
             }
         }
 
         private void Login_button_new_Account_Click(object sender, RoutedEventArgs e)
         {
-            //Forgot_Password frp = new Forgot_Password();
-            //frp.Show();
-            Register reg = new Register();
+            reg = new Register();
             reg.Show();
-
             //System.Uri resourceLocater = new System.Uri("Register.xaml",System.UriKind.Relative);
             //System.Windows.Application.LoadComponent(this, resourceLocater);
         }
