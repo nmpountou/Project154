@@ -1,0 +1,93 @@
+﻿<Page x:Class="Sunrise.MultipleChoice.QuestionaireForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sunrise.MultipleChoice"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1500"
+      Title="QuestionForm">
+
+    <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="DeepSkyBlue">
+
+        <ToolBar Background="#FFB2AEBD" Height="30px" HorizontalAlignment="Left"  Width="917">
+            <Button  Name="btSave_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Questionaire_Click_1">
+                <Image Source="images\save1.png" />
+            </Button>
+            <Button  Name="btEdit_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Questionaire_Click">
+                <Image Source="images\edit2.png" />
+            </Button>
+            <Button Name="btDelete_Questionaire"  ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Questionaire_Click">
+                <Image Source="images\delete.png" />
+            </Button>
+            <Button  Name="btClear_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Questionaire_Click">
+                <Image Source="images\clear.png" />
+            </Button>
+        </ToolBar>
+
+
+        <StackPanel HorizontalAlignment="Left"  VerticalAlignment="Stretch" Orientation="Horizontal">
+
+            <Grid  Margin="0,0,0,0"  Width="830">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Level - [1-10]:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbLevel_Question"  Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" />
+                <Label Name="lblLevel_Questionaire_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Name="tbOwner_Question" Grid.Row="1" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
+                <Label Name="lblOwner_Questionaire_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Name="tbDate_Question" Grid.Row="1" Grid.Column="4"   Margin="5" Padding="5" IsEnabled="False"/>
+                <Label Name="lblDate_Questionaire_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Subject:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox Name="cbSubject_Question" Grid.Row="2" Grid.Column="1"  Margin="5" Padding="5" SelectionChanged="cbSubject_Question_SelectionChanged"/>
+                <Label Name="lblSubject_Questionaire_msg" Grid.Row="2" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="3" Content="Department:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox Name="cbDepartment_Question" Grid.Row="2" Grid.Column="4"  Margin="5" Padding="5" />
+                <Label Name="lblDepartment_Questionaire_msg" Grid.Row="2" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Questionaire:" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.RowSpan="4"/>
+                <TextBox Name="tbQuestion_Description" Grid.Row="3" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="4" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
+                <Label Name="lblQuestion_Description_msg" Grid.Row="3" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+
+
+        </StackPanel>
+
+
+        <ListView x:Name="lvQuestionaire" Height="200" HorizontalAlignment="Left"  Width="700px" SelectionMode="Single" SelectionChanged="lvQuestionaire_SelectionChanged"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Questionaire_Description"  DisplayMemberBinding="{Binding Questionaire_descr}" />
+                    <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
+                    <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Width="80" Height="30" Content="Add Questions" Name="btnAddQuestionPage" Click="btnAddQuestionPage_Click"/>
+
+
+
+    </StackPanel>
+</Page>

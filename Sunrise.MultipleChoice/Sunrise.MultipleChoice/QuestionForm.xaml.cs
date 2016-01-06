@@ -1,4 +1,5 @@
-﻿using Quastionnaire.Model;
+﻿using MySql.Data.MySqlClient;
+using Quastionnaire.Model;
 using Quastionnaire.Model.Dao;
 using Quastionnaire.Model.Dao.Impl;
 using Quastionnaire.Model.Dao.Interface;
@@ -34,7 +35,9 @@ namespace Sunrise.MultipleChoice
         private Questionaire selected_Questionaire;
         private Question selected_Questionaire_Question;
         private List<Question> questionData;
-        private List<Questionaire> questionaireData;
+
+        public enum UsernameType { Undefined,ALL, MINE,OTHER };
+        private UsernameType usernameType = UsernameType.Undefined;
 
         public QuestionForm()
         {
@@ -63,6 +66,12 @@ namespace Sunrise.MultipleChoice
             cbCorrect_Answer.Items.Add("False");
             cbCorrect_Answer.Items.Add("True");
 
+
+            cbUsernameType_search.Items.Add("ALL");
+            cbUsernameType_search.Items.Add("MINE");
+            cbUsernameType_search.Items.Add("OTHER");
+
+
         }
         private void initializeQuestionaireData()
         {
@@ -89,20 +98,50 @@ namespace Sunrise.MultipleChoice
 
             lblSubject_search_msg.Visibility = Visibility.Hidden;
             lblDepartment_search_msg.Visibility = Visibility.Hidden;
+            lblUsername_search_msg.Visibility = Visibility.Hidden;
+            cbUsernameType_search_msg.Visibility = Visibility.Hidden;
 
             lvQuestion.ItemsSource = null;
             lvAnswer.ItemsSource = null;
 
             string subject = cbSubject_search.Text;
             string department = cbDepartment_search.Text;
+            string username = "";
 
             int subject_index = cbSubject_search.SelectedIndex;
             int department_index = cbDepartment_search.SelectedIndex;
 
-            if (checkSearchForNullInput(subject, department))
-                return;
+            //Check Username Type Search Engine
+            switch (usernameType)
+            {
+                case UsernameType.MINE:
+                    username = CurrentUserInfo.USERNAME;
+                    break;
+                case UsernameType.OTHER:
 
-            questionData = loadQuestionData(CurrentUserInfo.CURENT_ACCOUNT, subjectList[subject_index], subjectList[subject_index].DepList[department_index]);
+                    username = tbUsername_search.Text;
+                  
+                    break;
+                case UsernameType.ALL:
+                    username = "all";
+                    break;
+            }
+
+            //Check Empty Fields
+            if (checkSearchForNullInput(subject, department,username))
+            {
+                MessageBox.Show("Empty Fields", "Confirmation");
+                return;
+            }
+            //Check if Searched Username Existt
+            if(usernameType == UsernameType.OTHER)
+                if (!usernameExist(username))
+                {
+                    MessageBox.Show("Username Dosent Exist");
+                    return;
+                }
+
+            questionData = loadQuestionData(username, subjectList[subject_index], subjectList[subject_index].DepList[department_index]);
             lvQuestion.ItemsSource = questionData;
 
 
@@ -112,7 +151,57 @@ namespace Sunrise.MultipleChoice
 
         }
 
-        private bool checkSearchForNullInput(string subject, string department)
+        private void cbUsernameType_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int choice = cbUsernameType_search.SelectedIndex;
+
+            switch (choice)
+            {
+                case 0:
+                    usernameType = UsernameType.ALL;
+                    tbUsername_search.IsEnabled = false;
+                    tbUsername_search.Text = "";
+                    break;
+                case 1:
+                    usernameType = UsernameType.MINE;
+                    tbUsername_search.IsEnabled = false;
+                    tbUsername_search.Text = "";
+                    break;
+                case 2:
+                    usernameType = UsernameType.OTHER;
+                    tbUsername_search.IsEnabled = true;
+                    tbUsername_search.Text = "";
+                    break;
+            }
+
+        }
+
+        private bool usernameExist(string username)
+        {
+            bool usernameExist = false;
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+             CurrentUserInfo.PASSWORD,
+             CurrentUserInfo.HOSTNAME,
+             CurrentUserInfo.PORT,
+             CurrentUserInfo.DATABASE);
+
+            string query = "select username from account where username = '"+ username +"'";
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            using (MySqlCommand cmd = new MySqlCommand(query,mysql.MysqlConnection))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                    if (reader.HasRows)
+                        usernameExist = true;
+
+             mysql.closeMysqlConnection();
+
+            return usernameExist;
+        }
+
+        private bool checkSearchForNullInput(string subject, string department,string username)
         {
             bool emptyField = false;
 
@@ -130,6 +219,21 @@ namespace Sunrise.MultipleChoice
                 lblDepartment_search_msg.Content = "Empty";
                 emptyField = true;
             }
+            if (String.IsNullOrEmpty(username) && usernameType == UsernameType.OTHER)
+            {
+                lblUsername_search_msg.Visibility = Visibility.Visible;
+                lblUsername_search_msg.Foreground = Brushes.Red;
+                lblUsername_search_msg.Content = "Empty";
+                emptyField = true;
+            }
+            if (usernameType == UsernameType.Undefined)
+            {
+                cbUsernameType_search_msg.Visibility = Visibility.Visible;
+                cbUsernameType_search_msg.Foreground = Brushes.Red;
+                cbUsernameType_search_msg.Content = "Empty";
+                emptyField = true;
+            }
+
 
             return emptyField;
 
@@ -225,7 +329,7 @@ namespace Sunrise.MultipleChoice
 
 
             string level = tbLevel_Question.Text;
-            DateTime date = new DateTime();
+            DateTime date = DateTime.Now;
             string question_descr = tbQuestion_Description.Text;
 
             string subject = cbSubject_Question.Text;
@@ -241,15 +345,20 @@ namespace Sunrise.MultipleChoice
             if (checkQuestionForNullInput(level, question_descr, subject, department))
                 return;
 
+
             Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level) };
             question.Account = CurrentUserInfo.CURENT_ACCOUNT;
 
             IQuestionDao questionDao = new QuestionDaoImpl();
             questionDao.saveQuestion(question);
 
-            questionData.Add(question);
-            lvQuestion.ItemsSource = null;
-            lvQuestion.ItemsSource = questionData;
+            if (departmentID == cbDepartment_search.SelectedIndex && subjectID == cbSubject_search.SelectedIndex)
+            {
+                questionData.Add(question);
+                lvQuestion.ItemsSource = null;
+                lvQuestion.ItemsSource = questionData;
+            }
+              
 
             MessageBox.Show("Question Saved", "Confirmation");
 
@@ -269,7 +378,7 @@ namespace Sunrise.MultipleChoice
             }
 
             string level = tbLevel_Question.Text;
-            DateTime date = new DateTime();
+            DateTime date = DateTime.Now;
             string question_descr = tbQuestion_Description.Text;
 
             string subject = cbSubject_Question.Text;
@@ -414,12 +523,12 @@ namespace Sunrise.MultipleChoice
             return emptyField;
         }
 
-        private List<Question> loadQuestionData(Account account, Subject subject, Department department)
+        private List<Question> loadQuestionData(string username, Subject subject, Department department)
         {
             List<Question> questionList;
             IQuestionDao questionDao = new QuestionDaoImpl();
 
-            questionList = questionDao.findQuestion(subject, department);
+            questionList = questionDao.findQuestion(username,subject, department);
 
             return questionList;
         }
@@ -459,7 +568,7 @@ namespace Sunrise.MultipleChoice
             }
 
             corrext_answer = index_correct_answer == 0 ? false : true;
-            Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = new DateTime(), Correct = corrext_answer };
+            Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = DateTime.Now, Correct = corrext_answer };
 
             IAnswerDao answerDao = new AnswerDaoImpl();
             answerDao.saveAnswer(answer, selected_Question.Id);
@@ -501,7 +610,7 @@ namespace Sunrise.MultipleChoice
             }
 
             corrext_answer = index_correct_answer == 0 ? false : true;
-            Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = new DateTime(), Correct = corrext_answer };
+            Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = DateTime.Now, Correct = corrext_answer };
 
             answer.Id = selected_Answer.Id;
             answer.Account = CurrentUserInfo.CURENT_ACCOUNT;
@@ -648,6 +757,8 @@ namespace Sunrise.MultipleChoice
         {
             lblSubject_search_msg.Visibility = Visibility.Hidden;
             lblDepartment_search_msg.Visibility = Visibility.Hidden;
+            cbUsernameType_search_msg.Visibility = Visibility.Hidden;
+            lblUsername_search_msg.Visibility = Visibility.Hidden;
 
             lblLevel_Question_msg.Visibility = Visibility.Hidden;
             lblOwner_Question_msg.Visibility = Visibility.Hidden;
@@ -665,7 +776,6 @@ namespace Sunrise.MultipleChoice
         {
             NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
-
 
     }
 }
