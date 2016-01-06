@@ -26,11 +26,11 @@ namespace Quastionnaire.Model.Dao.Impl
             string query = "";
 
             if(usernameF != "all")
-                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from uestion Q " +
+                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
                            "inner join account A on A.id = Q.account_id " +
                            "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + " and A.username = '" + usernameF + "'; ";
             else
-                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from uestion Q " +
+                query = "select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username from question Q " +
                           "inner join account A on A.id = Q.account_id " +
                           "inner join subject_department SD on Q.subject_department_id = SD.id where SD.subject_id = " + subject.Id + " and SD.department_id = " + department.Id + " ; ";
 
