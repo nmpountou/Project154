@@ -8,21 +8,17 @@ namespace Quastionnaire.Model
 {
     class CurrentUserInfo
     {
-        public static Account CURENT_ACCOUNT = new Account() {Id = 1, Username = "costas" , Password = "91420" };
+        public static Account CURENT_ACCOUNT = new Account() {Id = 1, Username = "questionaire", Password = "6979480030" };
 
-        //public static string HOSTNAME = "82.163.78.38";
         public static string HOSTNAME = "127.0.0.1";
         public static string PORT = "3306";
         public static string DATABASE = "questionaire";
-        //public static string TEMP_REGISTER_USERNAME = "nikos";
-        //public static string TEMP_REGISTER_PASSWORD = "nikosmpou";
-        public static string TEMP_REGISTER_USERNAME = "root";
-        public static string TEMP_REGISTER_PASSWORD = "123456";
+        public static string USERNAME = "questionaire";
+        public static string PASSWORD = "6979480030";
 
-        //public static string USERNAME = "nikos";
-        //public static string PASSWORD = "nikosmpou";
-        public static string USERNAME = "root";
-        public static string PASSWORD = "123456";
+        public static string TEMP_REGISTER_USERNAME = "questionaire";
+        public static string TEMP_REGISTER_PASSWORD = "6979480030";
+       
 
     }
 }

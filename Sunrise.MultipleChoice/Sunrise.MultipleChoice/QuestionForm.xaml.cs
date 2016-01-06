@@ -48,14 +48,6 @@ namespace Sunrise.MultipleChoice
 
         }
 
-        private void initializeQuestionaireData()
-        {
-            IQuestionaireDao dao = new QuestionaireDaoImpl();
-            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
-
-            lvQuestionaire.ItemsSource = listQuestionaire;
-        }
-
         //Initialize
         private void initializeComboBoxInfo()
         {
@@ -71,6 +63,13 @@ namespace Sunrise.MultipleChoice
             cbCorrect_Answer.Items.Add("False");
             cbCorrect_Answer.Items.Add("True");
 
+        }
+        private void initializeQuestionaireData()
+        {
+            IQuestionaireDao dao = new QuestionaireDaoImpl();
+            List<Questionaire> listQuestionaire = dao.findQuestionare(CurrentUserInfo.CURENT_ACCOUNT);
+
+            lvQuestionaire.ItemsSource = listQuestionaire;
         }
 
         //Search
@@ -88,6 +87,9 @@ namespace Sunrise.MultipleChoice
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
 
+            lblSubject_search_msg.Visibility = Visibility.Hidden;
+            lblDepartment_search_msg.Visibility = Visibility.Hidden;
+
             lvQuestion.ItemsSource = null;
             lvAnswer.ItemsSource = null;
 
@@ -102,6 +104,11 @@ namespace Sunrise.MultipleChoice
 
             questionData = loadQuestionData(CurrentUserInfo.CURENT_ACCOUNT, subjectList[subject_index], subjectList[subject_index].DepList[department_index]);
             lvQuestion.ItemsSource = questionData;
+
+
+            MessageBox.Show("Questions Retrieved", "Confirmation");
+
+
 
         }
 
@@ -127,10 +134,16 @@ namespace Sunrise.MultipleChoice
             return emptyField;
 
         }
-       
+
         //Table OnClick
         private void lvQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
             Question question = (Question)lvQuestion.SelectedItem;
 
             if (question == null)
@@ -157,11 +170,14 @@ namespace Sunrise.MultipleChoice
 
             //Load Answer Table
             lvAnswer.ItemsSource = question.AnswerList;
-            lvQuestion.SelectedItem = null;
 
         }
         private void lvAnswer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+            lblCorrect_Answer_msg.Visibility = Visibility.Hidden;
+
             Answer answer = (Answer)lvAnswer.SelectedItem;
 
             if (answer == null)
@@ -174,7 +190,6 @@ namespace Sunrise.MultipleChoice
             tbAnswer_Description.Text = answer.Answer_descr.ToString();
             cbCorrect_Answer.Text = answer.Correct.ToString();
 
-            lvAnswer.SelectedItem = null;
 
         }
         private void lvQuestionaire_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -203,6 +218,11 @@ namespace Sunrise.MultipleChoice
         //Question ToolBAr
         private void btSave_Question_Click(object sender, RoutedEventArgs e)
         {
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
 
             string level = tbLevel_Question.Text;
             DateTime date = new DateTime();
@@ -214,11 +234,14 @@ namespace Sunrise.MultipleChoice
             int departmentID = cbDepartment_Question.SelectedIndex;
 
             if (checkQuestionForNullInput(level, question_descr, subject, department))
+            {
+                MessageBox.Show("Empty", "Confirmation");
                 return;
+            }
             if (checkQuestionForNullInput(level, question_descr, subject, department))
                 return;
 
-            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level)};
+            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level) };
             question.Account = CurrentUserInfo.CURENT_ACCOUNT;
 
             IQuestionDao questionDao = new QuestionDaoImpl();
@@ -233,6 +256,11 @@ namespace Sunrise.MultipleChoice
         }
         private void btEdit_Question_Click(object sender, RoutedEventArgs e)
         {
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
 
             if (selected_Question == null)
             {
@@ -273,6 +301,11 @@ namespace Sunrise.MultipleChoice
         private void btDelete_Question_Click(object sender, RoutedEventArgs e)
         {
 
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
             if (selected_Question == null)
             {
                 MessageBox.Show("Select Question First", "Confirmation");
@@ -287,15 +320,30 @@ namespace Sunrise.MultipleChoice
             lvQuestion.ItemsSource = null;
             lvQuestion.ItemsSource = questionData;
 
+            lvAnswer.ItemsSource = null;
+
+            clearQuestionWidgets();
+            clearAnswerWidgets();
+
             MessageBox.Show("Question Deleted", "Confirmation");
 
         }
         private void btClear_Question_Click(object sender, RoutedEventArgs e)
         {
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
             clearQuestionWidgets();
         }
         private void cbSubject_Question_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lblLevel_Question_msg.Visibility = Visibility.Hidden;
+            lblQuestion_Description_msg.Visibility = Visibility.Hidden;
+            lblSubject_Question_msg.Visibility = Visibility.Hidden;
+            lblDepartment_Question_msg.Visibility = Visibility.Hidden;
+
             cbDepartment_Question.Items.Clear();
 
             int index = cbSubject_Question.SelectedIndex;
@@ -307,7 +355,6 @@ namespace Sunrise.MultipleChoice
 
         private bool checkQuestionForNullInput(string level, string question_descr, string subject, string department)
         {
-
             bool emptyField = false;
 
             if (String.IsNullOrEmpty(level))
@@ -386,10 +433,13 @@ namespace Sunrise.MultipleChoice
             selected_Question = null;
 
         }
-       
+
         //Answer ToolBAr
         private void btSave_Answer_Click(object sender, RoutedEventArgs e)
         {
+
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+            lblCorrect_Answer_msg.Visibility = Visibility.Hidden;
 
             if (selected_Question == null)
             {
@@ -412,7 +462,10 @@ namespace Sunrise.MultipleChoice
             Answer answer = new Answer() { Answer_descr = answer_descr, Account = CurrentUserInfo.CURENT_ACCOUNT, Date = new DateTime(), Correct = corrext_answer };
 
             IAnswerDao answerDao = new AnswerDaoImpl();
-            answerDao.saveAnswer(answer,selected_Question.Id);
+            answerDao.saveAnswer(answer, selected_Question.Id);
+
+            if (selected_Question.AnswerList == null)
+                selected_Question.AnswerList = new List<Answer>();
 
             selected_Question.AnswerList.Add(answer);
             lvAnswer.ItemsSource = null;
@@ -422,6 +475,8 @@ namespace Sunrise.MultipleChoice
         }
         private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
         {
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+            lblCorrect_Answer_msg.Visibility = Visibility.Hidden;
 
             if (selected_Question == null)
             {
@@ -466,6 +521,9 @@ namespace Sunrise.MultipleChoice
         }
         private void btDelete_Answer_Click(object sender, RoutedEventArgs e)
         {
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+            lblCorrect_Answer_msg.Visibility = Visibility.Hidden;
+
             if (selected_Question == null)
             {
                 MessageBox.Show("Select Question First", "Confirmation");
@@ -485,17 +543,16 @@ namespace Sunrise.MultipleChoice
             lvAnswer.ItemsSource = null;
             lvAnswer.ItemsSource = selected_Question.AnswerList;
 
+            clearAnswerWidgets();
+
             MessageBox.Show("Answer Deleted", "Confirmation");
         }
         private void btClear_Answer_Click(object sender, RoutedEventArgs e)
         {
-            tbAnswer_Description.Clear();
-            tbDate_Answer.Clear();
-            tbOwner_Answer.Clear();
-
+            clearAnswerWidgets();
         }
 
-        private bool checkAnswerForNullInput(string answer,string correct)
+        private bool checkAnswerForNullInput(string answer, string correct)
         {
             bool emptyField = false;
 
@@ -515,6 +572,17 @@ namespace Sunrise.MultipleChoice
             }
 
             return emptyField;
+        }
+
+        private void clearAnswerWidgets()
+        {
+            lblAnswer_Description_msg.Visibility = Visibility.Hidden;
+            lblCorrect_Answer_msg.Visibility = Visibility.Hidden;
+
+            tbAnswer_Description.Clear();
+            tbDate_Answer.Clear();
+            tbOwner_Answer.Clear();
+
         }
 
         //Questionaire
@@ -544,7 +612,7 @@ namespace Sunrise.MultipleChoice
             selected_Questionaire.QuestionList.Add(selected_Question);
 
             IQuestionaireDao dao = new QuestionaireDaoImpl();
-            dao.addQuestionToQuestionaire(selected_Questionaire,selected_Question);
+            dao.addQuestionToQuestionaire(selected_Questionaire, selected_Question);
 
             lvQuestionaire_Question.ItemsSource = null;
             lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
@@ -558,8 +626,8 @@ namespace Sunrise.MultipleChoice
                 MessageBox.Show("Select Questionaire First", "Confirmation");
                 return;
             }
-          
-            if(selected_Questionaire_Question == null)
+
+            if (selected_Questionaire_Question == null)
             {
                 MessageBox.Show("Select Questionaire Question First", "Confirmation");
                 return;

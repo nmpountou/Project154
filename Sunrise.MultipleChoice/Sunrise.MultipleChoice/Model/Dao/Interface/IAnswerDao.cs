@@ -8,7 +8,7 @@ namespace Quastionnaire.Model.Dao.Interface
 {
     interface IAnswerDao
     {
-        List<Answer> findAnswer(Account account, Question question);
+        List<Answer> findAnswer(int question_id);
         void saveAnswer(Answer answer,int question_id);
         void deleteAnswer(Answer answer);
         void updateAnswer(Answer answer);

@@ -70,9 +70,6 @@ namespace Quastionnaire.Model.Dao.Impl
 
         }
 
-
-
-
         public void deleteQuestionaire(Questionaire questionaire)
         {
 
@@ -207,8 +204,6 @@ namespace Quastionnaire.Model.Dao.Impl
             return ListQuestionaire;
 
         }
-
-       
 
         public void saveQuestionaire(Questionaire questionaire)
         {
