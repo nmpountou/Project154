@@ -110,7 +110,10 @@
                     <Label x:Name="Export_to_pdf_Header_label" Content="Header Text:" Canvas.Left="214" Canvas.Top="10" RenderTransformOrigin="0.079,0" Background="Transparent" Height="26" Margin="0,52,547,26"/>
                     <TextBox x:Name="Export_to_pdf_Header_textbox" HorizontalAlignment="Left" Height="23" Margin="83,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
                     <Label x:Name="Export_to_pdf_Header_labeldate" Content="Exam Date" HorizontalAlignment="Left" Margin="420,55,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="491,55,0,0" VerticalAlignment="Top" Width="124" Height="25"/>
+                    <DatePicker x:Name="Export_to_pdf_datepicker" HorizontalAlignment="Left" Margin="491,55,0,0" VerticalAlignment="Top" Width="124" Height="25"/>
+                    <Label x:Name="Export_to_pdf_Header_label_name_proffesor" Content="Full name:" HorizontalAlignment="Left" Margin="0,78,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Export_to_pdf_Header_textbox_nameproffesor" HorizontalAlignment="Left" Height="23" Margin="83,83,0,-2" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
+
                 </Grid>
             </GroupBox>
         </Canvas>
