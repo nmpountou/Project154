@@ -39,8 +39,8 @@ namespace Sunrise.MultipleChoice
         {
             var oldWindow = Application.Current.MainWindow;
             
-            Export_to_Pdf wpdf = new Export_to_Pdf();
-            wpdf.Visibility = Visibility.Visible;
+           // Export_to_Pdf wpdf = new Export_to_Pdf();
+            //wpdf.Visibility = Visibility.Visible;
             oldWindow.Close();
         }
 
