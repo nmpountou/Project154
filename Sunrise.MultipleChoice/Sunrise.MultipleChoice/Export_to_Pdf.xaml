@@ -16,7 +16,7 @@
                 </Button.Background>
             </Button>
             <TextBox x:Name="Export_to_pdf__select_folder_save" Height="26" Canvas.Left="609" TextWrapping="Wrap" Canvas.Top="525" Width="177" BorderBrush="#FF2548B2" IsReadOnly="True" HorizontalContentAlignment="Center" />
-            <Label x:Name="Export_to_pdf_label_filename" Content="File Name" Canvas.Left="757" Canvas.Top="560" Width="66" Height="26" Background="White" BorderBrush="#FF2548B2" Foreground="DeepSkyBlue" HorizontalContentAlignment="Center"/>
+            <Label x:Name="Export_to_pdf_label_filename" Content="File Name" Canvas.Left="757" Canvas.Top="560" Width="66" Height="26" Background="White" BorderBrush="#FF2548B2" Foreground="Black" HorizontalContentAlignment="Center"/>
             <GroupBox x:Name="export_to_pdf_groupbox_land_port" Header="Orientation" Canvas.Left="24" Canvas.Top="570" Height="69" Width="170" FontSize="14.667" FontFamily="White" Foreground="White">
                 <Grid>
                     <RadioButton x:Name="export_to_pdf_Radiobutton_Portrait" Content="Portrait" HorizontalAlignment="Left" Margin="21,0,0,26" RenderTransformOrigin="0.33,-0.529" IsChecked="True" />
@@ -24,7 +24,7 @@
                 </Grid>
             </GroupBox>
             <TextBox x:Name="Export_to_pdf__textbox_filename" Height="26" Canvas.Left="609" TextWrapping="Wrap" Canvas.Top="560" Width="135" BorderBrush="#FF2548B2" HorizontalContentAlignment="Center" />
-            <GroupBox x:Name="export_to_pdf_groupbox_title_misc" Header="Title,Subject&amp; Author" Canvas.Left="24" Canvas.Top="10" Height="151" Width="654" Foreground="White">
+            <GroupBox x:Name="export_to_pdf_groupbox_title_misc" Header="Title,Subject,Author &amp; Keywords" Canvas.Left="24" Canvas.Top="10" Height="151" Width="654" Foreground="White">
                 <Grid HorizontalAlignment="Left" Height="115" Margin="10,10,0,0" VerticalAlignment="Top" Width="623" RenderTransformOrigin="0.28,0.24">
                     <Label x:Name="Export_to_pdf_label_title" Content="Title" HorizontalAlignment="Left" VerticalAlignment="Top" Width="58" HorizontalContentAlignment="Center" />
                     <Label x:Name="Export_to_pdf_label_subject" Content="Subject" HorizontalAlignment="Left" Margin="9,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.776,0.577"/>
@@ -38,7 +38,7 @@
                 </Grid>
             </GroupBox>
             <Label x:Name="label2" Content="Click to the icon to select folder" Canvas.Left="646" Canvas.Top="494"/>
-            <GroupBox x:Name="groupBox" Header="Font" Canvas.Left="24" Canvas.Top="177" Height="73" Width="654" Foreground="White">
+            <GroupBox x:Name="groupBox" Header="Font" Canvas.Left="25" Canvas.Top="371" Height="73" Width="654" Foreground="White">
                 <Canvas HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Top" Width="611">
                     <ComboBox x:Name="Export_to_pdf_combobox_font" Canvas.Left="64" Canvas.Top="10" Width="120" Height="26">
                         <ComboBoxItem IsSelected="True">Arial</ComboBoxItem>
@@ -78,6 +78,42 @@
                         <ComboBoxItem Name="pagesize_A3" >A3</ComboBoxItem>
                         <ComboBoxItem Name="pagesize_A5" >A5</ComboBoxItem>
                     </ComboBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="Header" Header="Header" Height="134" Canvas.Left="24" Canvas.Top="196" Width="655" Foreground="White">
+                <Grid HorizontalAlignment="Left" Height="104" Margin="10,0,0,0" VerticalAlignment="Top" Width="625">
+                    <Label x:Name="Export_to_pdf_Header_label_Font" Content="Font:" Canvas.Left="19" Canvas.Top="10" RenderTransformOrigin="0.079,0" Background="Transparent" Width="40" Height="26" Margin="10,10,569,68"/>
+                    <ComboBox x:Name="Export_to_pdf_Header_combobox_font" Canvas.Left="64" Canvas.Top="10" Width="120" Height="26" Margin="64,10,435,68">
+                        <ComboBoxItem IsSelected="True">Arial</ComboBoxItem>
+                        <ComboBoxItem>Verdana</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="Export_to_pdf_Header_label_Font_size" Content="Size:" Canvas.Left="214" Canvas.Top="10" RenderTransformOrigin="0.079,0" Background="Transparent" Width="40" Height="26" Margin="209,10,370,68"/>
+                    <ComboBox x:Name="Export_to_pdf_Header_comobox_fontsize" Canvas.Left="269" Canvas.Top="10" Width="43" Height="26" Margin="268,10,308,68">
+                        <ComboBoxItem IsSelected="True">12</ComboBoxItem>
+                        <ComboBoxItem>13</ComboBoxItem>
+                        <ComboBoxItem>14</ComboBoxItem>
+                        <ComboBoxItem>18</ComboBoxItem>
+                        <ComboBoxItem>20</ComboBoxItem>
+                        <ComboBoxItem>24</ComboBoxItem>
+                        <ComboBoxItem>48</ComboBoxItem>
+                        <ComboBoxItem>52</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="Export_to_pdf_Header_Label_fontstyle" Content="Font Style:" Canvas.Left="353" Canvas.Top="10" Height="26" Margin="353,8,200,70" RenderTransformOrigin="0.939,0.385"/>
+                    <ComboBox x:Name="Export_to_pdf_header_combobox_fontstyle" Canvas.Left="420" Canvas.Top="10" Width="120" Height="26" Margin="419,8,80,70">
+                        <ComboBoxItem IsSelected="True"  Name="header_fontstyle_regural">Regural</ComboBoxItem>
+                        <ComboBoxItem Name="header_fontstyle_bold">Bold</ComboBoxItem>
+                        <ComboBoxItem Name="header_fontstyle_bolditalic">BoldItalic</ComboBoxItem>
+                        <ComboBoxItem Name="header_fontstyle_italic">Italic</ComboBoxItem>
+                        <ComboBoxItem Name="header_fontstyle_strikeout">Strikeout</ComboBoxItem>
+                        <ComboBoxItem Name="header_fontstyle_underline">Underline</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="Export_to_pdf_Header_label" Content="Header Text:" Canvas.Left="214" Canvas.Top="10" RenderTransformOrigin="0.079,0" Background="Transparent" Height="26" Margin="0,52,547,26"/>
+                    <TextBox x:Name="Export_to_pdf_Header_textbox" HorizontalAlignment="Left" Height="23" Margin="83,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
+                    <Label x:Name="Export_to_pdf_Header_labeldate" Content="Exam Date" HorizontalAlignment="Left" Margin="420,55,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
+                    <DatePicker x:Name="Export_to_pdf_datepicker" HorizontalAlignment="Left" Margin="491,55,0,0" VerticalAlignment="Top" Width="124" Height="25"/>
+                    <Label x:Name="Export_to_pdf_Header_label_name_proffesor" Content="Full name:" HorizontalAlignment="Left" Margin="0,78,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Export_to_pdf_Header_textbox_nameproffesor" HorizontalAlignment="Left" Height="23" Margin="83,83,0,-2" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
+
                 </Grid>
             </GroupBox>
         </Canvas>

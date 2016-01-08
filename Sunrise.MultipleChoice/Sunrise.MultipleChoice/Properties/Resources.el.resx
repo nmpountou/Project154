@@ -215,4 +215,7 @@
   <data name="Registration_form_submit_button" xml:space="preserve">
     <value>Υποβολή</value>
   </data>
+  <data name="Registration_complete" xml:space="preserve">
+    <value>Eπιτυχής εγγραφή.</value>
+  </data>
 </root>

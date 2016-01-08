@@ -27,8 +27,8 @@ namespace Sunrise.MultipleChoice
         private MySqlConnection connection;
         public MysqlC()
         {
-            this.username = Quastionnaire.Model.CurrentUserInfo.USERNAME;
-            this.password = Quastionnaire.Model.CurrentUserInfo.PASSWORD;
+            this.username = Quastionnaire.Model.CurrentUserInfo.TEMP_REGISTER_USERNAME;
+            this.password = Quastionnaire.Model.CurrentUserInfo.TEMP_REGISTER_PASSWORD;
             this.hostname = Quastionnaire.Model.CurrentUserInfo.HOSTNAME;
             this.port = Quastionnaire.Model.CurrentUserInfo.PORT;
             this.database = Quastionnaire.Model.CurrentUserInfo.DATABASE;
@@ -166,11 +166,11 @@ namespace Sunrise.MultipleChoice
             string cs = @"server=" + hostname.Trim() + ";userid=" + username.Trim() + ";password=" + password + ";database=" + database.Trim()+ ";CHARSET=utf8;";
             return cs;
         }
-        //public string Password
-        //{
-        //    set { password = value; }
-        //    get { return password; }
-        //}
+        public string Password
+        {
+            set { password = value; }
+            get { return password; }
+        }
 
 
     }

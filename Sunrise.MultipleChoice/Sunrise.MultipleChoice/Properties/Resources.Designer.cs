@@ -205,6 +205,15 @@ namespace Sunrise.MultipleChoice.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registration Complete!.
+        /// </summary>
+        public static string Registration_complete {
+            get {
+                return ResourceManager.GetString("Registration_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty fields in registration form..
         /// </summary>
         public static string Registration_form_errormessages_empty_values {

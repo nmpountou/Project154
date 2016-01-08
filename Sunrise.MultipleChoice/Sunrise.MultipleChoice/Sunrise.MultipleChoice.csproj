@@ -109,6 +109,9 @@
     <Compile Include="ButtonStackPanel.xaml.cs">
       <DependentUpon>ButtonStackPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Export_to_Pdf.xaml.cs">
+      <DependentUpon>Export_to_Pdf.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forgot_Password.xaml.cs">
       <DependentUpon>Forgot_Password.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
     <Page Include="ButtonStackPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Export_to_Pdf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forgot_Password.xaml">
       <SubType>Designer</SubType>

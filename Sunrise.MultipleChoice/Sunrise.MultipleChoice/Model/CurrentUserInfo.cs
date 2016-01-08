@@ -16,8 +16,8 @@ namespace Quastionnaire.Model
         public static string USERNAME = "questionaire";
         public static string PASSWORD = "6979480030";
 
-        public static string TEMP_REGISTER_USERNAME = "questionaire";
-        public static string TEMP_REGISTER_PASSWORD = "6979480030";
+        public static string TEMP_REGISTER_USERNAME = "root";
+        public static string TEMP_REGISTER_PASSWORD = "123456";
        
     }
 }
