@@ -19,6 +19,8 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Quastionnaire.Model;
+
 
 namespace Sunrise.MultipleChoice
 {
@@ -33,7 +35,7 @@ namespace Sunrise.MultipleChoice
         XFont font;
         XFont header_font;
         string filename;
-        int questionaire;
+        //Quastionnaire.Model.Questionaire question;
         //Where the header finishes
         double x=0;
         double y=0;
@@ -50,10 +52,11 @@ namespace Sunrise.MultipleChoice
             page.Size = PageSize.A4;
             page.Orientation = PageOrientation.Portrait;
         }
-        public Export_to_Pdf(int questionaire): this()
-        {
-            this.questionaire = questionaire;
-        }
+        //public Export_to_Pdf(Quastionnaire.Model.Questionaire quest): this()
+        //{
+        //    this.question = quest;
+        //}
+     
 
         private void Export_to_pdf_button_submit_Click(object sender, RoutedEventArgs e)
         {
