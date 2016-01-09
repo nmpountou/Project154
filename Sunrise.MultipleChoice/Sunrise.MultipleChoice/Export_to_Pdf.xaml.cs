@@ -20,7 +20,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Quastionnaire.Model;
-
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Sunrise.MultipleChoice
 {
@@ -35,8 +35,8 @@ namespace Sunrise.MultipleChoice
         XFont font;
         XFont header_font;
         string filename;
-        Quastionnaire.Model.Questionaire question;
-        //Where the header finishes
+        Quastionnaire.Model.Questionaire questionaire;
+        //Where the header finishes re-initialize after.
         double x=0;
         double y=0;
         public Export_to_Pdf()
@@ -51,10 +51,34 @@ namespace Sunrise.MultipleChoice
             header_font = new XFont("Arial",12, XFontStyle.Regular);
             page.Size = PageSize.A4;
             page.Orientation = PageOrientation.Portrait;
+
+            //Later need to be a comment!
+            List<Question> question_list = new List<Question>();
+            List<Answer> answer_list = new List<Answer>();
+            Answer ans = new Answer();
+            ans.Answer_descr = "einai to dsfgdsfgsd";
+            answer_list.Add(ans);
+            answer_list.Add(ans);
+            answer_list.Add(ans);
+            Question quest = new Question(){ AnswerList = answer_list };
+            quest.Question_descr = "H ekfoonisi tis erotisis aytis einai blablbalbablbalblab";
+            for (int i = 0; i < 10; i++)
+            {
+                question_list.Add(quest);
+            }
+
+            //for (int i = 0; i < questionaire.QuestionList.Count; i++)
+            //{
+            //    for (int j = 0; j < 4; j++)
+            //    {
+            //        questionaire.QuestionList.ElementAt(i).AnswerList.Add(ans);
+            //    }
+            //}
+            questionaire = new Quastionnaire.Model.Questionaire() { Questionaire_descr = "sdfsakdfjdflshsadflkjashflasdfkh", QuestionList = question_list };
         }
-        public Export_to_Pdf(Quastionnaire.Model.Questionaire quest): this()
+        public Export_to_Pdf(Quastionnaire.Model.Questionaire question): this()
         {
-            this.question = quest;
+            this.questionaire = question;            
         }
      
 
@@ -66,7 +90,8 @@ namespace Sunrise.MultipleChoice
             page_size();
             page_orientation();
             header();
-            insert_questions("Hello, World!");
+            //initialize_question(questionaire);
+            insert_questions(questionaire);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black,new XRect(5, 5, page.Width, page.Height),XStringFormats.TopLeft);
             initialize_parameters_file();
 
@@ -234,33 +259,43 @@ namespace Sunrise.MultipleChoice
             y = y_next_step + 30 + Convert.ToDouble(Export_to_pdf_Header_comobox_fontsize.Text); ;
 
         }
-        private void insert_questions(String question)
+        private void insert_questions(Quastionnaire.Model.Questionaire questionaire)
         {
-            //string text1 = "asdfasdfasdfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdfsadf";
-            //string text2 = "sdfafasdfasdfasdfdasfffffffffffffffffffffffasdfasdfasdf";
-            //XRect xrt = new XRect(5, 5, page.Width, page.Height);
-            double yh = 20;//Space between question
+            //double yh = 20;//Space between question
+            //String question = "sdfdasfasdfdasfdsfdasfdasfsfasf";
+            //bool first_page=false;
+            //XRect xrt = new XRect(x, y, page.Width, page.Height);
 
-            bool first_page=false;
+            //for (int i=0;i<100;i++)
+            //{
+            //    gfx.DrawString(" "+i.ToString(), font, XBrushes.Black, xrt, XStringFormats.TopLeft);
+            //    xrt.Y += yh;
+            //    if (i%35==0 && i!=0 && first_page==false)
+            //    {
+            //        page = document.AddPage();
+            //        gfx = XGraphics.FromPdfPage(page);
+            //        //xrt.Y = 0;
+            //        xrt.X = 40;xrt.Y = 40;
+            //        first_page = true;
+            //    }
+            //    else if (first_page == true && i % 75 == 0 &&i!=35)
+            //    {
+            //        page = document.AddPage();
+            //        gfx = XGraphics.FromPdfPage(page);
+            //        xrt.X = 40; xrt.Y = 40;
+            //    }
+            //}
+
+            double yh = 20;
             XRect xrt = new XRect(x, y, page.Width, page.Height);
-
-            for (int i=0;i<100;i++)
+            for (int i=0;i<questionaire.QuestionList.Count;i++)
             {
-                gfx.DrawString(" "+i.ToString(), font, XBrushes.Black, xrt, XStringFormats.TopLeft);
-                xrt.Y += yh;
-                if (i%35==0 && i!=0 && first_page==false)
+               gfx.DrawString((i+1).ToString()+ ". "+ questionaire.QuestionList.ElementAt(i).Question_descr , font, XBrushes.Black, xrt, XStringFormats.TopLeft);
+               xrt.Y += yh;
+                for (int j=0;j< questionaire.QuestionList.ElementAt(i).AnswerList.Count;j++)
                 {
-                    page = document.AddPage();
-                    gfx = XGraphics.FromPdfPage(page);
-                    //xrt.Y = 0;
-                    xrt.X = 40;xrt.Y = 40;
-                    first_page = true;
-                }
-                else if (first_page == true && i % 75 == 0 &&i!=35)
-                {
-                    page = document.AddPage();
-                    gfx = XGraphics.FromPdfPage(page);
-                    xrt.X = 40; xrt.Y = 40;
+                    gfx.DrawString((j + 1).ToString() + ". " + questionaire.QuestionList.ElementAt(i).AnswerList.ElementAt(j).Answer_descr, font, XBrushes.Black, xrt, XStringFormats.TopLeft);
+                    xrt.Y += yh;
                 }
             }
         }
@@ -286,5 +321,54 @@ namespace Sunrise.MultipleChoice
                 filename = Export_to_pdf__textbox_filename.Text + ".pdf";
             }
         }
+        private void initialize_question(Quastionnaire.Model.Questionaire questionaire)
+        {
+            int number_of_erotiseis = 20;
+            int number_of_answer = 4;
+            //Dimiourgoume tin lista ton apantiseon.
+            List<Answer> answs = new List<Answer>();
+            Question quest = new Question() { AnswerList = answs};
+            quest.Question_descr = "H ekfoonisi tis erotisis aytis einai blablbalbablbalblab";
+            for (int i = 0; i < number_of_erotiseis; i++)
+            {
+                questionaire.QuestionList.Add(quest);
+            }
+            //MessageBox.Show(lst.Count().ToString());
+            //Put the question in questionaire
+            //questionaire.QuestionList.AddRange(lst);
+            //List<int> deepCopy = new List<int>(originalList);
+            MessageBox.Show(questionaire.QuestionList.Count.ToString());
+            //List<Answer> answs = new List<Answer>();
+
+            Answer ans = new Answer();
+            ans.Answer_descr = "einai to dsfgdsfgsd";
+
+            for (int i=0;i< questionaire.QuestionList.Count;i++)
+            {
+                for (int j = 0; j < number_of_answer; j++)
+                {
+                    questionaire.QuestionList.ElementAt(i).AnswerList.Add(ans);
+                }
+            }
+        }
+        public List<Question> DeepCopy_Question()
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(ms, this);
+
+            ms.Position = 0;
+            return (List<Question>)bf.Deserialize(ms);
+        }
+        public List<Answer> DeepCopy_Answer()
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(ms, this);
+
+            ms.Position = 0;
+            return (List<Answer>)bf.Deserialize(ms);
+        }
+
     }
 }
