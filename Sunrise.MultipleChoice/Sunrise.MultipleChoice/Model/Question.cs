@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quastionnaire.Model
 {
-    class Question
+    public class Question
     {
 
         private int _id;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Quastionnaire.Model
 {
-    class CurrentUserInfo
+    public class CurrentUserInfo
     {
         public static Account CURENT_ACCOUNT = new Account() {Id = 1, Username = "questionaire", Password = "6979480030" };
 

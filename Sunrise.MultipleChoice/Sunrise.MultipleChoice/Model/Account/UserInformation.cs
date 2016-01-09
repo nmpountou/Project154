@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sunrise.MultipleChoice.Model.Account
 {
-    class UserInformation
+    public class UserInformation
     {
         private int _id;
         private string _name;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sunrise.MultipleChoice.Model.Account
 {
-    class City
+    public class City
     {
         int _id;
         string _city_descr;

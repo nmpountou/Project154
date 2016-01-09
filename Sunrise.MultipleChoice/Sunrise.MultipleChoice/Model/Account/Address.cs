@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sunrise.MultipleChoice.Model.Account
 {
-    class Address
+    public class Address
     {
     }
 }

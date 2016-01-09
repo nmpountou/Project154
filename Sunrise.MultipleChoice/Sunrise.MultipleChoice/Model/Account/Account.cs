@@ -2,7 +2,7 @@
 
 namespace Quastionnaire.Model
 {
-    internal class Account
+    public class Account
     {
 
         private int _id;

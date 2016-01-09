@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sunrise.MultipleChoice.Model
 {
-    class Subject
+    public class Subject
     {
         private int _id;
         private string _subject_descr;

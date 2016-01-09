@@ -35,7 +35,7 @@ namespace Sunrise.MultipleChoice
         XFont font;
         XFont header_font;
         string filename;
-        //Quastionnaire.Model.Questionaire question;
+        Quastionnaire.Model.Questionaire question;
         //Where the header finishes
         double x=0;
         double y=0;
@@ -52,10 +52,10 @@ namespace Sunrise.MultipleChoice
             page.Size = PageSize.A4;
             page.Orientation = PageOrientation.Portrait;
         }
-        //public Export_to_Pdf(Quastionnaire.Model.Questionaire quest): this()
-        //{
-        //    this.question = quest;
-        //}
+        public Export_to_Pdf(Quastionnaire.Model.Questionaire quest): this()
+        {
+            this.question = quest;
+        }
      
 
         private void Export_to_pdf_button_submit_Click(object sender, RoutedEventArgs e)

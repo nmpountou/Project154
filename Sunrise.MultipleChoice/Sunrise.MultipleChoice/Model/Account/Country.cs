@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sunrise.MultipleChoice.Model.Account
 {
-    class Country
+    public class Country
     {
         int _id;
         string _country_descr;
