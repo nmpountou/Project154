@@ -480,8 +480,17 @@ namespace Sunrise.MultipleChoice
             if (checkQuestionForNullInput(level, question_descr, subject, department))
                 return;
 
+            int num = 0;
+            if (!Int32.TryParse(level,out num))
+            {
+                lblLevel_Question_msg.Visibility = Visibility.Visible;
+                lblLevel_Question_msg.Foreground = Brushes.Red;
+                lblLevel_Question_msg.Content = "Integer Only";
+                return;
 
-            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level) };
+            }
+
+            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = num };
             question.Account = CurrentUserInfo.CURENT_ACCOUNT;
 
             IQuestionDao questionDao = new QuestionDaoImpl();
@@ -494,7 +503,7 @@ namespace Sunrise.MultipleChoice
                 lvQuestion.ItemsSource = questionData;
             }
 
-
+            selected_Question = null;
             MessageBox.Show("Question Saved", "Confirmation");
 
         }
@@ -526,7 +535,17 @@ namespace Sunrise.MultipleChoice
             if (checkQuestionForNullInput(level, question_descr, subject, department))
                 return;
 
-            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = Int32.Parse(level) };
+            int num = 0;
+            if (!Int32.TryParse(level, out num))
+            {
+                lblLevel_Question_msg.Visibility = Visibility.Visible;
+                lblLevel_Question_msg.Foreground = Brushes.Red;
+                lblLevel_Question_msg.Content = "Integer Only";
+                return;
+
+            }
+
+            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = num };
 
             question.Id = selected_Question.Id;
             question.Account = CurrentUserInfo.CURENT_ACCOUNT;
@@ -540,6 +559,7 @@ namespace Sunrise.MultipleChoice
             lvQuestion.ItemsSource = null;
             lvQuestion.ItemsSource = questionData;
 
+            selected_Question = null;
             MessageBox.Show("Question Updated", "Confirmation");
         }
         private void btDelete_Question_Click(object sender, RoutedEventArgs e)
@@ -569,6 +589,7 @@ namespace Sunrise.MultipleChoice
             clearQuestionWidgets();
             clearAnswerWidgets();
 
+            selected_Question = null;
             MessageBox.Show("Question Deleted", "Confirmation");
 
         }
@@ -579,6 +600,7 @@ namespace Sunrise.MultipleChoice
             lblSubject_Question_msg.Visibility = Visibility.Hidden;
             lblDepartment_Question_msg.Visibility = Visibility.Hidden;
 
+            selected_Question = null;
             clearQuestionWidgets();
         }
         private void cbSubject_Question_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -715,6 +737,7 @@ namespace Sunrise.MultipleChoice
             lvAnswer.ItemsSource = null;
             lvAnswer.ItemsSource = selected_Question.AnswerList;
 
+            selected_Answer = null;
             MessageBox.Show("Answer Saved", "Confirmation");
         }
         private void btEdit_Answer_Click(object sender, RoutedEventArgs e)
@@ -760,6 +783,8 @@ namespace Sunrise.MultipleChoice
             lvAnswer.ItemsSource = null;
             lvAnswer.ItemsSource = selected_Question.AnswerList;
 
+
+            selected_Answer = null;
             MessageBox.Show("Answer Edited", "Confirmation");
 
         }
@@ -789,6 +814,8 @@ namespace Sunrise.MultipleChoice
 
             clearAnswerWidgets();
 
+
+            selected_Answer = null;
             MessageBox.Show("Answer Deleted", "Confirmation");
         }
         private void btClear_Answer_Click(object sender, RoutedEventArgs e)
@@ -825,6 +852,9 @@ namespace Sunrise.MultipleChoice
             tbAnswer_Description.Clear();
             tbDate_Answer.Clear();
             tbOwner_Answer.Clear();
+
+
+            selected_Answer = null;
 
         }
 

@@ -251,7 +251,7 @@ namespace Sunrise.MultipleChoice
             lvQuestionaire.ItemsSource = null;
             lvQuestionaire.ItemsSource = listQuestionaire;
 
-
+            selected_Questionaire = null;
             MessageBox.Show("Saved");
 
         }
@@ -277,6 +277,7 @@ namespace Sunrise.MultipleChoice
             lvQuestionaire.ItemsSource = null;
             lvQuestionaire.ItemsSource = listQuestionaire;
 
+            selected_Questionaire = null;
             MessageBox.Show("Edited");
 
         }
@@ -297,6 +298,7 @@ namespace Sunrise.MultipleChoice
             lvQuestionaire.ItemsSource = null;
             lvQuestionaire.ItemsSource = listQuestionaire;
 
+            selected_Questionaire = null;
             MessageBox.Show("Deleted");
         }
         private void btClear_Questionaire_Click(object sender, RoutedEventArgs e)
@@ -306,7 +308,7 @@ namespace Sunrise.MultipleChoice
             tbOwner_Questionaire.Text = "";
             tbQuestionaire_Description.Text = "";
 
-
+            selected_Questionaire = null;
 
         }
 
