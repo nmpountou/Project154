@@ -310,6 +310,7 @@ namespace Sunrise.MultipleChoice
 
         }
 
+        //Navigation
         private void mainMenuBt_Click(object sender, RoutedEventArgs e)
         {
 
@@ -324,6 +325,17 @@ namespace Sunrise.MultipleChoice
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("QuestionForm.xaml", UriKind.RelativeOrAbsolute));
             
+        }
+        private void export_Click(object sender, RoutedEventArgs e)
+        {
+            if (selected_Questionaire == null)
+            {
+                MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+
+            Export_to_Pdf wpdf = new Export_to_Pdf(selected_Questionaire);
+            wpdf.Visibility = Visibility.Visible;
         }
     }
 }

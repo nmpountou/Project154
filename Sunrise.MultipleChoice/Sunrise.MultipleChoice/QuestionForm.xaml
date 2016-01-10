@@ -29,6 +29,13 @@
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
+                    <MenuItem Header="_Export" >
+                        <MenuItem Header="Export To PDF" Name="export" Click="export_Click" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/cut.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
                     <MenuItem Header="_Window" />
                     <MenuItem Header="_Help" />
                 </Menu>
@@ -101,7 +108,7 @@
                             </ListView.View>
                         </ListView>
 
-                        <ToolBar Background="#FFB2AEBD" Height="30px"  Width="700px" Margin="0,0,50,0">
+                        <ToolBar Background="LightSkyBlue" Height="30px"  Width="700px" Margin="0,0,50,0" BorderBrush="White" BorderThickness="1">
                             <Button  Name="btSave_Question"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Question_Click">
                                 <Image Source="images\save1.png" />
                             </Button>
@@ -177,8 +184,8 @@
                             </ListView.View>
                         </ListView>
 
-                        <ToolBar Background="#FFB2AEBD" Height="30px"  Width="700px" Margin="0,0,0,0">
-                            <Button  Name="btSave_Answer"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Answer_Click">
+                        <ToolBar Background="LightSkyBlue" Height="30px"  Width="700px" Margin="0,0,0,0"  BorderBrush="White" BorderThickness="1">
+                            <Button  Name="btSave_Answer"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Answer_Click" >
                                 <Image Source="images\save1.png" />
                             </Button>
                             <Button  Name="btEdit_Answer" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Answer_Click">

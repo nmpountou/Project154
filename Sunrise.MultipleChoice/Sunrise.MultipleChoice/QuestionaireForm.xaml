@@ -25,15 +25,22 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="_Export" >
+                    <MenuItem Header="Export To PDF" Name="export" Click="export_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="Images/cut.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
                 <MenuItem Header="_Window" />
                 <MenuItem Header="_Help" />
             </Menu>
         </StackPanel>
 
 
-        <GroupBox Header="Questionaire" Padding="15" Width="800" Foreground="White">
+        <GroupBox Header="Questionaire" Padding="15" Width="830" Foreground="White">
             <StackPanel Orientation="Vertical">
-                <ToolBar Background="#FFB2AEBD" Height="30px" HorizontalAlignment="Left"  Width="787" Margin="0,0,0,10">
+                <ToolBar  BorderBrush="White" BorderThickness="1" Background="LightSkyBlue" Height="30px" HorizontalAlignment="Left"  Width="787" Margin="0,0,0,10">
                     <Button  Name="btSave_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Questionaire_Click">
                         <Image Source="images\save1.png" />
                     </Button>

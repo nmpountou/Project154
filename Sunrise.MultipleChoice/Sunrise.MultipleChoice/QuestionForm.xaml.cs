@@ -946,5 +946,17 @@ namespace Sunrise.MultipleChoice
            // NavigationService nav = NavigationService.GetNavigationService(this);
            // nav.Navigate(new Uri("Export_to_Pdf.xaml?id="+selected_Questionaire.Id, UriKind.RelativeOrAbsolute));
         }
+
+        private void export_Click(object sender, RoutedEventArgs e)
+        {
+            if (selected_Questionaire == null)
+            {
+                MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+
+            Export_to_Pdf wpdf = new Export_to_Pdf(selected_Questionaire);
+            wpdf.Visibility = Visibility.Visible;
+        }
     }
 }
