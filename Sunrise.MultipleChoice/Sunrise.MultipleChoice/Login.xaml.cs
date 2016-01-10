@@ -83,7 +83,7 @@ namespace Sunrise.MultipleChoice
                     //Close the form.
 
                     //take the username and the password from reg to make connection               
-                    this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
+                    //this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
 
 
                     CurrentUserInfo.USERNAME = Login_username_textBox.Text;
