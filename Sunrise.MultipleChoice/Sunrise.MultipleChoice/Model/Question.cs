@@ -10,7 +10,7 @@ namespace Quastionnaire.Model
     public class Question
     {
 
-        private int _id;
+        public int _id;
         private string _question_descr;
         private int _level;
         private DateTime _date;

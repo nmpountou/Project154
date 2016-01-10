@@ -8,105 +8,112 @@
       d:DesignHeight="1000" d:DesignWidth="1500"
       Title="QuestionaireForm">
 
-    <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="DeepSkyBlue">
+    <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="LightSkyBlue">
 
-        <ToolBar Background="#FFB2AEBD" Height="30px" HorizontalAlignment="Left"  Width="787" Margin="0,0,0,10">
-            <Button  Name="btSave_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Questionaire_Click">
-                <Image Source="images\save1.png" />
-            </Button>
-            <Button  Name="btEdit_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Questionaire_Click">
-                <Image Source="images\edit2.png" />
-            </Button>
-            <Button Name="btDelete_Questionaire"  ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Questionaire_Click">
-                <Image Source="images\delete.png" />
-            </Button>
-            <Button  Name="btClear_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Questionaire_Click">
-                <Image Source="images\clear.png" />
-            </Button>
-        </ToolBar>
-
-
-
-        <Grid HorizontalAlignment="Left"  Margin="0,0,0,0"  Width="789">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Name="tbOwner_Questionaire" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
-            <Label Name="lblOwner_Questionaire_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <Label Grid.Row="0" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox Name="tbDate_Questionaire" Grid.Row="0" Grid.Column="4"   Margin="5" Padding="5" IsEnabled="False"/>
-            <Label Name="lblDate_Questionaire_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <Label Grid.Row="1" Grid.Column="0" Content="Questionaire:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,19,0,15"/>
-            <TextBox Name="tbQuestionaire_Description" Grid.Row="1" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
-            <Label Name="lblQuestionaire_Description_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-        </Grid>
-
-        <Separator Padding="5" Margin="5" Background="White"/>
-
-        <Grid HorizontalAlignment="Left" Margin="0,20,0,0"  Width="789">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <GroupBox Header="Questionaire" Padding="15" Width="700">
+            <StackPanel Orientation="Vertical">
+                <ToolBar Background="#FFB2AEBD" Height="30px" HorizontalAlignment="Left"  Width="787" Margin="0,0,0,10">
+                    <Button  Name="btSave_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Questionaire_Click">
+                        <Image Source="images\save1.png" />
+                    </Button>
+                    <Button  Name="btEdit_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btEdit_Questionaire_Click">
+                        <Image Source="images\edit2.png" />
+                    </Button>
+                    <Button Name="btDelete_Questionaire"  ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btDelete_Questionaire_Click">
+                        <Image Source="images\delete.png" />
+                    </Button>
+                    <Button  Name="btClear_Questionaire" ToolTip="Copy selection to Windows Clipboard." Margin="0,0,5,0" Click="btClear_Questionaire_Click">
+                        <Image Source="images\clear.png" />
+                    </Button>
+                </ToolBar>
 
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Username Type:" Foreground="White"/>
-            <ComboBox x:Name="cbUsernameType_Questionairesearch" Grid.Column="1" Grid.Row="0"   SelectionChanged="cbUsernameType_search_SelectionChanged"/>
-            <Label Name="cbUsernameType_Questionairesearch_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White"/>
 
-            <Label Grid.Row="0" Grid.Column="3" Content="Username:" Foreground="White"/>
-            <TextBox Name="tbUsername_Questionairesearch" Grid.Column="4" Grid.Row="0"  />
-            <Label Name="lblUsername_Questionairesearch_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White"/>
+                <Grid HorizontalAlignment="Left"  Margin="0,0,0,0"  Width="789">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Date Type:" Foreground="White" />
-            <ComboBox x:Name="cbDateType_Questionairesearch" Grid.Column="1" Grid.Row="1"  SelectionChanged="cbDateType_search_SelectionChanged"/>
-            <Label Name="cbDateType_Questionairesearch_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White"/>
-            <DatePicker Name="dpDate_Questionairesearch" Grid.Column="4" Grid.Row="1"   />
-            <Label Name="lblDate_Questionairesearch_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White"/>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Owner:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="tbOwner_Questionaire" Grid.Row="0" Grid.Column="1"  Margin="5" Padding="5" IsEnabled="False"/>
+                    <Label Name="lblOwner_Questionaire_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <Button Name="btnSearch" Grid.Row="1"   Grid.Column="6" Content="Search"  Width="70px" Click="btnSearch_Click"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content="Date:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Name="tbDate_Questionaire" Grid.Row="0" Grid.Column="4"   Margin="5" Padding="5" IsEnabled="False"/>
+                    <Label Name="lblDate_Questionaire_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        </Grid>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Questionaire:" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,19,0,15"/>
+                    <TextBox Name="tbQuestionaire_Description" Grid.Row="1" Grid.Column="1"   Grid.ColumnSpan="4" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Padding="15" />
+                    <Label Name="lblQuestionaire_Description_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <ListView x:Name="lvQuestionaire" Height="200" HorizontalAlignment="Left" Margin="0,20,0,0" Width="791" SelectionMode="Single" SelectionChanged="lvQuestionaire_SelectionChanged"  >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Questionaire_Description"  DisplayMemberBinding="{Binding Questionaire_descr}" />
-                    <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
-                    <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Questions_Count"  DisplayMemberBinding="{Binding QuestionList.Count}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                </Grid>
+
+                <Separator Padding="5" Margin="5" Background="White"/>
+
+                <Grid HorizontalAlignment="Left" Margin="0,20,0,0"  Width="789">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Username Type:" Foreground="White"/>
+                    <ComboBox x:Name="cbUsernameType_Questionairesearch" Grid.Column="1" Grid.Row="0"   SelectionChanged="cbUsernameType_search_SelectionChanged"/>
+                    <Label Name="cbUsernameType_Questionairesearch_msg" Grid.Row="0" Grid.Column="2" Content="Error" Foreground="White"/>
+
+                    <Label Grid.Row="0" Grid.Column="3" Content="Username:" Foreground="White"/>
+                    <TextBox Name="tbUsername_Questionairesearch" Grid.Column="4" Grid.Row="0"  />
+                    <Label Name="lblUsername_Questionairesearch_msg" Grid.Row="0" Grid.Column="5" Content="Error" Foreground="White"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Date Type:" Foreground="White" />
+                    <ComboBox x:Name="cbDateType_Questionairesearch" Grid.Column="1" Grid.Row="1"  SelectionChanged="cbDateType_search_SelectionChanged"/>
+                    <Label Name="cbDateType_Questionairesearch_msg" Grid.Row="1" Grid.Column="2" Content="Error" Foreground="White"/>
+
+                    <Label Grid.Row="1" Grid.Column="3" Content="Date:" Foreground="White"/>
+                    <DatePicker Name="dpDate_Questionairesearch" Grid.Column="4" Grid.Row="1"   />
+                    <Label Name="lblDate_Questionairesearch_msg" Grid.Row="1" Grid.Column="5" Content="Error" Foreground="White"/>
+
+                    <Button Name="btnSearch" Grid.Row="1"   Grid.Column="6" Content="Search"  Width="70px" Click="btnSearch_Click"/>
+
+                </Grid>
+
+                <ListView x:Name="lvQuestionaire" Height="200" HorizontalAlignment="Left" Margin="0,20,0,0" Width="791" SelectionMode="Single" SelectionChanged="lvQuestionaire_SelectionChanged"  >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Id}" />
+                            <GridViewColumn Header="Questionaire_Description"  DisplayMemberBinding="{Binding Questionaire_descr}" />
+                            <GridViewColumn Header="Username"  DisplayMemberBinding="{Binding Account.Username}" />
+                            <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Questions_Count"  DisplayMemberBinding="{Binding QuestionList.Count}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+
+            </StackPanel>
+        </GroupBox>
 
 
 
