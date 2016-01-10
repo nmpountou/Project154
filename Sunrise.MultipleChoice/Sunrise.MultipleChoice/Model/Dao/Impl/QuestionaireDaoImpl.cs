@@ -205,6 +205,124 @@ namespace Quastionnaire.Model.Dao.Impl
             return ListQuestionaire;
 
         }
+        public List<Questionaire> findQuestionaire(int questionaire_idt)
+        {
+
+            List<Questionaire> ListQuestionaire = new List<Questionaire>();
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+             CurrentUserInfo.PASSWORD,
+             CurrentUserInfo.HOSTNAME,
+             CurrentUserInfo.PORT,
+             CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            string query = "";
+
+            query = "select QR.id,QR.questionaire,QR.create_date,QR.account_id,A.username from questionaire QR"
+                       + " inner join account A on A.id = QR.account_id where QR.id=" + questionaire_idt;
+            
+
+            int questionaire_id;
+            string questionaire_desc;
+            DateTime questionaire_date;
+            int questionaire_account_id;
+            string questionaire_account_username;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader != null)
+                        while (reader.Read())
+                        {
+                            questionaire_id = reader.GetInt32(0);
+                            questionaire_desc = reader.GetString(1);
+                            questionaire_date = reader.GetDateTime(2).Date;
+                            questionaire_account_id = reader.GetInt32(3);
+                            questionaire_account_username = reader.GetString(4);
+
+                            ListQuestionaire.Add(new Questionaire() { Id = questionaire_id, Questionaire_descr = questionaire_desc, Date = questionaire_date, Account = new Account() { Id = questionaire_account_id, Username = questionaire_account_username } });
+                        }
+                }
+            }
+
+            //Question Fields
+            int question_id;
+            string question_descr;
+            int level_question;
+            DateTime date_question;
+
+            //Department - Subject
+            string department;
+            string subject;
+            int department_id;
+            int subject_id;
+
+            //Account Fields
+            int account_id;
+            string username;
+
+            foreach (Questionaire questionaire in ListQuestionaire)
+            {
+
+                questionaire.QuestionList = new List<Question>();
+
+                query = " select Q.id as question_id,Q.question,Q.create_date,A.id as user_id,Q.level_range,A.username,S.subject,D.department,S.id,D.id from question Q " +
+                         " inner join account A on A.id = Q.account_id " +
+                         " inner join questionaire_question QQ on QQ.questionaire_id=" + questionaire.Id + " and QQ.question_id= Q.id " +
+                         " inner join subject_department SD on Q.subject_department_id = SD.id " +
+                         " inner join subject S on S.id=SD.subject_id " +
+                         " inner join department D on D.id = SD.department_id ";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+                {
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader != null)
+                        {
+                            while (reader.Read())
+                            {
+                                question_id = reader.GetInt32(0);
+                                question_descr = reader.GetString(1);
+                                date_question = reader.GetDateTime(2).Date;
+                                account_id = reader.GetInt32(3);
+                                level_question = reader.GetInt32(4);
+                                username = reader.GetString(5);
+                                subject = reader.GetString(6);
+                                department = reader.GetString(7);
+                                subject_id = reader.GetInt32(8);
+                                department_id = reader.GetInt32(9);
+
+                                questionaire.QuestionList.Add(new Question() { Id = question_id, Question_descr = question_descr, Account = new Account() { Id = account_id, Username = username }, Subject = new Subject() { Id = subject_id, Subject_descr = subject }, Department = new Department() { Id = department_id, Department_descr = department }, Level = level_question, Date = date_question });
+                            }
+                        }
+                    } // reader closed and disposed up here
+                }
+            }
+
+
+            foreach (Questionaire questionaire in ListQuestionaire)
+                Debug.Write("++++++" + questionaire.QuestionList.Count);
+
+
+
+            QuestionDaoImpl question = new QuestionDaoImpl();
+
+            foreach (Questionaire questionaire in ListQuestionaire)
+                question.setAnsersForIndividualQuestion(questionaire.QuestionList, mysql);
+
+
+            mysql.closeMysqlConnection();
+
+            return ListQuestionaire;
+
+        }
+
 
         public void saveQuestionaire(Questionaire questionaire)
         {

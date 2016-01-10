@@ -15,7 +15,27 @@
         <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="LightSkyBlue">
             <!--Background="#FF343864"-->
 
-            <GroupBox Header="Search Question" >
+                <StackPanel Orientation="Horizontal" Height="30px" HorizontalAlignment="Stretch" Margin="0,0,0,20">
+                <Menu IsMainMenu="True" Width="1532">
+                    <MenuItem Header="_Navigation">
+                        <MenuItem Header="Main Menu Form" Name="mainMenuBt" Click="mainMenuBt_Click">
+                            <MenuItem.Icon>
+                                <Image Source="Images/cut.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Questionaire Form"  Name="questionaireBt" Click="questionaireBt_Click">
+                            <MenuItem.Icon>
+                                <Image Source="Images/copy.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="_Window" />
+                    <MenuItem Header="_Help" />
+                </Menu>
+            </StackPanel>
+
+
+            <GroupBox Header="Search Question"  Foreground="White" >
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -62,7 +82,7 @@
             <StackPanel  Orientation="Horizontal" Margin="5" >
 
 
-                <GroupBox Header="Question Table" Padding="10">
+                <GroupBox Header="Question Table" Padding="10" Foreground="White">
                     <StackPanel  Orientation="Vertical">
                         <ListView x:Name="lvQuestion" Height="200" HorizontalAlignment="Stretch" Margin="0,0,50,0" Width="700px" SelectionMode="Single"   SelectionChanged="lvQuestion_SelectionChanged" >
                             <ListView.View>
@@ -144,7 +164,7 @@
                 </GroupBox>
 
 
-                <GroupBox Header="Answer Table" Padding="10">
+                <GroupBox Header="Answer Table" Padding="10" Foreground="White">
                     <StackPanel  Orientation="Vertical">
                         <ListView x:Name="lvAnswer" HorizontalAlignment="Stretch" Height="200" Width="700px" Margin="0,0,0,0" SelectionChanged="lvAnswer_SelectionChanged">
                             <ListView.View>
@@ -234,7 +254,7 @@
 
 
             <StackPanel  Orientation="Horizontal" >
-                <GroupBox Header="Questionaire Table">
+                <GroupBox Header="Questionaire Table" Foreground="White">
                     <StackPanel Orientation="Vertical">
                         <Grid  HorizontalAlignment="Left"  Width="772" Margin="0,15,0,5">
                             <Grid.RowDefinitions>
@@ -298,10 +318,12 @@
                     </ListView.View>
                 </ListView>
 
-                <StackPanel Orientation="Vertical" Margin="0,50,0,0" >
+                <StackPanel Orientation="Vertical" Margin="0,30,0,0" >
                     <Button Width="80" Height="30" Content="ADD" Name="btnAddQuestionToQuestionaire" Click="btnAddQuestionToQuestionaire_Click"/>
 
                     <Button Width="80" Height="30" Content="REMOVE" Name="btnRemoveQuestionFromQuestionaire" Margin="0,20,0,0" Click="btnRemoveQuestionFromQuestionaire_Click"/>
+
+                    <Button Width="80" Height="30" Content="EXPORT PDF" Name="btnExportToPdf" Margin="0,20,0,0" Click="btnExportToPdf_Click"/>
 
                 </StackPanel>
 
@@ -323,7 +345,8 @@
                 </ListView>
 
             </StackPanel>
-
+           
+            
 
         </StackPanel>
     </ScrollViewer>

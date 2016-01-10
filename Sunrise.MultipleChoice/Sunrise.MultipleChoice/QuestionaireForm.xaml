@@ -10,7 +10,28 @@
 
     <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Orientation="Vertical" Background="LightSkyBlue">
 
-        <GroupBox Header="Questionaire" Padding="15" Width="700">
+        
+        <StackPanel Orientation="Horizontal" Height="30px" HorizontalAlignment="Stretch" Margin="0,0,0,20">
+            <Menu IsMainMenu="True" Width="1600">
+                <MenuItem Header="_Navigation" >
+                    <MenuItem Header="Main Menu Form" Name="mainMenuBt" Click="mainMenuBt_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="Images/cut.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Question Form" Name="questionBt" Click="questionBt_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Images/cut.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Window" />
+                <MenuItem Header="_Help" />
+            </Menu>
+        </StackPanel>
+
+
+        <GroupBox Header="Questionaire" Padding="15" Width="800" Foreground="White">
             <StackPanel Orientation="Vertical">
                 <ToolBar Background="#FFB2AEBD" Height="30px" HorizontalAlignment="Left"  Width="787" Margin="0,0,0,10">
                     <Button  Name="btSave_Questionaire"  ToolTip="Cut selection to Windows Clipboard." Margin="0,0,5,0" Click="btSave_Questionaire_Click">

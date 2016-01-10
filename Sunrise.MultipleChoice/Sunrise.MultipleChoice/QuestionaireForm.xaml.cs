@@ -309,6 +309,21 @@ namespace Sunrise.MultipleChoice
 
 
         }
-       
+
+        private void mainMenuBt_Click(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
+            
+
+        }
+        private void questionBt_Click(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("QuestionForm.xaml", UriKind.RelativeOrAbsolute));
+            
+        }
     }
 }

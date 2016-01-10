@@ -76,9 +76,9 @@ namespace Sunrise.MultipleChoice
             //}
             questionaire = new Quastionnaire.Model.Questionaire() { Questionaire_descr = "sdfsakdfjdflshsadflkjashflasdfkh", QuestionList = question_list };
         }
-        public Export_to_Pdf(Quastionnaire.Model.Questionaire question): this()
+        public Export_to_Pdf(Quastionnaire.Model.Questionaire questionaire): this()
         {
-            this.questionaire = question;            
+            this.questionaire = questionaire;            
         }
      
 

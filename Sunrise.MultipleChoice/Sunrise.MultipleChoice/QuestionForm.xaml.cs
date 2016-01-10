@@ -915,11 +915,36 @@ namespace Sunrise.MultipleChoice
             dpDate_Questionairesearch.IsEnabled = false;
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+      
+        //navigation
+        private void mainMenuBt_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
+
         }
+        private void questionaireBt_Click(object sender, RoutedEventArgs e)
+        {
 
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("QuestionaireForm.xaml", UriKind.RelativeOrAbsolute));
 
+        }
+        private void btnExportToPdf_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (selected_Questionaire == null)
+            {
+                MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+
+            Export_to_Pdf wpdf = new Export_to_Pdf(selected_Questionaire);
+            wpdf.Visibility = Visibility.Visible;
+
+           // NavigationService nav = NavigationService.GetNavigationService(this);
+           // nav.Navigate(new Uri("Export_to_Pdf.xaml?id="+selected_Questionaire.Id, UriKind.RelativeOrAbsolute));
+        }
     }
 }
