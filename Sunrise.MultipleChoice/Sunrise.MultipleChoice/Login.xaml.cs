@@ -28,7 +28,6 @@ namespace Sunrise.MultipleChoice
     /// </summary>
     public partial class Login : Window
     {
-        private MysqlC mysqlc;
         Register reg;
         public Login()
         {
@@ -66,39 +65,49 @@ namespace Sunrise.MultipleChoice
                 Login_image_error_password.Visibility = Visibility.Hidden;
 
                 //BY DEFALYT CONNECTION!!!
-                mysqlc = new MysqlC(Login_username_textBox.Text, Login_passwordBox.Password);
 
-                //Connection as root from local machine
-                //mysqlc = new MysqlC("root", "123456", "localhost", "questionnairex");
-                mysqlc.initializeConnection();
-
-                if (mysqlc.Return_Connection() != null)
+                MysqlConnector connector = new MysqlConnector(Login_username_textBox.Text, Login_passwordBox.Password,CurrentUserInfo.HOSTNAME,CurrentUserInfo.DATABASE);
+                
+                connector.initializeConnection();
+                try
                 {
+                    connector.openMysqlConnection();
                     //Stop the graphics.               
                     Login_Process.Visibility = Visibility.Hidden;
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show("Authentication Failed");
+                    return;
+                }
+                //Retrive the connection string
+                //WORKS
+                //String connection = (new Model.RetriveStringConnection()).get_sc();
+                //Close the form.
 
-                    //Retrive the connection string
-                    //WORKS
-                    //String connection = (new Model.RetriveStringConnection()).get_sc();
-                    //Close the form.
+                //take the username and the password from reg to make connection               
+                //this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
 
-                    //take the username and the password from reg to make connection               
-                    //this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
-
-
-                    CurrentUserInfo.USERNAME = Login_username_textBox.Text;
+               
+                CurrentUserInfo.USERNAME = Login_username_textBox.Text;
                     CurrentUserInfo.PASSWORD = Login_passwordBox.Password.ToString();
                     CurrentUserInfo.ID = getUserID();
                     CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
-                    
-                    NavigationService nav = NavigationService.GetNavigationService(this);
-                    nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
 
 
-                    //CALL the menu from Costas. pass the password and the username
-                    //this.Login_exit_button_Click(sender, e);
+                MainMenu wpdf = new MainMenu();
+                NavigationService navService = NavigationService.GetNavigationService(this);
+                navService.Navigate(new System.Uri("Page2.xaml", UriKind.RelativeOrAbsolute));
+                navService.Navigate(wpdf);
 
-                }
+
+
+                //CALL the menu from Costas. pass the password and the username
+                //this.Login_exit_button_Click(sender, e);
+
+                MessageBox.Show("Authentication Succed");
+              
+               
             }
         }
 
