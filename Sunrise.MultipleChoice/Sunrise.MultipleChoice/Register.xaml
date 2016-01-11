@@ -7,8 +7,9 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:resources="clr-namespace:Sunrise.MultipleChoice.Properties"
       mc:Ignorable="d"
-      Title="Register" Height="785" Width="815"
-      Background="LightSkyBlue">
+      Title="Register" Height="800" Width="800"
+      Background="LightSkyBlue"
+      ShowsNavigationUI="False">
     <!--Height="394" Width="432"-->
 
     <Grid Margin="6,0,10,144">
@@ -16,6 +17,8 @@
             <RowDefinition Height="515*"/>
             <RowDefinition Height="231*"/>
         </Grid.RowDefinitions>
+        
+        
         <Image gif:ImageBehavior.RepeatBehavior="2x"
            gif:ImageBehavior.AnimatedSource="images\Registrtion_Images\registration_form.gif" Source="images/Registrtion_Images/registration_form.gif" Stretch="Fill" Height="50" VerticalAlignment="Top" Margin="194,0,164,0">
             <!-- Margin="29,16,33,0"-->
@@ -23,6 +26,8 @@
                 <ImageBrush ImageSource="images/Registrtion_Images/registration_form.gif" Stretch="UniformToFill"/>
             </Image.OpacityMask>
         </Image>
+        
+        
         <Canvas Background="LightSkyBlue" Margin="5,61,0,0" Grid.RowSpan="2" Height="502" VerticalAlignment="Top">
             <Image x:Name="Registration_image" Height="176" Canvas.Left="432" Canvas.Top="38" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
             <Label x:Name="Registration_label_user_name" Content="{x:Static resources:Resources.User_name}" Canvas.Left="10" Canvas.Top="297" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="150" />
@@ -56,5 +61,9 @@
             <Image x:Name="Registration_image_error_re_password" Height="20" Canvas.Left="324" Canvas.Top="374" Width="20" RenderTransformOrigin="0.493,1.364" HorizontalAlignment="Center" Stretch="Fill" Source="images/Login_Images/Login_error_image.ico" Visibility="Hidden"/>
             <Label x:Name="Registration_error_label" Content="" Canvas.Left="429" Canvas.Top="216" RenderTransformOrigin="-0.053,-0.038" FontFamily="Arial" FontSize="12" Foreground="Red" Height="222" Width="336"/>
         </Canvas>
+        
+        
+        
+        
     </Grid>
 </Page>

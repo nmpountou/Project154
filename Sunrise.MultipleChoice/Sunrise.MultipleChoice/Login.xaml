@@ -7,12 +7,15 @@
       xmlns:resources="clr-namespace:Sunrise.MultipleChoice.Properties"
       Background="LightSkyBlue"
     mc:Ignorable="d"
-      Title="{x:Static resources:Resources.Title}" Width="880" Height="600">
+      Title="{x:Static resources:Resources.Title}"
+      Width="800" 
+      Height="800"
+      ShowsNavigationUI="False">
     <local:LocalizationManager.Localization>
         <local:LocalizationInfo Property="{x:Static Window.TitleProperty}" ResourceKey="Title"/>
     </local:LocalizationManager.Localization>
 
-    <Grid Margin="0,0,49,54" RenderTransformOrigin="0.49,0.606" HorizontalAlignment="Center" Width="792">
+    <Grid Margin="0,0,49,54" RenderTransformOrigin="0.49,0.606" HorizontalAlignment="Stretch"  Background="LightSkyBlue">
 
         <Border Margin="58,24,-20,-25" Height="516" VerticalAlignment="Top" HorizontalAlignment="Left" Width="754">
             <Grid Margin="1,1,-1,5">
