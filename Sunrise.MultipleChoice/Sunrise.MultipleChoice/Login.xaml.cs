@@ -18,6 +18,8 @@ using System.Globalization;
 using System.Threading;
 using MySql.Data.MySqlClient;
 using Sunrise.MultipleChoice.Localization;
+using Quastionnaire.Model;
+using Sunrise.MultipleChoice.Data;
 
 namespace Sunrise.MultipleChoice
 {
@@ -39,15 +41,15 @@ namespace Sunrise.MultipleChoice
         private void Login_exit_button_Click(object sender, RoutedEventArgs e)
         {
             var oldWindow = Application.Current.MainWindow;
-            
-           Export_to_Pdf wpdf = new Export_to_Pdf();
-           wpdf.Visibility = Visibility.Visible;
-           oldWindow.Close();
+
+            Export_to_Pdf wpdf = new Export_to_Pdf();
+            wpdf.Visibility = Visibility.Visible;
+            oldWindow.Close();
         }
 
         private void Login_button_Click(object sender, RoutedEventArgs e)
         {
-            if(Login_username_textBox.Text.Equals(""))
+            if (Login_username_textBox.Text.Equals(""))
             {
                 Login_image_error_user_name.Visibility = Visibility.Visible;
             }
@@ -64,7 +66,7 @@ namespace Sunrise.MultipleChoice
                 Login_image_error_password.Visibility = Visibility.Hidden;
 
                 //BY DEFALYT CONNECTION!!!
-                mysqlc = new MysqlC( Login_username_textBox.Text, Login_passwordBox.Password);
+                mysqlc = new MysqlC(Login_username_textBox.Text, Login_passwordBox.Password);
 
                 //Connection as root from local machine
                 //mysqlc = new MysqlC("root", "123456", "localhost", "questionnairex");
@@ -82,12 +84,63 @@ namespace Sunrise.MultipleChoice
 
                     //take the username and the password from reg to make connection               
                     this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
+
+
+                    CurrentUserInfo.USERNAME = Login_username_textBox.Text;
+                    CurrentUserInfo.PASSWORD = Login_passwordBox.Password.ToString();
+                    CurrentUserInfo.ID = getUserID();
+                    CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
+                    
+                    NavigationService nav = NavigationService.GetNavigationService(this);
+                    nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
+
+
                     //CALL the menu from Costas. pass the password and the username
                     //this.Login_exit_button_Click(sender, e);
-                    
+
                 }
             }
         }
+
+        private int getUserID()
+        {
+
+            MysqlConnector mysql = new MysqlConnector(CurrentUserInfo.USERNAME,
+                      CurrentUserInfo.PASSWORD,
+                      CurrentUserInfo.HOSTNAME,
+                      CurrentUserInfo.PORT,
+                      CurrentUserInfo.DATABASE);
+
+            mysql.initializeConnection();
+            mysql.openMysqlConnection();
+
+            string query = "select id from account where username = '" + CurrentUserInfo.USERNAME + "'";
+            int userID = -1;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, mysql.MysqlConnection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+
+                            userID = reader.GetInt32(0);
+                        }
+                    }
+
+                }
+            }
+
+
+            mysql.closeMysqlConnection();
+
+            return userID;
+
+        } 
+
+
 
         private void Login_button_new_Account_Click(object sender, RoutedEventArgs e)
         {
@@ -100,7 +153,7 @@ namespace Sunrise.MultipleChoice
         private void Language_button_Click(object sender, RoutedEventArgs e)
         {
             CultureInfo ci;
-            if (Login_Language_Button.Content.ToString() =="EN" )
+            if (Login_Language_Button.Content.ToString() == "EN")
             {
                 Login_Language_Button.Content = "GR";
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("el");
