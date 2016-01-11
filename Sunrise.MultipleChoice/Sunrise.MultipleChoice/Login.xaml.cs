@@ -95,13 +95,9 @@ namespace Sunrise.MultipleChoice
                     CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
 
 
-                MainMenu wpdf = new MainMenu();
-                NavigationService navService = NavigationService.GetNavigationService(this);
-                navService.Navigate(new System.Uri("Page2.xaml", UriKind.RelativeOrAbsolute));
-                navService.Navigate(wpdf);
-
-
-
+                MainMenu mainMenu = new MainMenu();
+                this.Content = mainMenu;
+                
                 //CALL the menu from Costas. pass the password and the username
                 //this.Login_exit_button_Click(sender, e);
 

@@ -27,6 +27,7 @@ namespace Sunrise.MultipleChoice
 
         private void questionaireBt_Click(object sender, RoutedEventArgs e)
         {
+            
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("QuestionaireForm.xaml", UriKind.RelativeOrAbsolute));
         }
