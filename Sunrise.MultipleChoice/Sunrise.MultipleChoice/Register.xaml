@@ -7,12 +7,14 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:resources="clr-namespace:Sunrise.MultipleChoice.Properties"
       mc:Ignorable="d"
-      Title="Register" Height="800" Width="800"
+      Title="Register" 
+       d:DesignHeight="800"
+      d:DesignWidth="800"
       Background="LightSkyBlue"
       ShowsNavigationUI="False">
     <!--Height="394" Width="432"-->
 
-    <Grid Margin="6,0,10,144">
+    <Grid Margin="6,0,10,144" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="515*"/>
             <RowDefinition Height="231*"/>
@@ -26,9 +28,9 @@
                 <ImageBrush ImageSource="images/Registrtion_Images/registration_form.gif" Stretch="UniformToFill"/>
             </Image.OpacityMask>
         </Image>
-        
-        
-        <Canvas Background="LightSkyBlue" Margin="5,61,0,0" Grid.RowSpan="2" Height="502" VerticalAlignment="Top">
+
+
+        <Canvas Background="LightSkyBlue" Margin="5,61,0,0" Grid.RowSpan="2"  VerticalAlignment="Stretch" >
             <Image x:Name="Registration_image" Height="176" Canvas.Left="432" Canvas.Top="38" Width="254" Source="images/Login_Images/Login_questionnaire.jpg"/>
             <Label x:Name="Registration_label_user_name" Content="{x:Static resources:Resources.User_name}" Canvas.Left="10" Canvas.Top="297" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="150" />
             <Label x:Name="Registration_label_password" Content="{x:Static resources:Resources.Registation_form_password}" Canvas.Left="10" Canvas.Top="333" Background="White" FontFamily="Arial Narrow" FontSize="14" BorderBrush="White" FontStyle="Oblique" Foreground="DeepSkyBlue" Height="25" Width="150" />
