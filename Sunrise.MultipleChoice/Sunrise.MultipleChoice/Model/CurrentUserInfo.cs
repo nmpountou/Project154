@@ -22,8 +22,8 @@ namespace Quastionnaire.Model
         public static Account CURENT_ACCOUNT = new Account() {Id = ID, Username = USERNAME, Password = PASSWORD };
 
         //Temp Username - Password only For Register
-        public static string TEMP_REGISTER_USERNAME = "root";
-        public static string TEMP_REGISTER_PASSWORD = "123456";
+        public static string TEMP_REGISTER_USERNAME = "test";
+        public static string TEMP_REGISTER_PASSWORD = "91420";
 
     }
 }
