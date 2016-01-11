@@ -7,7 +7,8 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:resources="clr-namespace:Sunrise.MultipleChoice.Properties"
       mc:Ignorable="d"
-      Title="Register" Height="785" Width="815">
+      Title="Register" Height="785" Width="815"
+      Background="LightSkyBlue">
     <!--Height="394" Width="432"-->
 
     <Grid Margin="6,0,10,144">
