@@ -94,9 +94,7 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_error_label.IsEnabled = true;
                 Registration_error_label.Content = msg;
-
-                NavigationService nav = NavigationService.GetNavigationService(this);
-                nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
+                
 
             }
             else
@@ -107,6 +105,9 @@ namespace Sunrise.MultipleChoice
                 id_city = Registration_city_country_connection_id(id_country, Registration_comboBox_city.SelectedItem.ToString());
                 id_address = Registration_get_first_avaliabe_adress_id();
                 Registration_transaction_write_data_to_database(id_user,id_country,id_city,id_address,con);
+
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
             }
         }
         private void fill_combobox_country()
