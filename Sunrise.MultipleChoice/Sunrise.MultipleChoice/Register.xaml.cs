@@ -25,7 +25,7 @@ namespace Sunrise.MultipleChoice
     /// <summary>
     /// Interaction login for Register.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class Register : Page
     {
         //Logger
         private ILog logger = LogManager.GetLogger(nameof(Register));
@@ -94,6 +94,10 @@ namespace Sunrise.MultipleChoice
             {
                 Registration_error_label.IsEnabled = true;
                 Registration_error_label.Content = msg;
+
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
+
             }
             else
             {

@@ -26,7 +26,7 @@ namespace Sunrise.MultipleChoice
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Page
     {
         Register reg;
         public Login()
@@ -94,10 +94,9 @@ namespace Sunrise.MultipleChoice
                     CurrentUserInfo.ID = getUserID();
                     CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
 
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
 
-                MainMenu mainMenu = new MainMenu();
-                this.Content = mainMenu;
-                
                 //CALL the menu from Costas. pass the password and the username
                 //this.Login_exit_button_Click(sender, e);
 
@@ -149,8 +148,11 @@ namespace Sunrise.MultipleChoice
 
         private void Login_button_new_Account_Click(object sender, RoutedEventArgs e)
         {
-            reg = new Register();
-            reg.Show();
+
+
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("Register.xaml", UriKind.RelativeOrAbsolute));
+
             //System.Uri resourceLocater = new System.Uri("Register.xaml",System.UriKind.Relative);
             //System.Windows.Application.LoadComponent(this, resourceLocater);
         }
