@@ -437,7 +437,7 @@ namespace Sunrise.MultipleChoice
 
             Debug.WriteLine("******************" + selected_Questionaire.Questionaire_descr + "***********");
             Debug.WriteLine("******************" + selected_Questionaire.QuestionList.Count + "***********");
-
+            Debug.WriteLine("******************" + selected_Questionaire.Account.Username + "***********");
 
             //Load Questions Table
             lvQuestionaire_Question.ItemsSource = selected_Questionaire.QuestionList;
@@ -490,7 +490,7 @@ namespace Sunrise.MultipleChoice
 
             }
 
-            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = num };
+            Question question = new Question() { Subject = subjectList[subjectID], Department = subjectList[subjectID].DepList[departmentID], Question_descr = question_descr, Date = date, Level = num , AnswerList = new List<Answer>() };
             question.Account = CurrentUserInfo.CURENT_ACCOUNT;
 
             IQuestionDao questionDao = new QuestionDaoImpl();
@@ -518,6 +518,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Question == null)
             {
                 MessageBox.Show("Select Question First", "Confirmation");
+                return;
+            }
+            if(selected_Question.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 
@@ -573,6 +578,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Question == null)
             {
                 MessageBox.Show("Select Question First", "Confirmation");
+                return;
+            }
+            if (selected_Question.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 
@@ -712,6 +722,11 @@ namespace Sunrise.MultipleChoice
                 MessageBox.Show("Select Question First", "Confirmation");
                 return;
             }
+            if (selected_Question.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
+                return;
+            }
 
             string answer_descr = tbAnswer_Description.Text;
             string correct = cbCorrect_Answer.Text;
@@ -753,6 +768,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Answer == null)
             {
                 MessageBox.Show("Select Answer First", "Confirmation");
+                return;
+            }
+            if (selected_Answer.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 
@@ -801,6 +821,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Answer == null)
             {
                 MessageBox.Show("Select Answer First", "Confirmation");
+                return;
+            }
+            if (selected_Answer.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 
@@ -881,6 +906,12 @@ namespace Sunrise.MultipleChoice
                 MessageBox.Show("Select Question First", "Confirmation");
                 return;
             }
+            if (selected_Questionaire.Account.Username != CurrentUserInfo.USERNAME)
+            {
+
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
+                return;
+            }
 
             selected_Questionaire.QuestionList.Add(selected_Question);
 
@@ -903,6 +934,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Questionaire_Question == null)
             {
                 MessageBox.Show("Select Questionaire Question First", "Confirmation");
+                return;
+            }
+            if (selected_Questionaire.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 

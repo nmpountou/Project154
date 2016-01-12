@@ -264,6 +264,11 @@ namespace Sunrise.MultipleChoice
                 MessageBox.Show("Select Questionaire First", "Confirmation");
                 return;
             }
+             if (selected_Questionaire.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
+                return;
+            }
 
             string description = tbQuestionaire_Description.Text;
 
@@ -288,6 +293,11 @@ namespace Sunrise.MultipleChoice
             if (selected_Questionaire == null)
             {
                 MessageBox.Show("Select Questionaire First", "Confirmation");
+                return;
+            }
+            if (selected_Questionaire.Account.Username != CurrentUserInfo.USERNAME)
+            {
+                MessageBox.Show("Now Alloed is Not Yours", "Confirmation");
                 return;
             }
 

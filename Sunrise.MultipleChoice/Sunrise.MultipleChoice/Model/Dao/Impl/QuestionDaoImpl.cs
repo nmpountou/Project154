@@ -193,6 +193,9 @@ namespace Quastionnaire.Model.Dao.Impl
 
             string formatForMySql = question.Date.ToString("yyyy-MM-dd");
 
+
+
+
             query = "insert into question(question,level_range,create_date,account_id,subject_department_id) values('" + question.Question_descr + "'," + question.Level + ",'" + formatForMySql + "'," + question.Account.Id + "," + subjectdepartment_id + ")";
             long new_questionId;
 

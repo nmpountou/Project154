@@ -53,8 +53,8 @@
                             </local:LocalizationManager.Localization>
                         </Label>
 
-                        <TextBox x:Name="Login_username_textBox" Height="18" Canvas.Left="414" TextWrapping="Wrap" Text="" Canvas.Top="8" Width="148" BorderBrush="DeepSkyBlue"/>
-                        <PasswordBox x:Name="Login_passwordBox" Canvas.Left="413" Canvas.Top="42" Width="148" BorderBrush="DeepSkyBlue"/>
+                        <TextBox x:Name="Login_username_textBox" Height="25" Canvas.Left="414" TextWrapping="Wrap" Text="" Canvas.Top="8" Width="148" BorderBrush="DeepSkyBlue"/>
+                        <PasswordBox x:Name="Login_passwordBox" Canvas.Left="413" Canvas.Top="42" Width="148" BorderBrush="DeepSkyBlue" Height="25"/>
 
                         <Button x:Name="Login_button_forget_password" Content="{x:Static resources:Resources.Login_Forget_Password}"  Canvas.Left="305" Canvas.Top="110" Width="120" Background="White" FontFamily="Arial Narrow" FontSize="12" BorderBrush="DeepSkyBlue" Foreground="DeepSkyBlue" Height="25">
                             <local:LocalizationManager.Localization>

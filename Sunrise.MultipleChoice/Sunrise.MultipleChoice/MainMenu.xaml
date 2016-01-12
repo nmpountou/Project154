@@ -29,7 +29,7 @@
             </Button>
             <Button Width="200"  Name="helpBt" Click="helpBt_Click" Background="Transparent">
                 <StackPanel>
-                    <Image Source="images/help.png" Height="98" />
+                    <Image Source="images/help.png" Height="98"/>
                     <TextBlock Text="Help" TextAlignment="Center" Foreground="White"  FontSize="15" Margin="0,5,0,0"/>
                 </StackPanel>
             </Button>

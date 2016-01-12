@@ -20,6 +20,7 @@ using MySql.Data.MySqlClient;
 using Sunrise.MultipleChoice.Localization;
 using Quastionnaire.Model;
 using Sunrise.MultipleChoice.Data;
+using System.Diagnostics;
 
 namespace Sunrise.MultipleChoice
 {
@@ -66,8 +67,8 @@ namespace Sunrise.MultipleChoice
 
                 //BY DEFALYT CONNECTION!!!
 
-                MysqlConnector connector = new MysqlConnector(Login_username_textBox.Text, Login_passwordBox.Password,CurrentUserInfo.HOSTNAME,CurrentUserInfo.DATABASE);
-                
+                MysqlConnector connector = new MysqlConnector(Login_username_textBox.Text, Login_passwordBox.Password, CurrentUserInfo.HOSTNAME, CurrentUserInfo.DATABASE);
+
                 connector.initializeConnection();
                 try
                 {
@@ -88,11 +89,12 @@ namespace Sunrise.MultipleChoice
                 //take the username and the password from reg to make connection               
                 //this.Login_username_textBox.Text = reg.Registration_username_textBox.Text;
 
-               
+
                 CurrentUserInfo.USERNAME = Login_username_textBox.Text;
-                    CurrentUserInfo.PASSWORD = Login_passwordBox.Password.ToString();
-                    CurrentUserInfo.ID = getUserID();
-                    CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
+                CurrentUserInfo.PASSWORD = Login_passwordBox.Password.ToString();
+                CurrentUserInfo.ID = getUserID();
+
+                CurrentUserInfo.CURENT_ACCOUNT = new Account() { Id = CurrentUserInfo.ID, Username = CurrentUserInfo.USERNAME, Password = CurrentUserInfo.PASSWORD };
 
                 NavigationService nav = NavigationService.GetNavigationService(this);
                 nav.Navigate(new Uri("MainMenu.xaml", UriKind.RelativeOrAbsolute));
@@ -101,8 +103,7 @@ namespace Sunrise.MultipleChoice
                 //this.Login_exit_button_Click(sender, e);
 
                 MessageBox.Show("Authentication Succed");
-              
-               
+
             }
         }
 
@@ -142,7 +143,7 @@ namespace Sunrise.MultipleChoice
 
             return userID;
 
-        } 
+        }
 
 
 
