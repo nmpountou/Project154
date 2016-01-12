@@ -40,15 +40,15 @@ namespace Sunrise.MultipleChoice
 
         private void helpBt_Click(object sender, RoutedEventArgs e)
         {
-           // NavigationService nav = NavigationService.GetNavigationService(this);
-           // nav.Navigate(new Uri("QuestionForm.xaml", UriKind.RelativeOrAbsolute));
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("HelpForm.xaml", UriKind.RelativeOrAbsolute));
         }
 
    
         private void aboutBt_Click(object sender, RoutedEventArgs e)
         {
-           // NavigationService nav = NavigationService.GetNavigationService(this);
-           // nav.Navigate(new Uri("QuestionForm.xaml", UriKind.RelativeOrAbsolute));
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("AboutForm.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
