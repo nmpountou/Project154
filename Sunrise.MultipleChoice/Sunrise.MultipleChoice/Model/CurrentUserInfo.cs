@@ -15,7 +15,7 @@ namespace Quastionnaire.Model
         public static string DATABASE = "questionaire";
 
 
-        //When the user Logged in we use username-password for the connection
+        //When the user Logged in we use username-password for the connectio
         public static int ID;
         public static string USERNAME;
         public static string PASSWORD;
